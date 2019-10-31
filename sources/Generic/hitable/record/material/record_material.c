@@ -1,0 +1,16 @@
+#if !defined(IMPLEMETNATION) && !defined(DECLARATION)
+# define IMPLEMETNATION
+# define DECLARATION
+# include "record_material.h"
+#endif
+
+enum e_material __attribute__((CONST,CLONE,ARCH))
+	material(register const t_record_sf record)
+{
+	return ((const enum e_material)(((t_record_mask_qi)record)[1]));
+}
+
+#if defined(IMPLEMETNATION) && defined(DECLARATION)
+# undef IMPLEMETNATION
+# undef DECLARATION
+#endif
