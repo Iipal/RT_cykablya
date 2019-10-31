@@ -1,0 +1,26 @@
+{
+    "camera": {
+        "look_from": [13.0, 2.0, 3.0],
+        "look_at": [0.0, 0.0, 0.0],
+        "pos": [0.0, 1.0, 0.0],
+        "fov": 15.0,
+        "aperture": 0.1,
+        "dist_to_focus": 10.0
+    },
+    "lights": [
+        {
+            "type": "point",
+            "pos": [0.0, 0.0, 0.0],
+            "intense": 1.0
+        }
+    ],
+    "objects": [
+        {
+            "type": "sphere",
+            "pos": [0.0, 0.0, 5],
+            "color": "0xfc64ff",
+            "radius": 1.0002,
+            "specular": 500
+        }
+    ]
+}

@@ -30,15 +30,23 @@
 # include "plane_constructor.h"
 
 
-
-
-
-
+#include "parser.h"
 
 int __attribute__((ALIGN,ARCH))
-	main(void)
+	main(int argc, char *argv[])
 {
-
+	--argc;
+	++argv;
+	if (1 < argc || !argc)
+	{
+		dprintf(STDERR_FILENO, "You must to give me a only 1 .json file.\n");
+			// ft_putendl_fd(2, "");
+		return EXIT_FAILURE;
+	}
+	t_scene *scene = scene_parser(*argv);
+	if (!scene)
+		return EXIT_FAILURE;
+	scene = scene_free(scene);
 	// return (0);
 
 	// float	a = 5.0f;
@@ -79,9 +87,9 @@ int __attribute__((ALIGN,ARCH))
 	// static const size_t			screen_height = screen_width / 2UL;
 	// static const size_t			samples = 100UL;
 
-	static const size_t			screen_width = 2400UL;
-	static const size_t			screen_height = 800UL;
-	static const size_t			samples = 100UL;
+	static const size_t			screen_width = 1000UL;
+	static const size_t			screen_height = 500UL;
+	static const size_t			samples = 16UL;
 
 	// static const size_t			screen_width = 2560UL;
 	// static const size_t			screen_height = 1080UL;
@@ -216,7 +224,7 @@ int __attribute__((ALIGN,ARCH))
 
 	// if (!(window = mfb_open_ex_buffer(&screen, "CYKA", screen_width, screen_height, WF_RESIZABLE)))
 	// 	return (-1);
-	if (!(window = mfb_open_ex("CYKA", screen_width, screen_height, WF_RESIZABLE)))
+	if (!(window = mfb_open_ex("BLYAD'", screen_width, screen_height, 1)))
 		return (-1);
 	if (!(screen = (__typeof__(screen))(valloc(sizeof(*screen) * screen_width * screen_height))))
 		return (-1);
@@ -246,7 +254,7 @@ int __attribute__((ALIGN,ARCH))
 		Params[i].aspect_ratio = (float)screen_width / (float)screen_height;
 		Params[i].aperture = 0.1f;
 		Params[i].dist_to_focus = 10.0f;
-		tpool_add_work(render_pool, (void(*)(void*))render_normal, Params + i);
+		tpool_add_work(render_pool, (void(*)(void*))render_std, Params + i);
 	}
 	// tpool_wait(render_pool);
 
@@ -273,7 +281,7 @@ int __attribute__((ALIGN,ARCH))
 		// 		Params[i].samples = current_samples;
 		// 		Params[i].screen = screen;
 		// 		Params[i].fov = fov;
-		// 		tpool_add_work(render_pool, (void(*)(void*))render, Params + i);
+		// 		tpool_add_work(render_pool, (void(*)(void*))render_std, Params + i);
 		// 		state = mfb_update(window, screen);
 		// 		if (state != STATE_OK)
 		// 			break ;
@@ -287,7 +295,7 @@ int __attribute__((ALIGN,ARCH))
 
 		state = mfb_update(window, screen);
 		if (state == STATE_EXIT)
-			break ;
+			_Exit(0);
 	}
 
 	tpool_wait(render_pool);

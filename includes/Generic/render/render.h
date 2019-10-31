@@ -35,7 +35,7 @@ struct s_render_params
 	float											aspect_ratio;
 	float											aperture;
 	float											dist_to_focus;
-} __attribute__((ALIGN));
+};
 #  endif
 
 void __attribute__((ALIGN,ARCH))
@@ -46,8 +46,8 @@ void __attribute__((ALIGN,ARCH))
 render_full(struct s_render_params *restrict param);
 
 
-#  ifndef IMPLEMETNATION
-#   include "free_attributes.h"
-#  endif
+// #  ifndef IMPLEMETNATION
+// #   include "free_attributes.h"
+// #  endif
 # endif
 #endif

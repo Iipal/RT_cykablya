@@ -118,7 +118,7 @@ void __attribute__((ALIGN,ARCH))
 // 	// const float						aspect_ratio = (float)(param->screen_width) / (float)(param->screen_height);
 // 	// const float						aperture = 2.0f;
 // 	// const float						dist_to_focus = length(look_from - look_at);
-	
+
 
 // 	// cam = camera();
 // 	cam = camera(90.0f, (float)(param->screen_width) / (float)(param->screen_height));
@@ -142,14 +142,14 @@ void __attribute__((ALIGN,ARCH))
 
 // 			// const float x = ((float)(i % (__typeof__(i))(param->screen_width)) + random_float());
 // 			// const float y = ((float)(i / (__typeof__(i))(param->screen_width)) + random_float());
-//    //          const float u = (2.0f * (x + 0.5f) / (float)(param->screen_width) - 1.0f) * aspect_ratio * scale; 
+//    //          const float u = (2.0f * (x + 0.5f) / (float)(param->screen_width) - 1.0f) * aspect_ratio * scale;
 //    //          const float v = (1.0f - 2.0f * (y + 0.5f) / (float)(param->screen_height)) * scale;
 
 
 
 // 			// const float 	u = (((float)(i % (__typeof__(i))(param->screen_width)) + random_float()) / param->screen_width) * aspect_ratio * scale;
 // 			// const float 	v = (1.0f - ((float)(i / (__typeof__(i))(param->screen_width)) + random_float()) / param->screen_height) * scale;
-			
+
 // 			const float 	u = ((float)(i % (__typeof__(i))(param->screen_width)) + random_float()) / param->screen_width;
 // 			const float 	v = 1.0f - ((float)(i / (__typeof__(i))(param->screen_width)) + random_float()) / param->screen_height;
 // 			col	+= color(ray(cam, (t_v3sf)u, (t_v3sf)v), param->hitables, 0UL);
