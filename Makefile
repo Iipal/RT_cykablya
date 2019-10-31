@@ -67,9 +67,6 @@ else
 	@$(PROJ_CC) $(OBJECTS) $(ASM_OBJECTS) $(OBC_OBJECTS) $(COMPILE_APP_RULE) -o $@
 endif
 ifeq ($(LIB_DETECT),$(error))
-ifeq (DEBUG,$(findstring DEBUG,$(strip $(FLAG))))
-	@$(DB) $@
-endif
 ifeq (PROFILE,$(findstring PROFILE,$(strip $(FLAG))))
 	@./$(NAME) > $(P_OUT) $(P_OUT_FLAGS)
 	@$(PROF) $(PROF_FLAGS) $@

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sp_arr_to_v3sf.c                                   :+:      :+:    :+:   */
+/*   sp_get_v3sf_arr.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:54:37 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/10/31 19:22:28 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/10/31 21:41:13 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-bool	sp_arr_to_v3sf(t_v3sf *const dst,
+bool	sp_get_v3sf_arr(t_v3sf *const dst,
 			JSON_Array const *const arr,
 			char const *const param_name,
 			size_t const obj_serial)

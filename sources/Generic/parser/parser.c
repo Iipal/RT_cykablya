@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:50:23 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/10/31 18:30:39 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/10/31 19:51:41 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,3 +27,8 @@ t_scene	*scene_parser(char *file)
 		scene_free(out));
 	return out;
 }
+
+#if defined(IMPLEMETNATION) && defined(DECLARATION)
+# undef IMPLEMETNATION
+# undef DECLARATION
+#endif

@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:49:59 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/10/31 19:29:50 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/10/31 21:54:36 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@
 # include "ft_printf.h"
 # include "libft.h"
 
+# define DECLARATION
 # include "render.h"
 # include "vector_types.h"
+# undef DECLARATION
 
 typedef struct	s_scene
 {
@@ -37,11 +39,11 @@ typedef struct	s_scene
 	struct s_render_params	*cam;
 }				t_scene;
 
-t_scene	*scene_parser(char *file);
+t_scene					*scene_parser(char *file);
 
-struct s_render_params	*sp_render_camera(JSON_Object *obj);
+struct s_render_params	*sp_render_camera(JSON_Object *root);
 
-bool					sp_arr_to_v3sf(t_v3sf *const dst,
+bool					sp_get_v3sf_arr(t_v3sf *const dst,
 							JSON_Array const *const arr,
 							char const *const param_name,
 							size_t const obj_serial);
