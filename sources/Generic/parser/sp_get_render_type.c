@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sp_render_type.c                                   :+:      :+:    :+:   */
+/*   sp_get_render_type.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 10:24:31 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/01 12:42:34 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/01 15:46:53 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-bool	sp_render_type(JSON_Object const *root, t_fnptr_render *fn)
+bool	sp_get_render_type(JSON_Object const *root, t_fnptr_render *fn)
 {
 	int8_t					i;
 	char const				*rtype;

@@ -35,6 +35,8 @@
 int __attribute__((ALIGN,ARCH))
 	main(int argc, char *argv[])
 {
+	t_scene *s;
+
 	--argc;
 	++argv;
 	if (1 < argc || !argc)
@@ -42,8 +44,7 @@ int __attribute__((ALIGN,ARCH))
 		ft_putendl_fd("You must to give me a only 1 .json file.\n", 2);
 		return (EXIT_FAILURE);
 	}
-	t_scene *s = scene_parser(*argv);
-	if (!s)
+	if (!(s = scene_parser(*argv)))
 		return (EXIT_FAILURE);
 	// return (0);
 

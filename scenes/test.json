@@ -27,14 +27,6 @@
             "color": "0xfc64ff",
             "radius": 1.0002,
             "specular": 500
-        },
-        {
-            "material": "normal",
-            "shape": "cone",
-            "pos": [0.0, 0.0, 5],
-            "color": "0xffaadd",
-            "radius": 1.0002,
-            "specular": 500
         }
     ]
 }

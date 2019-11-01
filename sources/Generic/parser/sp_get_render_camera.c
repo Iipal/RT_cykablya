@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sp_render_camera.c                                 :+:      :+:    :+:   */
+/*   sp_get_render_camera.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:17:57 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/01 10:49:10 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/01 15:48:58 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static inline bool	s_validate_camera_data(JSON_Object const *obj)
 	return (true);
 }
 
-bool				sp_render_camera(struct s_render_params *const dst,
-						JSON_Object const *root)
+bool				sp_get_render_camera(JSON_Object const *root,
+						struct s_render_params *const dst)
 {
 	JSON_Object const	*cam = json_object_get_object(root, P_CAMERA);
 

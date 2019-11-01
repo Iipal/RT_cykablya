@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:49:59 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/01 12:14:42 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/01 15:58:21 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,13 @@ typedef struct	s_scene
 
 t_scene	*scene_parser(char *file);
 
-bool	sp_render_type(JSON_Object const *root, t_fnptr_render *fn);
-bool	sp_screen_size(JSON_Object const *root, t_scene *const scene);
-bool	sp_render_camera(struct s_render_params *const dst,
-			JSON_Object const *root);
+bool	sp_get_render_type(JSON_Object const *root, t_fnptr_render *fn);
+bool	sp_get_screen_size(JSON_Object const *root,
+			size_t *const w,
+			size_t *const h);
+bool	sp_get_render_camera(JSON_Object const *root,
+			struct s_render_params *const dst);
+bool	sp_get_lights(JSON_Object const *root, t_scene *const scene);
 
 bool	sp_get_v3sf_arr(t_v3sf *const dst,
 			JSON_Array const *const arr,

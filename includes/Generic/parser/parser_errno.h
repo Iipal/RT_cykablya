@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 17:44:42 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/01 15:40:42 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/01 16:07:12 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,16 @@
 # define E_IN_RENDER_TYPE "in render type"
 # define E_IN_P_SCREEN "in screen"
 # define E_IN_P_SCREEN_SIZE "in screen params size"
+
 # define E_IN_CAM "in camera"
+# define E_NO_CAM "Any camera in a scene wasn't founded."
+
+# define E_IN_LIGHTS "in lights"
 
 # define E_INVALID_RTYPE "Invalid render type. Using \'std\' render by default"
 
-# define E_NO_CAM "Any camera in a scene wasn't founded."
-
 # define E_VEC_FMT "wrong vector format"
+# define E_JARR_FMT "wrong json array format"
 
 # define E_INVALID "invalid or missing"
 
