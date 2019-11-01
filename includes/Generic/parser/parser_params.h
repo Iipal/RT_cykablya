@@ -6,19 +6,24 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:21:55 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/01 08:39:16 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/01 10:39:59 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_PARAM_NAMES_H
 # define PARSER_PARAM_NAMES_H
 
-# define P_SCREEN_W "screen_w"
-# define P_SCREEN_H "screen_h"
+# define P_RENDER        "render_type"
+# define P_RENDER_STD    "std"
+# define P_RENDER_NORMAL "normal"
+# define P_RENDER_FULL   "full"
 
-# define P_CAMERA  "camera"
-# define P_LIGHTS  "lights"
-# define P_OBJECTS "objects"
+# define P_SCREEN_W      "screen_w"
+# define P_SCREEN_H      "screen_h"
+
+# define P_CAMERA        "camera"
+# define P_LIGHTS        "lights"
+# define P_OBJECTS       "objects"
 
 # define P_LOOK_FROM     "look_from"
 # define P_LOOK_AT       "look_at"

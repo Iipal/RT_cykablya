@@ -234,14 +234,24 @@ int __attribute__((ALIGN,ARCH))
 	struct s_render_params	*restrict	Params = valloc((sizeof(*Params)) * render_tasks);
 	render_pool = tpool_create(render_threads);
 
-	printf("%zux%zu\n", scene->screen_w, scene->screen_h);
+	printf("\n\t**** | %zux%zu | ****\n\n",
+		scene->screen_w, scene->screen_h);
+	{
+		char const *const	_current_render_type =
+			(scene->render_fn == render_std) ? "std"
+				: (scene->render_fn == render_full) ? "full"
+					: (scene->render_fn == render_normal) ? "normal"
+						: "(null)";
+		printf("\t++++ | %s | ++++\n", _current_render_type);
+	}
 
-	printf("look_from: %f %f %f|\nlook_at: %f %f %f|\npos: %f %f %f|\n\n",
+	puts("Camera parameters: (x y z)");
+	printf("\tlook_from: %f %f %f\n\tlook_at: %f %f %f\n\tpos: %f %f %f\n\n",
 scene->cam.look_from[0], scene->cam.look_from[1], scene->cam.look_from[2],
 scene->cam.look_at[0], scene->cam.look_at[1], scene->cam.look_at[2],
 scene->cam.position[0], scene->cam.position[1], scene->cam.position[2]);
 
-	printf("fov: %f|\naperture: %f|\ndist_to_focus: %f|\n",
+	printf("\tfov: %f\n\taperture: %f\n\tdist_to_focus: %f\n",
 		scene->cam.fov, scene->cam.aperture, scene->cam.dist_to_focus);
 
 	for (size_t i = 0; i < render_tasks; i++)
@@ -261,7 +271,8 @@ scene->cam.position[0], scene->cam.position[1], scene->cam.position[2]);
 		Params[i].aspect_ratio = (float)scene->screen_w / (float)scene->screen_h;
 		Params[i].aperture = scene->cam.aperture;
 		Params[i].dist_to_focus = scene->cam.dist_to_focus;
-		tpool_add_work(render_pool, (void(*)(void*))render_full, Params + i);
+		tpool_add_work(render_pool, (void(*)(void*))scene->render_fn,
+			Params + i);
 	}
 	// tpool_wait(render_pool);
 
