@@ -42,8 +42,8 @@ int __attribute__((ALIGN,ARCH))
 		ft_putendl_fd("You must to give me a only 1 .json file.\n", 2);
 		return (EXIT_FAILURE);
 	}
-	t_scene *scene = scene_parser(*argv);
-	if (!scene)
+	t_scene *s = scene_parser(*argv);
+	if (!s)
 		return (EXIT_FAILURE);
 	// return (0);
 
@@ -81,14 +81,14 @@ int __attribute__((ALIGN,ARCH))
 
 	// while (-42) assert(random_float() < 1.0f && random_float() >= 0.0f);
 
-	// static const size_t			scene->screen_w = 4UL * 256UL;
-	// static const size_t			scene->screen_h = scene->screen_w / 2UL;
+	// static const size_t			s->screen_w = 4UL * 256UL;
+	// static const size_t			s->screen_h = s->screen_w / 2UL;
 	// static const size_t			samples = 100UL;
 
 	static const size_t			samples = 16UL;
 
-	// static const size_t			scene->screen_w = 2560UL;
-	// static const size_t			scene->screen_h = 1080UL;
+	// static const size_t			s->screen_w = 2560UL;
+	// static const size_t			s->screen_h = 1080UL;
 	// static const size_t			samples = 64UL;
 
 	t_material_sf				materials[] = {
@@ -202,7 +202,7 @@ int __attribute__((ALIGN,ARCH))
 	const size_t				render_threads = 8UL;
 	const size_t				render_tasks = render_threads << 2UL;
 	const size_t				render_part =
-		(scene->screen_w * scene->screen_h / render_tasks);
+		(s->screen_w * s->screen_h / render_tasks);
 
 	uint32_t	*restrict		screen;
 	struct Window	*restrict	window;
@@ -219,11 +219,11 @@ int __attribute__((ALIGN,ARCH))
 	// 	(union u_hitables){ { SPHERE, 0, spheres + 1UL, materials + 1UL } },
 	// };
 
-	// if (!(window = mfb_open_ex_buffer(&screen, "CYKA", scene->screen_w, scene->screen_h, WF_RESIZABLE)))
+	// if (!(window = mfb_open_ex_buffer(&screen, "CYKA", s->screen_w, s->screen_h, WF_RESIZABLE)))
 	// 	return (-1);
-	if (!(window = mfb_open_ex("BLYAD'", scene->screen_w, scene->screen_h, 1)))
+	if (!(window = mfb_open_ex("BLYAD'", s->screen_w, s->screen_h, 1)))
 		return (-1);
-	if (!(screen = (__typeof__(screen))(valloc(sizeof(*screen) * scene->screen_w * scene->screen_h))))
+	if (!(screen = (__typeof__(screen))(valloc(sizeof(*screen) * s->screen_w * s->screen_h))))
 		return (-1);
 
 	// const size_t					count = 100UL;
@@ -234,44 +234,43 @@ int __attribute__((ALIGN,ARCH))
 	struct s_render_params	*restrict	Params = valloc((sizeof(*Params)) * render_tasks);
 	render_pool = tpool_create(render_threads);
 
-	printf("\n\t**** | %zux%zu | ****\n\n",
-		scene->screen_w, scene->screen_h);
+	printf("\n\t**** | %zux%zu | ****\n\n", s->screen_w, s->screen_h);
 	{
 		char const *const	_current_render_type =
-			(scene->render_fn == render_std) ? "std"
-				: (scene->render_fn == render_full) ? "full"
-					: (scene->render_fn == render_normal) ? "normal"
+			(s->render_fn == render_std) ? "std"
+				: (s->render_fn == render_full) ? "full"
+					: (s->render_fn == render_normal) ? "normal"
 						: "(null)";
-		printf("\t++++ | %s | ++++\n", _current_render_type);
+		printf("\t++++ %s-render ++++\n", _current_render_type);
 	}
 
 	puts("Camera parameters: (x y z)");
 	printf("\tlook_from: %f %f %f\n\tlook_at: %f %f %f\n\tpos: %f %f %f\n\n",
-scene->cam.look_from[0], scene->cam.look_from[1], scene->cam.look_from[2],
-scene->cam.look_at[0], scene->cam.look_at[1], scene->cam.look_at[2],
-scene->cam.position[0], scene->cam.position[1], scene->cam.position[2]);
+		s->cam.look_from[0], s->cam.look_from[1], s->cam.look_from[2],
+		s->cam.look_at[0], s->cam.look_at[1], s->cam.look_at[2],
+		s->cam.position[0], s->cam.position[1], s->cam.position[2]);
 
 	printf("\tfov: %f\n\taperture: %f\n\tdist_to_focus: %f\n",
-		scene->cam.fov, scene->cam.aperture, scene->cam.dist_to_focus);
+		s->cam.fov, s->cam.aperture, s->cam.dist_to_focus);
 
 	for (size_t i = 0; i < render_tasks; i++)
 	{
-		Params[i].screen_width = scene->screen_w;
-		Params[i].screen_height = scene->screen_h;
+		Params[i].screen_width = s->screen_w;
+		Params[i].screen_height = s->screen_h;
 		Params[i].start = render_part * i;
 		Params[i].stop = render_part * (i + 1);
 		Params[i].step = 1UL;
 		Params[i].hitables = hitables;
 		Params[i].samples = samples;
 		Params[i].screen = screen;
-		Params[i].look_from = scene->cam.look_from;
-		Params[i].look_at = scene->cam.look_at;
-		Params[i].position = scene->cam.position;
-		Params[i].fov = scene->cam.fov;;
-		Params[i].aspect_ratio = (float)scene->screen_w / (float)scene->screen_h;
-		Params[i].aperture = scene->cam.aperture;
-		Params[i].dist_to_focus = scene->cam.dist_to_focus;
-		tpool_add_work(render_pool, (void(*)(void*))scene->render_fn,
+		Params[i].look_from = s->cam.look_from;
+		Params[i].look_at = s->cam.look_at;
+		Params[i].position = s->cam.position;
+		Params[i].fov = s->cam.fov;;
+		Params[i].aspect_ratio = (float)s->screen_w / (float)s->screen_h;
+		Params[i].aperture = s->cam.aperture;
+		Params[i].dist_to_focus = s->cam.dist_to_focus;
+		tpool_add_work(render_pool, (void(*)(void*))s->render_fn,
 			Params + i);
 	}
 	// tpool_wait(render_pool);
@@ -290,8 +289,8 @@ scene->cam.position[0], scene->cam.position[1], scene->cam.position[2]);
 		// {
 		// 	for (size_t i = 0; i < render_tasks; i++)
 		// 	{
-		// 		Params[i].scene->screen_w = scene->screen_w;
-		// 		Params[i].scene->screen_h = scene->screen_h;
+		// 		Params[i].s->screen_w = s->screen_w;
+		// 		Params[i].s->screen_h = s->screen_h;
 		// 		Params[i].start = render_part * i;
 		// 		Params[i].stop = render_part * (i + 1);
 		// 		Params[i].step = 1UL;
@@ -314,14 +313,14 @@ scene->cam.position[0], scene->cam.position[1], scene->cam.position[2]);
 		state = mfb_update(window, screen);
 		if (state == STATE_EXIT)
 		{
-			scene = scene_free(scene);
+			s = scene_free(s);
 			_Exit(0);
 		}
 	}
 
 	tpool_wait(render_pool);
 	tpool_destroy(render_pool);
-	scene = scene_free(scene);
+	s = scene_free(s);
 	free(screen);
 	free(Params);
 	if (state != STATE_EXIT || state == STATE_OK)

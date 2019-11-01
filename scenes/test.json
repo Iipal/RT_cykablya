@@ -1,12 +1,14 @@
 {
-    "screen_w": 800,
-    "screen_h": 600,
     "render_type": "full",
+    "screen": {
+        "width": 1000,
+        "height": 500
+    },
     "camera": {
         "look_from": [1.5, 0.0, 4.0],
         "look_at": [0.0, 0.0, 0.0],
         "pos": [0.0, 1.0, 0.0],
-        "fov": 60.0,
+        "fov": 15.0,
         "aperture": 0.1,
         "dist_to_focus": 5.0
     },
@@ -19,9 +21,18 @@
     ],
     "objects": [
         {
-            "type": "sphere",
+            "material": "metal",
+            "shape": "sphere",
             "pos": [0.0, 0.0, 5],
             "color": "0xfc64ff",
+            "radius": 1.0002,
+            "specular": 500
+        },
+        {
+            "material": "normal",
+            "shape": "cone",
+            "pos": [0.0, 0.0, 5],
+            "color": "0xffaadd",
             "radius": 1.0002,
             "specular": 500
         }

@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:21:55 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/01 10:39:59 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/01 15:41:13 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,14 @@
 # define P_RENDER_NORMAL "normal"
 # define P_RENDER_FULL   "full"
 
-# define P_SCREEN_W      "screen_w"
-# define P_SCREEN_H      "screen_h"
+# define P_SCREEN        "screen"
+# define P_SCREEN_W      "width"
+# define P_SCREEN_H      "height"
 
 # define P_CAMERA        "camera"
+
 # define P_LIGHTS        "lights"
+
 # define P_OBJECTS       "objects"
 
 # define P_LOOK_FROM     "look_from"

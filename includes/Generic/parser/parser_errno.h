@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 17:44:42 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/01 10:50:14 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/01 15:40:42 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@
 # define E_SYNTAX "Invalid .json scene-file syntax or file doesn't exist."
 
 # define E_IN_RENDER_TYPE "in render type"
-# define E_IN_SCREEN_SIZE "in screen size params"
-# define E_IN_CAM "in camera object"
+# define E_IN_P_SCREEN "in screen"
+# define E_IN_P_SCREEN_SIZE "in screen params size"
+# define E_IN_CAM "in camera"
 
 # define E_INVALID_RTYPE "Invalid render type. Using \'std\' render by default"
 

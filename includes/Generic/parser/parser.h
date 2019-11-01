@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:49:59 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/01 10:59:23 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/01 12:14:42 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define DECLARATION
 # include "render.h"
 # include "vector_types.h"
+# include "material.h"
 # undef DECLARATION
 
 typedef void	(*t_fnptr_render)(struct s_render_params*restrict);
