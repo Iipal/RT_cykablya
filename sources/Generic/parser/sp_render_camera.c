@@ -6,13 +6,13 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:17:57 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/10/31 21:54:56 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/01 08:27:46 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-static inline bool		s_validate_camera_data(JSON_Object const *obj)
+static inline bool	s_validate_camera_data(JSON_Object const *obj)
 {
 	NODO_F(json_object_has_value_of_type(obj, P_LOOK_FROM, JSONArray),
 		ERRIN(E_IN_CAM, P_LOOK_FROM));
@@ -27,23 +27,21 @@ static inline bool		s_validate_camera_data(JSON_Object const *obj)
 	return (true);
 }
 
-struct s_render_params	*sp_render_camera(JSON_Object *root)
+bool				sp_render_camera(struct s_render_params *dst,
+						JSON_Object *root)
 {
 	JSON_Object const		*cam = json_object_get_object(root, P_CAMERA);
-	struct s_render_params	*out;
 
-	out = NULL;
-	NOM_R(E_NO_CAM, cam, out);
-	NO_R(s_validate_camera_data(cam), out);
-	out = (struct s_render_params*)ft_memalloc(sizeof(*out));
-	NODO_F(sp_get_v3sf_arr(&out->position, json_object_get_array(cam,
-		P_LOOK_FROM), P_LOOK_FROM, 0UL), FREE(out, free));
-	NODO_F(sp_get_v3sf_arr(&out->position, json_object_get_array(cam,
-		P_LOOK_AT), P_LOOK_AT, 0UL), FREE(out, free));
-	NODO_F(sp_get_v3sf_arr(&out->position, json_object_get_array(cam,
-		P_POSITION), P_POSITION, 0UL), FREE(out, free));
-	out->fov = json_object_get_number(cam, P_FOV);
-	out->aperture = json_object_get_number(cam, P_APERTURE);
-	out->dist_to_focus = json_object_get_number(cam, P_DIST_TO_FOCUS);
-	return (out);
+	NOM_F(E_NO_CAM, cam);
+	NO_F(s_validate_camera_data(cam));
+	NO_F(sp_get_v3sf_arr(&dst->look_from,
+		json_object_get_array(cam, P_LOOK_FROM), P_LOOK_FROM, 0UL));
+	NO_F(sp_get_v3sf_arr(&dst->look_at,
+		json_object_get_array(cam, P_LOOK_AT), P_LOOK_AT, 0UL));
+	NO_F(sp_get_v3sf_arr(&dst->position,
+		json_object_get_array(cam, P_POSITION), P_POSITION, 0UL));
+	dst->fov = json_object_get_number(cam, P_FOV);
+	dst->aperture = json_object_get_number(cam, P_APERTURE);
+	dst->dist_to_focus = json_object_get_number(cam, P_DIST_TO_FOCUS);
+	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 17:44:42 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/10/31 19:48:52 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/01 08:31:45 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # define E_PREFIX "RT parser ERROR"
 
 # define E_SYNTAX "Invalid .json scene-file syntax or file doesn't exist."
+
+# define E_IN_SCREEN_SIZE "in screen size params"
 
 # define E_NO_CAM "Any camera in a scene wasn't founded."
 # define E_IN_CAM "in camera object"

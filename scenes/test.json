@@ -1,11 +1,13 @@
 {
+    "screen_w": 1920,
+    "screen_h": 1080,
     "camera": {
-        "look_from": [13.0, 2.0, 3.0],
+        "look_from": [5.0, 2.42, 0.0],
         "look_at": [0.0, 0.0, 0.0],
         "pos": [0.0, 1.0, 0.0],
-        "fov": 15.0,
+        "fov": 60.0,
         "aperture": 0.1,
-        "dist_to_focus": 10.0
+        "dist_to_focus": 5.0
     },
     "lights": [
         {

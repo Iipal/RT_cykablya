@@ -39,14 +39,12 @@ int __attribute__((ALIGN,ARCH))
 	++argv;
 	if (1 < argc || !argc)
 	{
-		dprintf(STDERR_FILENO, "You must to give me a only 1 .json file.\n");
-			// ft_putendl_fd(2, "");
-		return EXIT_FAILURE;
+		ft_putendl_fd("You must to give me a only 1 .json file.\n", 2);
+		return (EXIT_FAILURE);
 	}
 	t_scene *scene = scene_parser(*argv);
 	if (!scene)
-		return EXIT_FAILURE;
-	scene = scene_free(scene);
+		return (EXIT_FAILURE);
 	// return (0);
 
 	// float	a = 5.0f;
@@ -83,16 +81,14 @@ int __attribute__((ALIGN,ARCH))
 
 	// while (-42) assert(random_float() < 1.0f && random_float() >= 0.0f);
 
-	// static const size_t			screen_width = 4UL * 256UL;
-	// static const size_t			screen_height = screen_width / 2UL;
+	// static const size_t			scene->screen_w = 4UL * 256UL;
+	// static const size_t			scene->screen_h = scene->screen_w / 2UL;
 	// static const size_t			samples = 100UL;
 
-	static const size_t			screen_width = 1000UL;
-	static const size_t			screen_height = 500UL;
 	static const size_t			samples = 16UL;
 
-	// static const size_t			screen_width = 2560UL;
-	// static const size_t			screen_height = 1080UL;
+	// static const size_t			scene->screen_w = 2560UL;
+	// static const size_t			scene->screen_h = 1080UL;
 	// static const size_t			samples = 64UL;
 
 	t_material_sf				materials[] = {
@@ -205,7 +201,8 @@ int __attribute__((ALIGN,ARCH))
 
 	const size_t				render_threads = 8UL;
 	const size_t				render_tasks = render_threads << 2UL;
-	const size_t				render_part = (screen_width * screen_height / render_tasks);
+	const size_t				render_part =
+		(scene->screen_w * scene->screen_h / render_tasks);
 
 	uint32_t	*restrict		screen;
 	struct Window	*restrict	window;
@@ -222,11 +219,11 @@ int __attribute__((ALIGN,ARCH))
 	// 	(union u_hitables){ { SPHERE, 0, spheres + 1UL, materials + 1UL } },
 	// };
 
-	// if (!(window = mfb_open_ex_buffer(&screen, "CYKA", screen_width, screen_height, WF_RESIZABLE)))
+	// if (!(window = mfb_open_ex_buffer(&screen, "CYKA", scene->screen_w, scene->screen_h, WF_RESIZABLE)))
 	// 	return (-1);
-	if (!(window = mfb_open_ex("BLYAD'", screen_width, screen_height, 1)))
+	if (!(window = mfb_open_ex("BLYAD'", scene->screen_w, scene->screen_h, 1)))
 		return (-1);
-	if (!(screen = (__typeof__(screen))(valloc(sizeof(*screen) * screen_width * screen_height))))
+	if (!(screen = (__typeof__(screen))(valloc(sizeof(*screen) * scene->screen_w * scene->screen_h))))
 		return (-1);
 
 	// const size_t					count = 100UL;
@@ -237,24 +234,34 @@ int __attribute__((ALIGN,ARCH))
 	struct s_render_params	*restrict	Params = valloc((sizeof(*Params)) * render_tasks);
 	render_pool = tpool_create(render_threads);
 
+	printf("%zux%zu\n", scene->screen_w, scene->screen_h);
+
+	printf("look_from: %f %f %f|\nlook_at: %f %f %f|\npos: %f %f %f|\n\n",
+scene->cam.look_from[0], scene->cam.look_from[1], scene->cam.look_from[2],
+scene->cam.look_at[0], scene->cam.look_at[1], scene->cam.look_at[2],
+scene->cam.position[0], scene->cam.position[1], scene->cam.position[2]);
+
+	printf("fov: %f|\naperture: %f|\ndist_to_focus: %f|\n",
+		scene->cam.fov, scene->cam.aperture, scene->cam.dist_to_focus);
+
 	for (size_t i = 0; i < render_tasks; i++)
 	{
-		Params[i].screen_width = screen_width;
-		Params[i].screen_height = screen_height;
+		Params[i].screen_width = scene->screen_w;
+		Params[i].screen_height = scene->screen_h;
 		Params[i].start = render_part * i;
 		Params[i].stop = render_part * (i + 1);
 		Params[i].step = 1UL;
 		Params[i].hitables = hitables;
 		Params[i].samples = samples;
 		Params[i].screen = screen;
-		Params[i].look_from = vec(13.0f, 2.0f, 3.0f);
-		Params[i].look_at = vec(0.0f, 0.0f, 0.0f);
-		Params[i].position = vec(0.0f, 1.0f, 0.0f);
-		Params[i].fov = fov;
-		Params[i].aspect_ratio = (float)screen_width / (float)screen_height;
-		Params[i].aperture = 0.1f;
-		Params[i].dist_to_focus = 10.0f;
-		tpool_add_work(render_pool, (void(*)(void*))render_std, Params + i);
+		Params[i].look_from = scene->cam.look_from;
+		Params[i].look_at = scene->cam.look_at;
+		Params[i].position = scene->cam.position;
+		Params[i].fov = scene->cam.fov;;
+		Params[i].aspect_ratio = (float)scene->screen_w / (float)scene->screen_h;
+		Params[i].aperture = scene->cam.aperture;
+		Params[i].dist_to_focus = scene->cam.dist_to_focus;
+		tpool_add_work(render_pool, (void(*)(void*))render_full, Params + i);
 	}
 	// tpool_wait(render_pool);
 
@@ -272,8 +279,8 @@ int __attribute__((ALIGN,ARCH))
 		// {
 		// 	for (size_t i = 0; i < render_tasks; i++)
 		// 	{
-		// 		Params[i].screen_width = screen_width;
-		// 		Params[i].screen_height = screen_height;
+		// 		Params[i].scene->screen_w = scene->screen_w;
+		// 		Params[i].scene->screen_h = scene->screen_h;
 		// 		Params[i].start = render_part * i;
 		// 		Params[i].stop = render_part * (i + 1);
 		// 		Params[i].step = 1UL;
@@ -295,11 +302,15 @@ int __attribute__((ALIGN,ARCH))
 
 		state = mfb_update(window, screen);
 		if (state == STATE_EXIT)
+		{
+			scene = scene_free(scene);
 			_Exit(0);
+		}
 	}
 
 	tpool_wait(render_pool);
 	tpool_destroy(render_pool);
+	scene = scene_free(scene);
 	free(screen);
 	free(Params);
 	if (state != STATE_EXIT || state == STATE_OK)
