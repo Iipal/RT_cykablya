@@ -3,9 +3,8 @@
 #
 
 PROJ_CFLAGS		?=
-INCLUDE_DIR		?=
 LIBS_NAMES		?=
-LIBRARIES_DIR	?=
+LIBRARIES_DIR		?=
 
 COMPILE_OBJ_RULE	?=	$(PROJ_CFLAGS) \
 						$(foreach inc,\
@@ -36,13 +35,13 @@ ifneq ($(LIBS_NAMES),$(error))
 endif
 
 ifneq ($(LIBS_NAMES),$(error))
-	MAKE_LIBS	?=	$(foreach lib,\
+	MAKE_LIBS	:=	$(foreach lib,\
 			$(LIBS_NAMES),\
 			$(MAKE)$(space)-C"$(LIBRARIES_DIR)/lib$(lib)"$(space)--no-print-directory$(newline))
-	FCLEAN_LIBS	?=	$(foreach lib,\
+	FCLEAN_LIBS	:=	$(foreach lib,\
 			$(LIBS_NAMES),\
 			$(MAKE)$(space)-C"$(LIBRARIES_DIR)/lib$(lib)"$(space)fclean$(space)--no-print-directory$(newline))
-	RE_LIBS		?=	$(foreach lib,\
+	RE_LIBS		:=	$(foreach lib,\
 			$(LIBS_NAMES),\
 			$(MAKE)$(space)-C"$(LIBRARIES_DIR)/lib$(lib)"$(space)re$(space)--no-print-directory$(newline))
 endif
