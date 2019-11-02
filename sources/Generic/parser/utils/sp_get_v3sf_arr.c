@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:54:37 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/10/31 21:41:13 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/02 14:21:23 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ bool	sp_get_v3sf_arr(t_v3sf *const dst,
 	i = -1;
 	NODO_F(arr, ERRIN_N(param_name, obj_serial + 1, "JSONArray", E_INVALID));
 	IFDO_F(3 != json_array_get_count(arr),
-		ERRIN_N(param_name, obj_serial + 1, "JSONArray elements", E_INVALID));
+		ERRIN_N(param_name, obj_serial + 1, "JSONArray", E_INVALID));
 	while (3 > ++i)
 	{
 		IFDO_F(JSONNumber != json_value_get_type(json_array_get_value(arr, i)),

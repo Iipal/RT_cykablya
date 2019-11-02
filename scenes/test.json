@@ -21,12 +21,25 @@
     ],
     "objects": [
         {
-            "material": "metal",
-            "shape": "sphere",
+            "type": "sphere",
+            "material": {
+                "type": "metal",
+                "albedo": [ 0.5, 0.5, 0.5 ],
+                "fuzz": 0.5
+            },
             "pos": [0.0, 0.0, 5],
-            "color": "0xfc64ff",
+            "radius": 1.0002
+        },
+        {
+            "material": {
+                "type": "metal",
+                "albedo": [ 0.5, 0.5, 0.5 ],
+                "fuzz": 0.1
+            },
+            "type": "sphere",
+            "pos": [0.0, 0.0, 5],
             "radius": 1.0002,
-            "specular": 500
+            "hight": 10.0
         }
     ]
 }

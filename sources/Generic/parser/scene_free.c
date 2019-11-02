@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:58:02 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/01 08:22:07 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/02 14:30:27 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	*scene_free(t_scene *scene)
 {
 	if (scene)
 	{
+		FREE(scene->objs, free);
 		FREE(scene, free);
 	}
 	return (NULL);

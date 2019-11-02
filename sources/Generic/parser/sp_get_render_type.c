@@ -6,21 +6,21 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 10:24:31 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/01 15:46:53 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/02 15:53:34 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-bool	sp_get_render_type(JSON_Object const *root, t_fnptr_render *fn)
+bool	sp_get_render_type(JSON_Object const *root, t_fnptr_render *const fn)
 {
 	int8_t					i;
 	char const				*rtype;
 	bool					is_valid_type;
 	t_fnptr_render const	valid_renders[] = { render_normal, render_full };
-	char const				*valid_rtypes[] = { P_RENDER_STD,
-												P_RENDER_NORMAL,
-												P_RENDER_FULL };
+	char const				*valid_rtypes[] = { P_R_STD,
+												P_R_NORMAL,
+												P_R_FULL };
 
 	i = -1;
 	*fn = render_std;
