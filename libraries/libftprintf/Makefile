@@ -1,88 +1,111 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/02/06 14:43:13 by tmaluh            #+#    #+#              #
-#    Updated: 2019/10/29 23:04:09 by tmaluh           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+include $(CURDIR)/configs/common_variables.mk
+include $(CURDIR)/configs/functions.mk
 
-NAME = libftprintf.a
-NPWD = $(CURDIR)/$(NAME)
+include $(CURDIR)/configs/detect_os.mk
+include $(CURDIR)/configs/preparation.mk
+include $(CURDIR)/configs/libraries_processing.mk
 
-ECHO := echo
-UNAME_S := $(shell uname -s)
-ifeq ($(UNAME_S),Linux)
-	ECHO += -e
-	LC := gcc-ar
+include $(CURDIR)/configs/process_flag_rules.mk
+include $(CURDIR)/configs/create_compile_rules.mk
+
+include $(CURDIR)/configs/MODIFIERS.mk
+
+.PHONY: all
+all: $(CLEAR)
+ifneq ($(LIBS_NAMES),$(error))
+	@$(MAKE_LIBS)
 endif
-ifeq ($(UNAME_S),Darwin)
-	LC := ar
+	@$(MAKE) $(NAME) --no-print-directory
+
+.PRECIOUS: $(OBJECTS_DIR)/. $(OBJECTS_DIR)%/.
+
+$(OBJECTS_DIR)/.:
+	@$(MKDIR) $@
+
+$(OBJECTS_DIR)%/.:
+	@$(MKDIR) $@
+
+.SECONDEXPANSION:
+
+$(OBJECTS_DIR)/%.o: $(SOURCES_DIR)/%.c | $$(@D)/.
+	@$(info [COMPILING]$(tab)$(subst $(SOURCES_DIR),,$<))
+	@$(PROJ_CC) $(COMPILE_OBJ_RULE) -c $< -o $@
+
+$(OBJECTS_DIR)/%.o: $(SOURCES_DIR)/%.s | $$(@D)/.
+	@$(info [COMPILING]$(tab)$(subst $(SOURCES_DIR),,$<))
+	@$(PROJ_CC) $(COMPILE_OBJ_RULE) -Wno-unused-command-line-argument -c $< -o $@
+
+$(OBJECTS_DIR)/%.o: $(SOURCES_DIR)/%.m | $$(@D)/.
+	@$(info [COMPILING]$(tab)$(subst $(SOURCES_DIR),,$<))
+	@$(PROJ_CC) $(COMPILE_OBJ_RULE) -c $< -o $@
+
+ifdef CLEAR
+$(CLEAR):
+	@$(CLEAR)
 endif
 
-LC += rcs
+STATUS:
+	@$(info [$@])
+	@$(info $(tab)created:$(NAME))
+	@$(info $(tab)compiler:$(PROJ_CC))
+	@$(info $(tab)flags:$(FLAG))
 
-CC := gcc -flto -Ofast -pipe
-CC_DEBUG := gcc -g3 -D DEBUG
-CFLAGS := -Wall -Wextra -Werror -Wunused
-IFLAGS := -I $(CURDIR)/includes -I $(CURDIR)/../libft/includes/
+$(NAME):
+	@$(info [CREATING]	$@	[$(BUILD)-$(FLAG)])
+	@$(MAKE) -j $(OBJECTS) --no-print-directory
+ifneq (,$(ASM_OBJECTS))
+	@$(MAKE) -j $(ASM_OBJECTS) --no-print-directory
+endif
+ifneq (,$(OBC_OBJECTS))
+	@$(MAKE) -j $(OBC_OBJECTS) --no-print-directory
+endif
+	@$(MAKE) -q STATUS --no-print-directory
+ifeq ($(LIB_DETECT).a,$(NAME))
+	@ar rc $@ $(OBJECTS) $(ASM_OBJECTS)
+	@ranlib $@
+else
+	@$(PROJ_CC) $(OBJECTS) $(ASM_OBJECTS) $(OBC_OBJECTS) $(COMPILE_APP_RULE) -o $@
+endif
+ifeq ($(LIB_DETECT),$(error))
+ifeq (PROFILE,$(findstring PROFILE,$(strip $(FLAG))))
+	@./$(NAME) > $(P_OUT) $(P_OUT_FLAGS)
+	@$(PROF) $(PROF_FLAGS) $@
+endif
+endif
 
-SRCS := $(abspath $(wildcard srcs/*.c))
-OBJS := $(SRCS:%.c=%.o)
-SRCS_LFT := $(abspath $(wildcard ../libft/srcs/*.c ../libft/srcs/*/*.c))
-OBJS_LFT := $(SRCS_LFT:%.c=%.o)
-
-DEL := rm -rf
-
-WHITE=\033[0m
-BGREEN=\033[42m
-GREEN=\033[32m
-RED=\033[31m
-INVERT=\033[7m
-
-all: $(NAME)
-
-$(OBJS): %.o: %.c
-	@$(ECHO) -n ' $@: '
-	@$(CC) -c $(CFLAGS) $(IFLAGS) $< -o $@
-	@$(ECHO) "[$(GREEN)✓$(WHITE)]"
-
-$(NAME): $(OBJS)
-	@$(ECHO) "$(INVERT)"
-	@$(ECHO) -n ' <=-=> | $(NPWD): '
-	@$(LC) $(NAME) $(OBJS) $(OBJS_LFT)
-	@$(ECHO) "$(INVERT)[$(GREEN)✓$(WHITE)$(INVERT)]$(WHITE)"
-	@$(ECHO)
-
-del:
-	@$(DEL) $(OBJS)
-	@$(DEL) $(NAME)
-
-pre: del $(NAME)
-	@$(ECHO) "$(INVERT)$(GREEN)Successed re-build.$(WHITE)"
-
-set_cc_debug:
-	@$(eval CC=$(CC_DEBUG))
-debug_all: set_cc_debug pre
-	@$(ECHO) "$(INVERT)$(NAME) $(GREEN)ready for debug.$(WHITE)"
-debug: set_cc_debug all
-	@$(ECHO) "$(INVERT)$(NAME) $(GREEN)ready for debug.$(WHITE)"
-
+.PHONY: clean
 clean:
-	@$(DEL) $(OBJS)
+	@$(info [REMOVING] $(OBJECTS_DIR))
+	@$(RMDIR) $(OBJECTS_DIR)
 
+.PHONY: fclean
 fclean: clean
-	@$(DEL) $(NAME)
-	@$(ECHO) "$(INVERT)$(RED)deleted$(WHITE)$(INVERT): $(NPWD)$(WHITE)"
+	@$(info [REMOVING] $(NAME))
+	@$(RMFILE) $(NAME)
 
-re: fclean all
+.PHONY: re
+re:
+ifdef CLEAR
+	@$(CLEAR)
+endif
+	@$(info [REWORKING])
+	@$(MAKE) fclean --no-print-directory
+	@$(MAKE) all --no-print-directory
 
-norme:
-	@$(ECHO) "$(INVERT)norminette for $(GREEN)$(NAME)$(WHITE)$(INVERT):$(WHITE)"
-	@norminette includes/
-	@norminette $(SRCS)
+.PHONY: re_libs
+re_libs:
+	@$(RE_LIBS)
 
-.PHONY: re fclean clean all norme del pre debug debug_all norme
+.PHONY: fclean_libs
+fclean_libs:
+	@$(FCLEAN_LIBS)
+
+.PHONY: re_all
+re_all:
+	@$(MAKE) -j re_libs --no-print-directory
+	@$(MAKE) re --no-print-directory
+
+.PHONY: fclean_all
+fclean_all:
+	@$(MAKE) -j fclean_libs --no-print-directory
+	@$(MAKE) fclean

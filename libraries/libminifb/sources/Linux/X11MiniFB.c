@@ -196,6 +196,8 @@ mfb_open_ex_buffer(void **buffer, const char *title, int width, int height, int 
 	XSetWindowAttributes windowAttributes;
 	XSizeHints sizeHints;
 	Visual* visual;
+    
+    (void)buffer;
 
 	SWindowData *window_data = (SWindowData *) malloc(sizeof(SWindowData));
 	memset(window_data, 0, sizeof(SWindowData));
