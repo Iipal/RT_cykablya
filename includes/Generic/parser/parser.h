@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:49:59 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/03 01:11:01 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/03 11:44:35 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,36 +29,14 @@
 # include "libft.h"
 
 # define DECLARATION
-# include "hitable_types.h"
+# include "parser_structs.h"
 # include "vector_types.h"
-# include "material.h"
-# include "render.h"
 # undef DECLARATION
-
-typedef void	(*t_fnptr_render)(struct s_render_params *restrict);
-
-typedef struct s_object
-{
-	enum e_material			material_type;
-	enum e_hitables_types	shape_type;
-	void *restrict			shape;
-	void *restrict			material;
-}				t_object;
-
-typedef struct	s_scene
-{
-	size_t					screen_w;
-	size_t					screen_h;
-	t_fnptr_render			render_fn;
-	struct s_render_params	cam;
-	t_object				*objs;
-	size_t					in_scene_objs;
-}				t_scene;
 
 t_scene	*scene_parser(char *file);
 
-bool	sp_get_render_type(JSON_Object const *root, t_fnptr_render *const fn);
-bool	sp_get_screen_size(JSON_Object const *root,
+bool	sp_get_render_type(JSON_Object const *root, t_render *const render);
+bool	sp_get_render_size(JSON_Object const *root,
 			size_t *const w,
 			size_t *const h);
 bool	sp_get_render_camera(JSON_Object const *root,

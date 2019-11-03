@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 17:44:42 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/03 01:27:50 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/03 11:42:50 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@
 
 # define E_INVALID "invalid or missing"
 # define E_INVALID_TYPE(_what) "is an invalid " _what " type"
-# define E_INVALID_RTYPE "Invalid render type. Using \'std\' render by default"
 # define E_INVALID_O_MAT E_INVALID_TYPE(P_O_MATERIAL)
 # define E_INVALID_O_TYPE E_INVALID_TYPE(P_OBJECTS)
 

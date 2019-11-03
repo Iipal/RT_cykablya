@@ -6,17 +6,19 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:21:55 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/02 18:36:16 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/03 11:38:48 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_PARAM_NAMES_H
 # define PARSER_PARAM_NAMES_H
 
-# define P_RENDER        "render_type"
-# define P_R_STD         "std"
-# define P_R_NORMAL      "normal"
-# define P_R_FULL        "full"
+# define P_RENDER        "render"
+
+# define P_R_TYPE        "type"
+# define P_RT_STD        "std"
+# define P_RT_NORMAL     "normal"
+# define P_RT_FULL       "full"
 
 # define P_SCREEN        "screen"
 # define P_S_WIDTH       "width"
@@ -27,7 +29,11 @@
 # define P_OBJECTS       "objects"
 
 # define P_O_TYPE		 "type"
-# define P_O_SPHERE      "sphere"
+# define P_OT_SPHERE     "sphere"
+# define P_OT_CONE       "cone"
+# define P_OT_PLANE      "plane"
+# define P_OT_TRIANGLE   "triangle"
+# define P_OT_CYLINDER   "cylinder"
 
 # define P_O_MATERIAL    "material"
 
