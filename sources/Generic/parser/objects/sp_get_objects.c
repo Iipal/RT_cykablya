@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 13:46:39 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/03 11:21:37 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/03 13:23:39 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 static bool	s_get_current_object(JSON_Object const *obj_json,
 				t_object *const obj, size_t const obj_serial)
 {
-	static t_fn_objs	fn_o[] = { sp_get_object_sphere };
-	static char	const	*o_types[] = { P_O_SPHERE, P_O_ };
+	static t_fn_objs	fn_o[] = { sp_get_object_sphere, sp_get_object_cone,
+		sp_get_object_plane, sp_get_object_triangle, sp_get_object_cyiinder };
+	static char	const	*o_types[] = { P_OT_SPHERE, P_OT_CONE, P_OT_PLANE,
+										P_OT_TRIANGLE, P_OT_CYLINDER };
 	char const			*o_type = json_object_get_string(obj_json, P_O_TYPE);
 	size_t				i;
 

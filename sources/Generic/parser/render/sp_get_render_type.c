@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 10:24:31 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/03 11:42:58 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/03 13:15:15 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,6 @@ bool	sp_get_render_type(JSON_Object const *root, t_render *const render)
 			break ;
 		}
 	NODO_F(is_valid_rtype, ERRIN(E_IN_RENDER_TYPE, E_INVALID_TYPE(P_RENDER)));
-	NO_F(sp_get_screen_size(r, &render->w, &render->h));
+	NO_F(sp_get_render_size(r, &render->w, &render->h));
 	return (true);
 }

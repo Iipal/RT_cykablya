@@ -82,14 +82,14 @@ int __attribute__((ALIGN,ARCH))
 
 	// while (-42) assert(random_float() < 1.0f && random_float() >= 0.0f);
 
-	// static const size_t			s->screen_w = 4UL * 256UL;
-	// static const size_t			s->screen_h = s->screen_w / 2UL;
+	// static const size_t			s->render.w = 4UL * 256UL;
+	// static const size_t			s->render.h = s->render.w / 2UL;
 	// static const size_t			samples = 100UL;
 
 	static const size_t			samples = 16UL;
 
-	// static const size_t			s->screen_w = 2560UL;
-	// static const size_t			s->screen_h = 1080UL;
+	// static const size_t			s->render.w = 2560UL;
+	// static const size_t			s->render.h = 1080UL;
 	// static const size_t			samples = 64UL;
 
 	t_material_sf				materials[] = {
@@ -203,7 +203,7 @@ int __attribute__((ALIGN,ARCH))
 	const size_t				render_threads = 8UL;
 	const size_t				render_tasks = render_threads << 2UL;
 	const size_t				render_part =
-		(s->screen_w * s->screen_h / render_tasks);
+		(s->render.w * s->render.h / render_tasks);
 
 	uint32_t	*restrict		screen;
 	struct Window	*restrict	window;
@@ -220,11 +220,11 @@ int __attribute__((ALIGN,ARCH))
 	// 	(union u_hitables){ { SPHERE, 0, spheres + 1UL, materials + 1UL } },
 	// };
 
-	// if (!(window = mfb_open_ex_buffer(&screen, "CYKA", s->screen_w, s->screen_h, WF_RESIZABLE)))
+	// if (!(window = mfb_open_ex_buffer(&screen, "CYKA", s->render.w, s->render.h, WF_RESIZABLE)))
 	// 	return (-1);
-	if (!(window = mfb_open_ex("BLYAD'", s->screen_w, s->screen_h, 1)))
+	if (!(window = mfb_open_ex("BLYAD'", s->render.w, s->render.h, 1)))
 		return (-1);
-	if (!(screen = (__typeof__(screen))(valloc(sizeof(*screen) * s->screen_w * s->screen_h))))
+	if (!(screen = (__typeof__(screen))(valloc(sizeof(*screen) * s->render.w * s->render.h))))
 		return (-1);
 
 	// const size_t					count = 100UL;
@@ -235,12 +235,12 @@ int __attribute__((ALIGN,ARCH))
 	struct s_render_params	*restrict	Params = valloc((sizeof(*Params)) * render_tasks);
 	render_pool = tpool_create(render_threads);
 
-	printf("\n\t**** | %zux%zu | ****\n\n", s->screen_w, s->screen_h);
+	printf("\n\t**** | %zux%zu | ****\n\n", s->render.w, s->render.h);
 	{
 		char const *const	_current_render_type =
-			(s->render_fn == render_std) ? "std"
-				: (s->render_fn == render_full) ? "full"
-					: (s->render_fn == render_normal) ? "normal"
+			(s->render.fn == render_std) ? "std"
+				: (s->render.fn == render_full) ? "full"
+					: (s->render.fn == render_normal) ? "normal"
 						: "(null)";
 		printf("\t++++ %s-render ++++\n", _current_render_type);
 	}
@@ -256,8 +256,8 @@ int __attribute__((ALIGN,ARCH))
 
 	for (size_t i = 0; i < render_tasks; i++)
 	{
-		Params[i].screen_width = s->screen_w;
-		Params[i].screen_height = s->screen_h;
+		Params[i].screen_width = s->render.w;
+		Params[i].screen_height = s->render.h;
 		Params[i].start = render_part * i;
 		Params[i].stop = render_part * (i + 1);
 		Params[i].step = 1UL;
@@ -268,10 +268,10 @@ int __attribute__((ALIGN,ARCH))
 		Params[i].look_at = s->cam.look_at;
 		Params[i].position = s->cam.position;
 		Params[i].fov = s->cam.fov;;
-		Params[i].aspect_ratio = (float)s->screen_w / (float)s->screen_h;
+		Params[i].aspect_ratio = (float)s->render.w / (float)s->render.h;
 		Params[i].aperture = s->cam.aperture;
 		Params[i].dist_to_focus = s->cam.dist_to_focus;
-		tpool_add_work(render_pool, (void(*)(void*))s->render_fn,
+		tpool_add_work(render_pool, (void(*)(void*))s->render.fn,
 			Params + i);
 	}
 	// tpool_wait(render_pool);
@@ -290,8 +290,8 @@ int __attribute__((ALIGN,ARCH))
 		// {
 		// 	for (size_t i = 0; i < render_tasks; i++)
 		// 	{
-		// 		Params[i].s->screen_w = s->screen_w;
-		// 		Params[i].s->screen_h = s->screen_h;
+		// 		Params[i].s->render.w = s->render.w;
+		// 		Params[i].s->render.h = s->render.h;
 		// 		Params[i].start = render_part * i;
 		// 		Params[i].stop = render_part * (i + 1);
 		// 		Params[i].step = 1UL;

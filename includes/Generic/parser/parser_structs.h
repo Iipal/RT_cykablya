@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 11:23:57 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/03 11:31:42 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/03 11:58:17 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define DECLARATION
 # include "material.h"
-# include "hitable.h"
+# include "hitable_types.h"
 # include "render.h"
 # undef DECLARATION
 

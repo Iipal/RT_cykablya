@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 17:10:28 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/03 01:20:51 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/03 13:10:50 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool	sp_get_object_material(JSON_Object const *mat,
 	while (MATERIAL_END > ++i)
 		if (!ft_strcmp(mat_name, valid_mats[i - 1]))
 		{
-			obj->material_type = i;
+			obj->mat_type = i;
 			return (fn_mats[i - 1](mat, obj, obj_serial));
 		}
 	ERRIN_N(P_OBJECTS " " P_O_MATERIAL,

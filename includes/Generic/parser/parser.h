@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:49:59 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/03 11:44:35 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/03 13:21:04 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,19 @@ bool	sp_get_objects(JSON_Object const *root, t_scene *const scene);
 typedef bool	(*t_fn_objs)(JSON_Object const*,
 					t_object *const,
 					size_t const);
-bool	sp_get_object_sphere(JSON_Object const *obj_json_sphere,
+bool	sp_get_object_sphere(JSON_Object const *obj_json,
+			t_object *const obj,
+			size_t const obj_serial);
+bool	sp_get_object_cone(JSON_Object const *obj_json,
+			t_object *const obj,
+			size_t const obj_serial);
+bool	sp_get_object_plane(JSON_Object const *obj_json,
+			t_object *const obj,
+			size_t const obj_serial);
+bool	sp_get_object_triangle(JSON_Object const *obj_json,
+			t_object *const obj,
+			size_t const obj_serial);
+bool	sp_get_object_cyiinder(JSON_Object const *obj_json,
 			t_object *const obj,
 			size_t const obj_serial);
 
