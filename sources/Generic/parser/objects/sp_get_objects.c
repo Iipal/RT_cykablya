@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 13:46:39 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/02 18:47:20 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/03 01:39:03 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static bool	s_get_current_object(JSON_Object const *obj_json,
 	while (ARR_SIZE(fn_o) > ++i)
 		if (!ft_strcmp(o_type, o_types[i]))
 			return (fn_o[i](obj_json, obj, obj_serial));
-	ERRIN_N(P_O_SPHERE, obj_serial + 1, P_O_TYPE, E_INVALID);
+	ERRIN_N(P_OBJECTS, obj_serial + 1, o_type, E_INVALID_O_TYPE);
 	return (false);
 }
 
@@ -45,7 +45,7 @@ bool	sp_get_objects(JSON_Object const *root, t_scene *const scene)
 	while (scene->in_scene_objs > ++i)
 	{
 		NODO_F(o_json = json_array_get_object(o_arr, i),
-			ERRIN_N(P_OBJECTS, i + 1, E_JARR_FMT, P_OBJECTS));
+			ERRIN_N(P_OBJECTS, i + 1, E_JARR_FMT, ", " E_INVALID));
 		NO_F(s_get_current_object(o_json, &scene->objs[i], i));
 	}
 	return (true);

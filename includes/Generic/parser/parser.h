@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:49:59 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/02 18:37:08 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/03 01:11:01 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,16 @@ bool	sp_get_object_material(JSON_Object const *mat,
 			size_t const obj_serial);
 
 typedef bool	(*t_fn_mats)(JSON_Object const*, t_object *const, size_t const);
+bool	sp_object_mat_normal(JSON_Object const *mat,
+			t_object *const obj,
+			size_t const obj_serial);
+bool	sp_object_mat_lambert(JSON_Object const *mat,
+			t_object *const obj,
+			size_t const obj_serial);
 bool	sp_object_mat_metal(JSON_Object const *mat,
+			t_object *const obj,
+			size_t const obj_serial);
+bool	sp_object_mat_dielect(JSON_Object const *mat,
 			t_object *const obj,
 			size_t const obj_serial);
 

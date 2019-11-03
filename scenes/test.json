@@ -1,8 +1,8 @@
 {
     "render_type": "full",
     "screen": {
-        "width": 1000,
-        "height": 500
+        "width": 400,
+        "height": 200
     },
     "camera": {
         "look_from": [1.5, 0.0, 4.0],
@@ -30,16 +30,8 @@
             "pos": [0.0, 0.0, 5],
             "radius": 1.0002
         },
-        {
-            "material": {
-                "type": "metal",
-                "albedo": [ 0.5, 0.5, 0.5 ],
-                "fuzz": 0.1
-            },
-            "type": "sphere",
-            "pos": [0.0, 0.0, 5],
-            "radius": 1.0002,
-            "hight": 10.0
-        }
+        [
+
+        ]
     ]
 }
