@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:49:59 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/03 13:21:04 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/03 22:17:05 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ bool	sp_get_render_size(JSON_Object const *root,
 bool	sp_get_render_camera(JSON_Object const *root,
 			struct s_render_params *const dst);
 
-bool	sp_get_object_material(JSON_Object const *mat,
-			char const *mat_name,
+bool	sp_get_object_material(JSON_Object const *obj_json,
 			t_object *const obj,
 			size_t const obj_serial);
 

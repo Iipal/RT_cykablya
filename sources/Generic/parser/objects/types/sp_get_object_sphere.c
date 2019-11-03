@@ -6,26 +6,35 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 14:01:36 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/03 13:13:29 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/03 22:29:11 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-bool	sp_get_object_sphere(JSON_Object const *obj_json,
-			t_object *const obj,
-			size_t const obj_serial)
+static bool	s_validate_sphere_data(JSON_Object const *obj_json,
+				size_t const obj_serial)
 {
-	JSON_Object const	*mat = json_object_get_object(obj_json, P_O_MATERIAL);
-	char const			*mat_name = NULL;
-
-	NODO_F(mat, ERRIN_N(P_OT_SPHERE, obj_serial + 1, P_O_MATERIAL, E_TYPE_FMT));
-	NODO_F(json_object_has_value_of_type(mat, P_O_M_TYPE, JSONString),
-		ERRIN_N(P_OT_SPHERE, obj_serial + 1,
-			P_O_MATERIAL " " P_O_TYPE, E_INVALID));
-	mat_name = json_object_get_string(mat, P_O_TYPE);
-	NO_F(sp_get_object_material(mat, mat_name, obj, obj_serial));
 	NODO_F(json_object_has_value_of_type(obj_json, P_O_POSITION, JSONArray),
 		ERRIN_N(P_OT_SPHERE, obj_serial + 1, P_O_POSITION, E_TYPE_FMT));
+	NODO_F(json_object_has_value_of_type(obj_json, P_O_RADIUS, JSONNumber),
+		ERRIN_N(P_OT_SPHERE, obj_serial + 1, P_O_RADIUS, E_TYPE_FMT));
+	return (true);
+}
+
+bool		sp_get_object_sphere(JSON_Object const *obj_json,
+				t_object *const obj,
+				size_t const obj_serial)
+{
+	struct s_spheres	*s;
+
+	s = NULL;
+	NO_F(sp_get_object_material(obj_json, obj, obj_serial));
+	NO_F(s_validate_sphere_data(obj_json, obj_serial));
+	s = (struct s_spheres*)ft_memalloc(sizeof(struct s_spheres));
+	MEM(struct s_spheres, s, 1UL, E_ALLOC);
+	s->
+	*s = (struct s_spheres) {  }
+	obj->shape = (void*)s;
 	return (true);
 }
