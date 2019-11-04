@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 17:44:42 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/03 11:42:50 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/04 11:17:06 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 # define E_INVALID_O_TYPE E_INVALID_TYPE(P_OBJECTS)
 
 # define ERRIN_N(at, n, e, m) ft_printf(E_PREFIX": %s [%d]: '%s' %s\n",at,n,e,m)
-# define ERRIN_I(e, m) ft_printf(E_PREFIX": %s: '%s' "E_INVALID".\n",e, m)
-# define ERRIN(e, m) ft_printf(E_PREFIX": %s: %s.\n",e, m)
+# define ERRIN_I(e, m) ft_printf(E_PREFIX": %s: '%s' "E_INVALID".\n", e, m)
+# define ERRIN(e, m) ft_printf(E_PREFIX": %s: %s.\n", e, m)
 
 #endif

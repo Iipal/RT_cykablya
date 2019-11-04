@@ -239,11 +239,11 @@
 // }
 
 // t_aabb_sf __attribute__((CLONE,CONST,ARCH))
-// 	bounding_box(register const union u_hitables *const restrict hitables,
+// 	bounding_box(register const union u_hitables * restrict hitables,
 // 				register const float t_0,
 // 				register const float t_1)
 // {
-	
+
 
 
 // }
@@ -277,4 +277,3 @@
 // # undef IMPLEMETNATION
 // # undef DECLARATION
 // #endif
-

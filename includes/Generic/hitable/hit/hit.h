@@ -17,7 +17,7 @@
 #  include "hitable_types.h"
 
 t_record_sf __attribute__((__overloadable__,__target__("avx")))
-hit(register const union u_hitables *const restrict hitables,
+hit(register const union u_hitables * restrict hitables,
 	register const t_ray_sf ray,
 	register const float t_min,
 	register const float t_max);

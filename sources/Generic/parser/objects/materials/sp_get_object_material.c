@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 17:10:28 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/03 22:10:59 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/04 12:27:00 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ static inline char	*s_get_mat_name(JSON_Object const *mat,
 		ERRIN_N(P_OT_SPHERE, obj_serial + 1,
 			P_O_MATERIAL " " P_O_TYPE, E_INVALID));
 	mat_type = json_object_get_string(mat, P_O_M_TYPE);
-	return (mat_type);
+	return ((char*)mat_type);
 }
 
 bool				sp_get_object_material(JSON_Object const *obj_json,
-						t_object *const obj,
+						union u_hitables *obj,
 						size_t const obj_serial)
 {
 	enum e_material		i;
@@ -42,7 +42,7 @@ bool				sp_get_object_material(JSON_Object const *obj_json,
 	while (MATERIAL_END > ++i)
 		if (!ft_strcmp(mat_name, valid_mats[i - 1]))
 		{
-			obj->mat_type = i;
+			// obj->mat_type = i;
 			return (fn_mats[i - 1](mat, obj, obj_serial));
 		}
 	ERRIN_N(P_OBJECTS " " P_O_MATERIAL,

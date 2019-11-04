@@ -18,10 +18,10 @@
 
 t_v3sf __attribute__((__overloadable__,__target__("avx,avx2")))
 color(register const t_ray_sf ray,
-	register const union u_hitables *const restrict hitables);
+	register const union u_hitables * restrict hitables);
 t_v3sf __attribute__((__overloadable__,__target__("avx,avx2")))
 color(register const t_ray_sf r,
-	register const union u_hitables *const restrict hitables,
+	register const union u_hitables * restrict hitables,
 	register const size_t depth);
 
 # endif

@@ -48,7 +48,7 @@ static float __attribute__((__const__,__target__("avx,avx2")))
 
 static t_v3sf __attribute__((__overloadable__,__target__("avx,avx2")))
 	scatter_labmbertian(
-		register const union u_hitables *const restrict hitables,
+		register const union u_hitables * restrict hitables,
 		register const t_v3sf point,
 		register const t_v3sf normal,
 		register const t_v3sf attenuation,
@@ -67,7 +67,7 @@ static t_v3sf __attribute__((__overloadable__,__target__("avx,avx2")))
 
 static t_v3sf __attribute__((__overloadable__,__target__("avx,avx2")))
 	scatter_metal(
-		register const union u_hitables *const restrict hitables,
+		register const union u_hitables * restrict hitables,
 		register const t_record_sf record,
 		register const t_ray_sf r,
 		register const size_t depth)
@@ -94,7 +94,7 @@ static t_v3sf __attribute__((__overloadable__,__target__("avx,avx2")))
 
 t_v3sf __attribute__((__overloadable__,__target__("avx,avx2")))
 	color(register const t_ray_sf r,
-		register const union u_hitables *const restrict hitables,
+		register const union u_hitables * restrict hitables,
 		register const size_t depth)
 {
 	register const t_record_sf	record = hit(hitables, r, 0.001f, __FLT_MAX__);
@@ -178,7 +178,7 @@ t_v3sf __attribute__((__overloadable__,__target__("avx,avx2")))
 
 t_v3sf __attribute__((__overloadable__,__target__("avx,avx2")))
 	color(register const t_ray_sf r,
-		register const union u_hitables *const restrict hitables)
+		register const union u_hitables * restrict hitables)
 {
 	register const t_record_sf	record = hit(hitables, r, 0.0f, __FLT_MAX__);
 	const t_v3sf				normal_direction = normalize(direction(r));

@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 14:01:36 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/03 22:29:11 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/04 12:32:07 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,10 @@ static bool	s_validate_sphere_data(JSON_Object const *obj_json,
 }
 
 bool		sp_get_object_sphere(JSON_Object const *obj_json,
-				t_object *const obj,
+				union u_hitables *obj,
 				size_t const obj_serial)
 {
-	struct s_spheres	*s;
-
-	s = NULL;
 	NO_F(sp_get_object_material(obj_json, obj, obj_serial));
 	NO_F(s_validate_sphere_data(obj_json, obj_serial));
-	s = (struct s_spheres*)ft_memalloc(sizeof(struct s_spheres));
-	MEM(struct s_spheres, s, 1UL, E_ALLOC);
-	s->
-	*s = (struct s_spheres) {  }
-	obj->shape = (void*)s;
 	return (true);
 }
