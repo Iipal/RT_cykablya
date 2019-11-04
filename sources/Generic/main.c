@@ -16,21 +16,12 @@
 # include "random_float.h"
 # include <assert.h>
 
-
-
-
-
-
-
-
-
 # include "cone_constructor.h"
 # include "cylinder_constructor.h"
 # include "tetrahedron_constructor.h"
 # include "plane_constructor.h"
 
-
-#include "parser.h"
+# include "parser.h"
 
 int __attribute__((ALIGN,ARCH))
 	main(int argc, char *argv[])
@@ -46,48 +37,48 @@ int __attribute__((ALIGN,ARCH))
 	}
 	if (!(s = scene_parser(*argv)))
 		return (EXIT_FAILURE);
+/* 	return (0);
+
+	float	a = 5.0f;
+	float	b = 3.0f;
+
+	__builtin_printf("%.1f %.1f\n", a, b);
+
+	swap(&a, &b);
+
+	__builtin_printf("%.1f %.1f\n", a, b);
+
+	return (0);
+
+	float	res = 0.5f;
+	int		iter = 100000;
+	float	tst = (float)0x1ffffffff;
+	// __builtin_printf("%.25f\n", 1.2345e-25f);
 	// return (0);
 
-	// float	a = 5.0f;
-	// float	b = 3.0f;
+	while (-42)
+	{
+		while (res >= 0.0f && res < 1.0f && !!iter)
+		{
+			res = random_float_tst(tst);
+			iter--;
+		}
+		if (!(res >= 0.0f && res < 1.0f))
+			break ;
+		iter = 100000;
+		tst -= 1.2345e-25f;
+	}
+	__builtin_printf("%.25f | %x\n", tst, *(unsigned*)&tst);
+	return (0);
 
-	// __builtin_printf("%.1f %.1f\n", a, b);
+	while (-42) assert(random_float() < 1.0f && random_float() >= 0.0f);
 
-	// swap(&a, &b);
-
-	// __builtin_printf("%.1f %.1f\n", a, b);
-
-	// return (0);
-
-	// float	res = 0.5f;
-	// int		iter = 100000;
-	// float	tst = (float)0x1ffffffff;
-	// // __builtin_printf("%.25f\n", 1.2345e-25f);
-	// // return (0);
-
-	// while (-42)
-	// {
-	// 	while (res >= 0.0f && res < 1.0f && !!iter)
-	// 	{
-	// 		res = random_float_tst(tst);
-	// 		iter--;
-	// 	}
-	// 	if (!(res >= 0.0f && res < 1.0f))
-	// 		break ;
-	// 	iter = 100000;
-	// 	tst -= 1.2345e-25f;
-	// }
-	// __builtin_printf("%.25f | %x\n", tst, *(unsigned*)&tst);
-	// return (0);
-
-	// while (-42) assert(random_float() < 1.0f && random_float() >= 0.0f);
-
-	// static const size_t			s->render.w = 4UL * 256UL;
-	// static const size_t			s->render.h = s->render.w / 2UL;
-	// static const size_t			samples = 100UL;
+	static const size_t			s->render.w = 4UL * 256UL;
+	static const size_t			s->render.h = s->render.w / 2UL;
+	static const size_t			samples = 100UL;
+*/
 
 	static const size_t			samples = 16UL;
-
 	// static const size_t			s->render.w = 2560UL;
 	// static const size_t			s->render.h = 1080UL;
 	// static const size_t			samples = 64UL;

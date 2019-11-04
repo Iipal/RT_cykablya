@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:49:59 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/04 12:47:28 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/04 15:10:05 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@
 # include "libft.h"
 
 # define DECLARATION
-# include "hitable_types.h"
-# include "vector_types.h"
 # include "material.h"
 # include "hitable.h"
 # include "render.h"

@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 13:46:39 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/04 12:44:50 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/04 15:25:26 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ bool	sp_get_objects(JSON_Object const *root, t_scene *const scene)
 	JSON_Value const	*o = json_object_get_value(root, P_OBJECTS);
 	JSON_Array			*o_arr;
 	JSON_Object			*o_json;
-	size_t				i;
 	size_t				in_scene_objs;
+	size_t				i;
 
 	i = 0UL;
 	NODO_F(o, ERRIN(P_OBJECTS, E_NO_OBJS));
