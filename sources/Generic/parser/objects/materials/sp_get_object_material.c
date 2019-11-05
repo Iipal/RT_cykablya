@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 17:10:28 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/05 15:42:12 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/05 20:51:15 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static inline char	*s_get_mat_name(JSON_Object const *mat,
 }
 
 t_material_sf		*sp_get_object_material(JSON_Object const *obj_json,
-						union u_hitables *obj,
+						union u_hitables *restrict obj,
 						size_t const obj_serial)
 {
 	enum e_material		i;

@@ -1,8 +1,9 @@
 {
     "render": {
         "type": "full",
-        "width": 1280,
-        "height": 720
+        "samples": 12,
+        "width": 1300,
+        "height": 650
     },
     "camera": {
         "look_from": [1.5, 0.0, 4.0],
@@ -23,6 +24,24 @@
         {
             "type": "sphere",
             "material": {
+                "type": "lambertian",
+                "albedo": [ 0.1, 0.2, 0.5 ]
+            },
+            "pos": [0.0, 0.0, -1.0],
+            "radius": 0.5
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "lambertian",
+                "albedo": [ 0.8, 0.8, 0.0 ]
+            },
+            "pos": [0.0, -100.5, -1.0],
+            "radius": 100
+        },
+        {
+            "type": "sphere",
+            "material": {
                 "type": "metal",
                 "albedo": [ 0.8, 0.8, 0.8 ],
                 "fuzz": 0.5
@@ -33,11 +52,11 @@
         {
             "type": "sphere",
             "material": {
-                "type": "lambertian",
-                "albedo": [ 0.8, 0.8, 0.8 ]
+                "type": "dielectric",
+                "fuzz": 1.5
             },
-            "pos": [0.0, -100.5, -1.0],
-            "radius": 100
+            "pos": [-1.0, 0.0, -1.0],
+            "radius": 0.5
         }
     ]
 }

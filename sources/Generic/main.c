@@ -78,17 +78,9 @@ int __attribute__((ALIGN,ARCH))
 	static const size_t			samples = 100UL;
 */
 
-	static const size_t			samples = 16UL;
 	// static const size_t			s->render.w = 2560UL;
 	// static const size_t			s->render.h = 1080UL;
 	// static const size_t			samples = 64UL;
-
-	t_material_sf				materials[] = {
-		material(LAMBERTIAN,	vec(0.1f, 0.2f, 0.5f)),
-		material(LAMBERTIAN,	vec(0.8f, 0.8f, 0.0f)),
-		material(METAL,			vec(0.8f, 0.8f, 0.8f), 0.5f),
-		material(DIELECTRIC,	1.5f)
-	};
 
 	t_plane_sf					planes[] = {
 		plane(
@@ -131,6 +123,13 @@ int __attribute__((ALIGN,ARCH))
 		sphere(vec(-1.0f, 0.0f, -1.0f),		-0.45f)
 	};
 
+	t_material_sf				materials[] = {
+		material(LAMBERTIAN,	vec(0.1f, 0.2f, 0.5f)),
+		material(LAMBERTIAN,	vec(0.8f, 0.8f, 0.0f)),
+		material(METAL,			vec(0.8f, 0.8f, 0.8f), 0.5f),
+		material(DIELECTRIC,	1.5f)
+	};
+
 	// union u_hitables			hitables[] = {
 	// 	(union u_hitables){ { GENERIC, 5, NULL, NULL } },
 	// 	(union u_hitables){ { SPHERE, 0, spheres + 1UL, materials + 1UL } },
@@ -139,17 +138,16 @@ int __attribute__((ALIGN,ARCH))
 	// 	(union u_hitables){ { CONE, 0, cones + 2UL, materials + 3UL } },
 	// };
 
-	union u_hitables			hitables[] = {
-		(union u_hitables){ { GENERIC, 2, NULL, NULL } },
-		// (union u_hitables){ { SPHERE, 0, spheres + 0UL, materials + 0UL } },
-		(union u_hitables){ { SPHERE, 0, spheres + 1UL, materials + 1UL } },
-		(union u_hitables){ { SPHERE, 0, spheres + 2UL, materials + 2UL } },
-		// (union u_hitables){ { SPHERE, 0, spheres + 3UL, materials + 3UL } },
-		// (union u_hitables){ { CONE, 0, cones + 0UL, materials + 0UL } },
-		// (union u_hitables){ { CONE, 0, cones + 1UL, materials + 2UL } },
-		// (union u_hitables){ { CONE, 0, cones + 2UL, materials + 3UL } },
-	};
-
+	// union u_hitables			hitables[] = {
+	// 	(union u_hitables){ { GENERIC, 8, NULL, NULL } },
+	// 	(union u_hitables){ { SPHERE, 0, spheres + 0UL, materials + 0UL } },
+	// 	(union u_hitables){ { SPHERE, 0, spheres + 1UL, materials + 1UL } },
+	// 	(union u_hitables){ { SPHERE, 0, spheres + 2UL, materials + 2UL } },
+	// 	(union u_hitables){ { SPHERE, 0, spheres + 3UL, materials + 3UL } },
+	// 	(union u_hitables){ { CONE, 0, cones + 0UL, materials + 0UL } },
+	// 	(union u_hitables){ { CONE, 0, cones + 1UL, materials + 2UL } },
+	// 	(union u_hitables){ { CONE, 0, cones + 2UL, materials + 3UL } },
+	// };
 
 	// union u_hitables			hitables[] = {
 	// 	(union u_hitables){ { GENERIC, 5, NULL, NULL } },
@@ -170,8 +168,8 @@ int __attribute__((ALIGN,ARCH))
 
 	// union u_hitables			hitables[] = {
 	// 	(union u_hitables){ { GENERIC, 3, NULL, NULL } },
-	// 	(union u_hitables){ { SPHERE, 0, spheres + 1UL, materials + 0UL } },
-	// 	(union u_hitables){ { PLANE, 0, planes + 0UL, materials + 1UL } },
+	// 	(union u_hitables){ { SPHERE, 0, spheres + 1UL, materials + 2UL } },
+	// 	(union u_hitables){ { PLANE, 0, planes + 0UL, materials + 2UL } },
 	// };
 
 
@@ -226,14 +224,36 @@ int __attribute__((ALIGN,ARCH))
 	struct s_render_params	*restrict	Params = valloc((sizeof(*Params)) * render_tasks);
 	render_pool = tpool_create(render_threads);
 
-	printf("\n\t**** | %zux%zu | ****\n\n", s->render.w, s->render.h);
+	union u_hitables	*hitables;
+	t_sphere_sf			*sp;
+	t_material_sf		*mats;
+
+	MEM(union u_hitables, hitables, 1UL + 4UL, E_ALLOC);
+	MEM(t_sphere_sf, sp, 4UL, E_ALLOC);
+	MEM(t_material_sf, mats, 4UL, E_ALLOC);
+
+	*sp = sphere(vec(0.0f, 0.0f, -1.0f), 0.5f);
+	*(sp + 1) = sphere(vec(0.0f, -100.5f, -1.0f), 100.0f);
+	*(sp + 2) = sphere(vec(1.0f, 0.0f, -1.0f), 0.5f);
+	*(sp + 3) = sphere(vec(-1.0f, 0.0f, -1.0f), 0.5f);
+	*mats = material(LAMBERTIAN, vec(0.1f, 0.2f, 0.5f));
+	*(mats + 1) = material(LAMBERTIAN, vec(0.8f, 0.8f, 0.0f));
+	*(mats + 2) = material(METAL, vec(0.8f, 0.8f, 0.8f), 0.5f);
+	*(mats + 3) = material(DIELECTRIC, 1.5f);
+	*hitables = (union u_hitables) { GENERIC, 5UL, NULL, NULL };
+	*(hitables + 1) = (union u_hitables) { SPHERE, 0, sp, mats };
+	*(hitables + 2) = (union u_hitables) { SPHERE, 0, sp + 1UL, mats + 1UL };
+	*(hitables + 3) = (union u_hitables) { SPHERE, 0, sp + 2UL, mats + 2UL };
+	*(hitables + 4) = (union u_hitables) { SPHERE, 0, sp + 3UL, mats + 3UL };
+
+	printf("\n\t**** | %zux%zu | ****\n", s->render.w, s->render.h);
 	{
 		char const *const	_current_render_type =
 			(s->render.fn == render_std) ? "std"
 				: (s->render.fn == render_full) ? "full"
 					: (s->render.fn == render_normal) ? "normal"
 						: "(null)";
-		printf("\t++++ %s-render ++++\n", _current_render_type);
+		printf("\t++++ %s-render ++++\n\n", _current_render_type);
 	}
 
 	puts("Camera parameters: (x y z)");
@@ -252,8 +272,8 @@ int __attribute__((ALIGN,ARCH))
 		Params[i].start = render_part * i;
 		Params[i].stop = render_part * (i + 1);
 		Params[i].step = 1UL;
-		Params[i].hitables = hitables; //s->objs;
-		Params[i].samples = samples;
+		Params[i].hitables = s->objs;
+		Params[i].samples = s->render.samples;
 		Params[i].screen = screen;
 		Params[i].look_from = s->cam.look_from;
 		Params[i].look_at = s->cam.look_at;

@@ -6,23 +6,25 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:21:55 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/03 13:20:41 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/05 20:16:00 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_PARAM_NAMES_H
 # define PARSER_PARAM_NAMES_H
 
-# define P_RENDER        "render"
+# define P_RENDER         "render"
 
 # define P_R_TYPE        "type"
 # define P_RT_STD        "std"
 # define P_RT_NORMAL     "normal"
 # define P_RT_FULL       "full"
 
-# define P_SCREEN        "screen"
-# define P_S_WIDTH       "width"
-# define P_S_HEIGHT      "height"
+# define P_R_SAMPLES     "samples"
+
+# define P_R_SCREEN      "screen"
+# define P_RS_WIDTH      "width"
+# define P_RS_HEIGHT     "height"
 
 # define P_LIGHTS        "lights"
 

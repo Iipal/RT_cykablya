@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 17:44:42 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/04 11:17:06 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/05 20:18:25 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 
 # define E_IN_RENDER_TYPE "in render type"
 
-# define E_IN_SCREEN "in " P_SCREEN
-# define E_IN_SCREEN_SIZE "in " P_SCREEN " params"
+# define E_IN_RENDER "in " P_RENDER
+# define E_IN_RENDER_SIZE "in " P_RENDER " params"
 
 # define E_NOT_FOUNDED(_what) "Any " _what " in a scene wasn't founded"
 
