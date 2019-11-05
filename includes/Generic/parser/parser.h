@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:49:59 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/04 15:10:05 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/05 15:49:17 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,16 @@
 # include "libft.h"
 
 # define DECLARATION
+# include "sphere_constructor.h"
+# include "material_constructor.h"
+# include "hitable_types.h"
 # include "material.h"
-# include "hitable.h"
 # include "render.h"
 # undef DECLARATION
+
+# define IMPLEMETNATION
+# include "hitable_types_internal.h"
+# undef IMPLEMETNATION
 
 typedef void	(*t_fnptr_render)(struct s_render_params *restrict);
 
@@ -52,60 +58,60 @@ typedef struct	s_scene
 
 t_scene	*scene_parser(char *file);
 
-bool	sp_get_render_type(JSON_Object const *root, t_render *const render);
-bool	sp_get_render_size(JSON_Object const *root,
+bool	sp_get_render_type(const JSON_Object *root, t_render *const render);
+bool	sp_get_render_size(const JSON_Object *root,
 			size_t *const w,
 			size_t *const h);
-bool	sp_get_render_camera(JSON_Object const *root,
+bool	sp_get_render_camera(const JSON_Object *root,
 			struct s_render_params *const dst);
 
-bool	sp_get_object_material(JSON_Object const *obj_json,
-			union u_hitables *const obj,
-			size_t const obj_serial);
+t_material_sf	*sp_get_object_material(const JSON_Object *obj_json,
+					union u_hitables *const obj,
+					size_t obj_serial);
 
-typedef bool	(*t_fn_mats)(JSON_Object const*,
+typedef t_material_sf	*(*t_fn_mats)(const JSON_Object*,
+							union u_hitables *const,
+							size_t);
+t_material_sf	*sp_object_mat_normal(const JSON_Object *mat,
+					union u_hitables *const obj,
+					size_t obj_serial);
+t_material_sf	*sp_object_mat_lambert(const JSON_Object *mat,
+					union u_hitables *const obj,
+					size_t obj_serial);
+t_material_sf	*sp_object_mat_metal(const JSON_Object *mat,
+					union u_hitables *const obj,
+					size_t obj_serial);
+t_material_sf	*sp_object_mat_dielect(const JSON_Object *mat,
+					union u_hitables *const obj,
+					size_t obj_serial);
+
+bool	sp_get_objects(const JSON_Object *root, t_scene *const scene);
+
+typedef bool	(*t_fn_objs)(const JSON_Object*,
 					union u_hitables *const,
-					size_t const);
-bool	sp_object_mat_normal(JSON_Object const *mat,
+					size_t);
+bool	sp_get_object_sphere(const JSON_Object *obj_json,
 			union u_hitables *const obj,
-			size_t const obj_serial);
-bool	sp_object_mat_lambert(JSON_Object const *mat,
+			size_t obj_serial);
+bool	sp_get_object_cone(const JSON_Object *obj_json,
 			union u_hitables *const obj,
-			size_t const obj_serial);
-bool	sp_object_mat_metal(JSON_Object const *mat,
+			size_t obj_serial);
+bool	sp_get_object_plane(const JSON_Object *obj_json,
 			union u_hitables *const obj,
-			size_t const obj_serial);
-bool	sp_object_mat_dielect(JSON_Object const *mat,
+			size_t obj_serial);
+bool	sp_get_object_triangle(const JSON_Object *obj_json,
 			union u_hitables *const obj,
-			size_t const obj_serial);
+			size_t obj_serial);
+bool	sp_get_object_cyiinder(const JSON_Object *obj_json,
+			union u_hitables *const obj,
+			size_t obj_serial);
 
-bool	sp_get_objects(JSON_Object const *root, t_scene *const scene);
-
-typedef bool	(*t_fn_objs)(JSON_Object const*,
-					union u_hitables *const,
-					size_t const);
-bool	sp_get_object_sphere(JSON_Object const *obj_json,
-			union u_hitables *const obj,
-			size_t const obj_serial);
-bool	sp_get_object_cone(JSON_Object const *obj_json,
-			union u_hitables *const obj,
-			size_t const obj_serial);
-bool	sp_get_object_plane(JSON_Object const *obj_json,
-			union u_hitables *const obj,
-			size_t const obj_serial);
-bool	sp_get_object_triangle(JSON_Object const *obj_json,
-			union u_hitables *const obj,
-			size_t const obj_serial);
-bool	sp_get_object_cyiinder(JSON_Object const *obj_json,
-			union u_hitables *const obj,
-			size_t const obj_serial);
-
-bool	sp_get_lights(JSON_Object const *root, t_scene *const scene);
+bool	sp_get_lights(const JSON_Object *root, t_scene *const scene);
 
 bool	sp_get_v3sf_arr(t_v3sf *const dst,
 			JSON_Array const *const arr,
 			char const *const param_name,
-			size_t const obj_serial);
+			size_t obj_serial);
 
 void	*scene_free(t_scene *scene);
 

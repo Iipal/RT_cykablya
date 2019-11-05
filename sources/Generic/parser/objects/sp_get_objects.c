@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 13:46:39 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/04 15:25:26 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/05 15:54:56 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ bool	sp_get_objects(JSON_Object const *root, t_scene *const scene)
 		ERRIN(P_OBJECTS, E_NO_OBJS));
 	MEM(union u_hitables, scene->objs, in_scene_objs + 1UL, E_ALLOC);
 	*scene->objs = (union u_hitables) { GENERIC, in_scene_objs, 0, 0 };
-	while (in_scene_objs > ++i)
+	while (in_scene_objs + 1UL > ++i)
 	{
-		NODO_F(o_json = json_array_get_object(o_arr, i),
-			ERRIN_N(P_OBJECTS, i, E_JARR_FMT, ", " E_INVALID));
+		NODO_F(o_json = json_array_get_object(o_arr, i - 1UL),
+			ERRIN_N(P_OBJECTS, i - 1UL, E_JARR_FMT, ", " E_INVALID));
 		NO_F(s_get_current_object(o_json, &scene->objs[i], i - 1UL));
 	}
 	return (true);

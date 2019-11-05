@@ -1,8 +1,8 @@
 {
     "render": {
         "type": "full",
-        "width": 400,
-        "height": 200
+        "width": 1280,
+        "height": 720
     },
     "camera": {
         "look_from": [1.5, 0.0, 4.0],
@@ -24,11 +24,20 @@
             "type": "sphere",
             "material": {
                 "type": "metal",
-                "albedo": [ 0.5, 0.5, 0.5 ],
+                "albedo": [ 0.8, 0.8, 0.8 ],
                 "fuzz": 0.5
             },
-            "pos": [0.0, 0.0, 5],
-            "radius": 1.0002
+            "pos": [1.0, 0.0, -1.0],
+            "radius": 0.5
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "lambertian",
+                "albedo": [ 0.8, 0.8, 0.8 ]
+            },
+            "pos": [0.0, -100.5, -1.0],
+            "radius": 100
         }
     ]
 }

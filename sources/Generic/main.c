@@ -140,14 +140,14 @@ int __attribute__((ALIGN,ARCH))
 	// };
 
 	union u_hitables			hitables[] = {
-		(union u_hitables){ { GENERIC, 8, NULL, NULL } },
-		(union u_hitables){ { SPHERE, 0, spheres + 0UL, materials + 0UL } },
+		(union u_hitables){ { GENERIC, 2, NULL, NULL } },
+		// (union u_hitables){ { SPHERE, 0, spheres + 0UL, materials + 0UL } },
 		(union u_hitables){ { SPHERE, 0, spheres + 1UL, materials + 1UL } },
 		(union u_hitables){ { SPHERE, 0, spheres + 2UL, materials + 2UL } },
-		(union u_hitables){ { SPHERE, 0, spheres + 3UL, materials + 3UL } },
-		(union u_hitables){ { CONE, 0, cones + 0UL, materials + 0UL } },
-		(union u_hitables){ { CONE, 0, cones + 1UL, materials + 2UL } },
-		(union u_hitables){ { CONE, 0, cones + 2UL, materials + 3UL } },
+		// (union u_hitables){ { SPHERE, 0, spheres + 3UL, materials + 3UL } },
+		// (union u_hitables){ { CONE, 0, cones + 0UL, materials + 0UL } },
+		// (union u_hitables){ { CONE, 0, cones + 1UL, materials + 2UL } },
+		// (union u_hitables){ { CONE, 0, cones + 2UL, materials + 3UL } },
 	};
 
 
@@ -252,7 +252,7 @@ int __attribute__((ALIGN,ARCH))
 		Params[i].start = render_part * i;
 		Params[i].stop = render_part * (i + 1);
 		Params[i].step = 1UL;
-		Params[i].hitables = hitables;
+		Params[i].hitables = hitables; //s->objs;
 		Params[i].samples = samples;
 		Params[i].screen = screen;
 		Params[i].look_from = s->cam.look_from;
@@ -304,15 +304,11 @@ int __attribute__((ALIGN,ARCH))
 
 		state = mfb_update(window, screen);
 		if (state == STATE_EXIT)
-		{
-			s = scene_free(s);
 			_Exit(0);
-		}
 	}
 
 	tpool_wait(render_pool);
 	tpool_destroy(render_pool);
-	s = scene_free(s);
 	free(screen);
 	free(Params);
 	if (state != STATE_EXIT || state == STATE_OK)
