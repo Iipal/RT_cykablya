@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 14:01:36 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/05 21:12:32 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/06 10:16:15 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 static inline bool	s_validate_sphere_data(JSON_Object const *obj_json,
 				size_t const obj_serial)
 {
+	IFDO_F(4 != json_object_get_count(obj_json),
+		ERRIN_D(P_OBJECTS, obj_serial + 1, E_INVALID_COUNT, E_DEF_PARAM(4)));
 	NODO_F(json_object_has_value_of_type(obj_json, P_O_POSITION, JSONArray),
 		ERRIN_N(P_OT_SPHERE, obj_serial + 1, P_O_POSITION, E_TYPE_FMT));
 	NODO_F(json_object_has_value_of_type(obj_json, P_O_RADIUS, JSONNumber),

@@ -6,25 +6,26 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:17:57 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/02 15:53:06 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/06 10:14:13 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-static inline bool	s_validate_camera_data(JSON_Object const *obj)
+static inline bool	s_validate_camera_data(JSON_Object const *cam)
 {
-	NODO_F(json_object_has_value_of_type(obj, P_C_LOOK_FROM, JSONArray),
+	IFDO_F(6 != json_object_get_count(cam), ERRIN(P_CAMERA, E_DEF_PARAM(6)));
+	NODO_F(json_object_has_value_of_type(cam, P_C_LOOK_FROM, JSONArray),
 		ERRIN_I(P_CAMERA, P_C_LOOK_FROM));
-	NODO_F(json_object_has_value_of_type(obj, P_C_LOOK_AT, JSONArray),
+	NODO_F(json_object_has_value_of_type(cam, P_C_LOOK_AT, JSONArray),
 		ERRIN_I(P_CAMERA, P_C_LOOK_AT));
-	NODO_F(json_object_has_value_of_type(obj, P_C_POSITION, JSONArray),
+	NODO_F(json_object_has_value_of_type(cam, P_C_POSITION, JSONArray),
 		ERRIN_I(P_CAMERA, P_C_POSITION));
-	NODO_F(json_object_has_value_of_type(obj, P_C_FOV, JSONNumber),
+	NODO_F(json_object_has_value_of_type(cam, P_C_FOV, JSONNumber),
 		ERRIN_I(P_CAMERA, P_C_FOV));
-	NODO_F(json_object_has_value_of_type(obj, P_C_APERTURE, JSONNumber),
+	NODO_F(json_object_has_value_of_type(cam, P_C_APERTURE, JSONNumber),
 		ERRIN_I(P_CAMERA, P_C_APERTURE));
-	NODO_F(json_object_has_value_of_type(obj, P_C_DIST_TO_FOCUS, JSONNumber),
+	NODO_F(json_object_has_value_of_type(cam, P_C_DIST_TO_FOCUS, JSONNumber),
 		ERRIN_I(P_CAMERA, P_C_DIST_TO_FOCUS));
 	return (true);
 }

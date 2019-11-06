@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 18:21:45 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/05 21:10:49 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/06 10:06:16 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ t_material_sf		*sp_object_mat_metal(JSON_Object const *mat,
 	t_v3sf			albedo;
 	float			fuzz;
 
+	IFDO_R(3 != json_object_get_count(mat),
+		ERRIN_D(P_OBJECTS " " P_O_MATERIAL, obj_serial + 1,
+			E_INVALID_COUNT, E_DEF_PARAM(3)),NULL);
 	NODO_R(json_object_has_value_of_type(mat, P_O_M_ALBEDO, JSONArray),
 		ERRIN_N(P_OBJECTS " " P_O_MATERIAL, obj_serial + 1,
 			P_O_MATERIAL " " P_O_M_ALBEDO, E_INVALID), NULL);
