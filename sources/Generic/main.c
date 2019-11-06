@@ -32,7 +32,7 @@ int __attribute__((ALIGN,ARCH))
 	++argv;
 	if (1 < argc || !argc)
 	{
-		ft_putendl_fd("You must to give me a only 1 .json file.\n", 2);
+		ft_putendl_fd("You must to give me a only 1 .json file.", 2);
 		return (EXIT_FAILURE);
 	}
 	if (!(s = scene_parser(*argv)))
@@ -224,7 +224,7 @@ int __attribute__((ALIGN,ARCH))
 	struct s_render_params	*restrict	Params = valloc((sizeof(*Params)) * render_tasks);
 	render_pool = tpool_create(render_threads);
 
-	union u_hitables	*hitables;
+/* 	union u_hitables	*hitables;
 	t_sphere_sf			*sp;
 	t_material_sf		*mats;
 
@@ -244,7 +244,7 @@ int __attribute__((ALIGN,ARCH))
 	*(hitables + 1) = (union u_hitables) { SPHERE, 0, sp, mats };
 	*(hitables + 2) = (union u_hitables) { SPHERE, 0, sp + 1UL, mats + 1UL };
 	*(hitables + 3) = (union u_hitables) { SPHERE, 0, sp + 2UL, mats + 2UL };
-	*(hitables + 4) = (union u_hitables) { SPHERE, 0, sp + 3UL, mats + 3UL };
+	*(hitables + 4) = (union u_hitables) { SPHERE, 0, sp + 3UL, mats + 3UL }; */
 
 	printf("\n\t**** | %zux%zu | ****\n", s->render.w, s->render.h);
 	{
