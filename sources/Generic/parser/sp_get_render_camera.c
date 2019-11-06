@@ -12,7 +12,8 @@
 
 #include "parser.h"
 
-static inline bool	s_validate_camera_data(JSON_Object const *cam)
+static inline bool __attribute__((INLINE,ARCH))
+	s_validate_camera_data(JSON_Object const *cam)
 {
 	IFDO_F(6 != json_object_get_count(cam), ERRIN(P_CAMERA, E_DEF_PARAM(6)));
 	NODO_F(json_object_has_value_of_type(cam, P_C_LOOK_FROM, JSONArray),
@@ -30,7 +31,8 @@ static inline bool	s_validate_camera_data(JSON_Object const *cam)
 	return (true);
 }
 
-bool				sp_get_render_camera(JSON_Object const *root,
+bool __attribute__((ALIGN,ARCH))
+	sp_get_render_camera(JSON_Object const *root,
 						struct s_render_params *const dst)
 {
 	JSON_Object const	*cam = json_object_get_object(root, P_CAMERA);

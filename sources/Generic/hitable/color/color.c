@@ -54,7 +54,7 @@ static t_v3sf __attribute__((__overloadable__,__target__("avx,avx2")))
 		register const t_v3sf attenuation,
 		register const size_t depth)
 {
-		if (depth < 128.0f)
+		if (depth < 32UL)
 		{
 			const t_v3sf	target = point + normal + random_in_unit_sphere();
 			const t_ray_sf	scattered = ray(point, target - point);
@@ -72,7 +72,7 @@ static t_v3sf __attribute__((__overloadable__,__target__("avx,avx2")))
 		register const t_ray_sf r,
 		register const size_t depth)
 {
-	if (depth < 128.0f)
+	if (depth < 32UL)
 	{
 		t_v3sf			reflected;
 		t_ray_sf		scattered;
@@ -107,7 +107,7 @@ t_v3sf __attribute__((__overloadable__,__target__("avx,avx2")))
 		return (scatter_metal(hitables, record, r, depth));
 	else if (condition(record) && (material(record) == DIELECTRIC))
 	{
-		if (depth < 128.0f)
+		if (depth < 32UL)
 		{
 			register t_ray_sf	scattered;
 			float				refracted;

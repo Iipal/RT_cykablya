@@ -12,7 +12,8 @@
 
 #include "parser.h"
 
-bool	sp_get_object_plane(JSON_Object const *obj_json,
+bool __attribute__((ALIGN,ARCH))
+	sp_get_object_plane(JSON_Object const *obj_json,
 			union u_hitables *obj,
 			size_t const obj_serial)
 {

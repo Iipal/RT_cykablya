@@ -12,7 +12,8 @@
 
 #include "parser.h"
 
-t_scene	*scene_parser(char *file)
+t_scene __attribute__((ALIGN,ARCH))
+	*scene_parser(char *file)
 {
 	JSON_Value	*root;
 	JSON_Object	*obj;

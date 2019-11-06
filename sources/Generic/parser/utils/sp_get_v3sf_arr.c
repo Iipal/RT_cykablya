@@ -12,10 +12,11 @@
 
 #include "parser.h"
 
-bool	sp_get_v3sf_arr(t_v3sf *const dst,
-			JSON_Array const *const arr,
-			char const *const param_name,
-			size_t const obj_serial)
+bool __attribute__((ALIGN,ARCH))
+	sp_get_v3sf_arr(t_v3sf *const dst,
+					JSON_Array const *const arr,
+					char const *const param_name,
+					size_t const obj_serial)
 {
 	int8_t	i;
 

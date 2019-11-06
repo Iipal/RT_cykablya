@@ -1,9 +1,9 @@
 {
     "render": {
         "type": "full",
-        "samples": 12,
-        "width": 1200,
-        "height": 600
+        "samples": 4,
+        "width": 2560,
+        "height": 1440
     },
     "camera": {
         "look_from": [0.0, 0.0, 6.0],
@@ -56,6 +56,15 @@
                 "fuzz": 20
             },
             "pos": [-1.0, 0.0, -1.4],
+            "radius": 0.5
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "dielectric",
+                "fuzz": 2130
+            },
+            "pos": [1.2, 0.4, -0.6],
             "radius": 0.5
         }
     ]

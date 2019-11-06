@@ -216,11 +216,6 @@ int __attribute__((ALIGN,ARCH))
 	if (!(screen = (__typeof__(screen))(valloc(sizeof(*screen) * s->render.w * s->render.h))))
 		return (-1);
 
-	// const size_t					count = 100UL;
-	// union u_hitables	*restrict	hitables;
-	// if (!(hitables = scene_generator(count)))
-	// 	return (-1);
-
 	struct s_render_params	*restrict	Params = valloc((sizeof(*Params)) * render_tasks);
 	render_pool = tpool_create(render_threads);
 
@@ -278,13 +273,44 @@ int __attribute__((ALIGN,ARCH))
 		Params[i].look_from = s->cam.look_from;
 		Params[i].look_at = s->cam.look_at;
 		Params[i].position = s->cam.position;
-		Params[i].fov = s->cam.fov;;
+		Params[i].fov = s->cam.fov;
 		Params[i].aspect_ratio = (float)s->render.w / (float)s->render.h;
 		Params[i].aperture = s->cam.aperture;
 		Params[i].dist_to_focus = s->cam.dist_to_focus;
 		tpool_add_work(render_pool, (void(*)(void*))s->render.fn,
 			Params + i);
 	}
+
+//!!! Для рандомной сцены
+
+	// const size_t					count = 100UL;
+	// union u_hitables	*restrict	hitables;
+	// if (!(hitables = scene_generator(count)))
+	// 	return (-1);
+
+	// for (size_t i = 0; i < render_tasks; i++)
+	// {
+	// 	Params[i].screen_width = s->render.w;
+	// 	Params[i].screen_height = s->render.h;
+	// 	Params[i].start = render_part * i;
+	// 	Params[i].stop = render_part * (i + 1);
+	// 	Params[i].step = 1UL;
+	// 	Params[i].hitables = hitables;
+	// 	Params[i].samples = s->render.samples;
+	// 	Params[i].screen = screen;
+	// 	Params[i].look_from = vec( 13.0f, 2.0f, 3.0f );//s->cam.look_from;
+	// 	Params[i].look_at = s->cam.look_at;
+	// 	Params[i].position = s->cam.position;
+	// 	Params[i].fov = 20.0f;//s->cam.fov;
+	// 	Params[i].aspect_ratio = (float)s->render.w / (float)s->render.h;
+	// 	Params[i].aperture = 0.1f;//s->cam.aperture;
+	// 	Params[i].dist_to_focus = 10.0f;//s->cam.dist_to_focus;
+	// 	tpool_add_work(render_pool, (void(*)(void*))s->render.fn,
+	// 		Params + i);
+	// }
+
+//!!!
+
 	// tpool_wait(render_pool);
 
 

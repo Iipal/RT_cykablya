@@ -21,6 +21,8 @@
 # include <errno.h>
 # include <string.h>
 
+# include "attributes.h"
+
 # include "parser_params.h"
 # include "parser_errno.h"
 
@@ -57,60 +59,83 @@ typedef struct	s_scene
 	union u_hitables *restrict	objs;
 }				t_scene;
 
-t_scene	*scene_parser(char *file);
+t_scene __attribute__((ALIGN,ARCH))
+*scene_parser(char *file);
 
-bool	sp_get_render_type(const JSON_Object *root, t_render *const render);
-bool	sp_get_render_camera(const JSON_Object *root,
-			struct s_render_params *const dst);
+bool __attribute__((ALIGN,ARCH))
+sp_get_render_type(const JSON_Object *root, t_render *const render);
 
-t_material_sf	*sp_get_object_material(const JSON_Object *obj_json,
-					union u_hitables *restrict obj,
-					size_t obj_serial);
+bool __attribute__((ALIGN,ARCH))
+sp_get_render_camera(const JSON_Object *root,
+					struct s_render_params *const dst);
+
+t_material_sf __attribute__((ALIGN,ARCH))
+*sp_get_object_material(const JSON_Object *obj_json,
+						union u_hitables *restrict obj,
+						size_t obj_serial);
 
 typedef t_material_sf	*(*t_fn_mats)(const JSON_Object*,
-							union u_hitables *restrict,
-							size_t);
-t_material_sf	*sp_object_mat_normal(const JSON_Object *mat,
-					union u_hitables *restrict obj,
-					size_t obj_serial);
-t_material_sf	*sp_object_mat_lambert(const JSON_Object *mat,
-					union u_hitables *restrict obj,
-					size_t obj_serial);
-t_material_sf	*sp_object_mat_metal(const JSON_Object *mat,
-					union u_hitables *restrict obj,
-					size_t obj_serial);
-t_material_sf	*sp_object_mat_dielect(const JSON_Object *mat,
+									union u_hitables *restrict,
+									size_t);
+
+t_material_sf __attribute__((ALIGN,ARCH))
+*sp_object_mat_normal(const JSON_Object *mat,
 					union u_hitables *restrict obj,
 					size_t obj_serial);
 
-bool	sp_get_objects(const JSON_Object *root, t_scene *const scene);
+t_material_sf __attribute__((ALIGN,ARCH))
+*sp_object_mat_lambert(const JSON_Object *mat,
+					union u_hitables *restrict obj,
+					size_t obj_serial);
+
+t_material_sf __attribute__((ALIGN,ARCH))
+*sp_object_mat_metal(const JSON_Object *mat,
+					union u_hitables *restrict obj,
+					size_t obj_serial);
+
+t_material_sf __attribute__((ALIGN,ARCH))
+*sp_object_mat_dielect(const JSON_Object *mat,
+						union u_hitables *restrict obj,
+						size_t obj_serial);
+
+bool __attribute__((ALIGN,ARCH))
+sp_get_objects(const JSON_Object *root, t_scene *const scene);
 
 typedef bool	(*t_fn_objs)(const JSON_Object*,
 					union u_hitables *restrict,
 					size_t);
-bool	sp_get_object_sphere(const JSON_Object *obj_json,
-			union u_hitables *restrict obj,
-			size_t obj_serial);
-bool	sp_get_object_cone(const JSON_Object *obj_json,
-			union u_hitables *restrict obj,
-			size_t obj_serial);
-bool	sp_get_object_plane(const JSON_Object *obj_json,
-			union u_hitables *restrict obj,
-			size_t obj_serial);
-bool	sp_get_object_triangle(const JSON_Object *obj_json,
-			union u_hitables *restrict obj,
-			size_t obj_serial);
-bool	sp_get_object_cyiinder(const JSON_Object *obj_json,
+
+bool __attribute__((ALIGN,ARCH))
+sp_get_object_sphere(const JSON_Object *obj_json,
+					union u_hitables *restrict obj,
+					size_t obj_serial);
+bool __attribute__((ALIGN,ARCH))
+sp_get_object_cone(const JSON_Object *obj_json,
+					union u_hitables *restrict obj,
+					size_t obj_serial);
+bool __attribute__((ALIGN,ARCH))
+sp_get_object_plane(const JSON_Object *obj_json,
+					union u_hitables *restrict obj,
+					size_t obj_serial);
+bool __attribute__((ALIGN,ARCH))
+sp_get_object_triangle(const JSON_Object *obj_json,
+					union u_hitables *restrict obj,
+					size_t obj_serial);
+bool __attribute__((ALIGN,ARCH))
+sp_get_object_cyiinder(const JSON_Object *obj_json,
 			union u_hitables *restrict obj,
 			size_t obj_serial);
 
-bool	sp_get_lights(const JSON_Object *root, t_scene *const scene);
+bool __attribute__((ALIGN,ARCH))
+sp_get_lights(const JSON_Object *root, t_scene *const scene);
 
-bool	sp_get_v3sf_arr(t_v3sf *const dst,
+bool __attribute__((ALIGN,ARCH))
+sp_get_v3sf_arr(t_v3sf *const dst,
 			JSON_Array const *const arr,
 			char const *const param_name,
 			size_t obj_serial);
 
-void	*scene_free(t_scene *scene);
+void __attribute__((ALIGN,ARCH))
+*scene_free(t_scene *scene);
 
 #endif

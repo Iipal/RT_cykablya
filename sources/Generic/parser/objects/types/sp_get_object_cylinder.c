@@ -12,9 +12,10 @@
 
 #include "parser.h"
 
-bool	sp_get_object_cyiinder(JSON_Object const *obj_json,
-			union u_hitables *restrict obj,
-			size_t const obj_serial)
+bool __attribute__((ALIGN,ARCH))
+	sp_get_object_cyiinder(JSON_Object const *obj_json,
+						union u_hitables *restrict obj,
+						size_t const obj_serial)
 {
 	return (true);
 }

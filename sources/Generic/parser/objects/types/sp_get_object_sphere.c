@@ -12,7 +12,8 @@
 
 #include "parser.h"
 
-static inline bool	s_validate_sphere_data(JSON_Object const *obj_json,
+extern inline bool __attribute__((ALIGN,ARCH))
+	s_validate_sphere_data(JSON_Object const *obj_json,
 				size_t const obj_serial)
 {
 	IFDO_F(4 != json_object_get_count(obj_json),
@@ -24,7 +25,8 @@ static inline bool	s_validate_sphere_data(JSON_Object const *obj_json,
 	return (true);
 }
 
-bool				sp_get_object_sphere(JSON_Object const *obj_json,
+bool __attribute__((ALIGN,ARCH))
+	sp_get_object_sphere(JSON_Object const *obj_json,
 						union u_hitables *restrict obj,
 						size_t const obj_serial)
 {

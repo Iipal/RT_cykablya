@@ -12,7 +12,8 @@
 
 #include "parser.h"
 
-t_material_sf		*sp_object_mat_metal(JSON_Object const *mat,
+t_material_sf __attribute__((ALIGN,ARCH))
+	*sp_object_mat_metal(JSON_Object const *mat,
 						union u_hitables *restrict obj,
 						size_t const obj_serial)
 {

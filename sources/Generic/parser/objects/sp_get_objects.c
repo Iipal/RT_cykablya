@@ -12,11 +12,12 @@
 
 #include "parser.h"
 
-static bool	s_get_current_object(JSON_Object const *obj_json,
-				union u_hitables *restrict obj,
-				size_t const obj_serial)
+static bool __attribute__((ALIGN,ARCH))
+	s_get_current_object(JSON_Object const *obj_json,
+						union u_hitables *restrict obj,
+						size_t const obj_serial)
 {
-	static t_fn_objs	fn_o[] = { sp_get_object_sphere, sp_get_object_cone,
+	static t_fn_objs	o_fns[] = { sp_get_object_sphere, sp_get_object_cone,
 		sp_get_object_cyiinder, sp_get_object_plane, sp_get_object_triangle };
 	static char	const	*o_types[] = { P_OT_SPHERE, P_OT_CONE, P_OT_CYLINDER,
 											P_OT_PLANE, P_OT_TRIANGLE };
@@ -25,14 +26,15 @@ static bool	s_get_current_object(JSON_Object const *obj_json,
 
 	i = ~0UL;
 	NODO_F(o_type, ERRIN_N(P_OBJECTS, obj_serial + 1, P_O_TYPE, E_INVALID));
-	while (ARR_SIZE(fn_o) > ++i)
+	while (ARR_SIZE(o_fns) > ++i)
 		if (!ft_strcmp(o_type, o_types[i]))
-			return (fn_o[i](obj_json, obj, obj_serial));
+			return (o_fns[i](obj_json, obj, obj_serial));
 	ERRIN_N(P_OBJECTS, obj_serial + 1, o_type, E_INVALID_O_TYPE);
 	return (false);
 }
 
-bool	sp_get_objects(JSON_Object const *root, t_scene *const scene)
+bool __attribute__((ALIGN,ARCH))
+	sp_get_objects(JSON_Object const *root, t_scene *const scene)
 {
 	JSON_Value const	*o = json_object_get_value(root, P_OBJECTS);
 	JSON_Array			*o_arr;

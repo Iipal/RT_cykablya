@@ -12,7 +12,8 @@
 
 #include "parser.h"
 
-bool	sp_get_lights(JSON_Object const *root, t_scene *const scene)
+bool __attribute__((ALIGN,ARCH))
+	sp_get_lights(JSON_Object const *root, t_scene *const scene)
 {
 	JSON_Value const	*l = json_object_get_value(root, P_LIGHTS);
 	JSON_Array			*l_arr;

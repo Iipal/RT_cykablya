@@ -12,7 +12,8 @@
 
 #include "parser.h"
 
-void	*scene_free(t_scene *scene)
+void __attribute__((ALIGN,ARCH))
+	*scene_free(t_scene *scene)
 {
 
 	if (scene)

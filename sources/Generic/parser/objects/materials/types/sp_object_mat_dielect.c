@@ -12,9 +12,10 @@
 
 #include "parser.h"
 
-t_material_sf	*sp_object_mat_dielect(JSON_Object const *mat,
-			union u_hitables *restrict obj,
-			size_t const obj_serial)
+t_material_sf __attribute__((ALIGN,ARCH))
+	*sp_object_mat_dielect(JSON_Object const *mat,
+							union u_hitables *restrict obj,
+							size_t const obj_serial)
 {
 	t_material_sf	*m;
 

@@ -12,7 +12,8 @@
 
 #include "parser.h"
 
-static inline bool	s_validate_render_data(JSON_Object const *r)
+extern inline bool __attribute__((ARCH,INLINE))
+	s_validate_render_data(JSON_Object const *r)
 {
 	IFDO_F(4 != json_object_get_count(r), ERRIN(E_IN_RENDER, E_DEF_PARAM(4)));
 	NODO_F(json_object_has_value_of_type(r, P_RS_WIDTH, JSONNumber),
@@ -26,7 +27,8 @@ static inline bool	s_validate_render_data(JSON_Object const *r)
 	return (true);
 }
 
-bool				sp_get_render_type(JSON_Object const *root,
+bool __attribute__((ALIGN,ARCH))
+	sp_get_render_type(JSON_Object const *root,
 						t_render *const render)
 {
 	int8_t					i;

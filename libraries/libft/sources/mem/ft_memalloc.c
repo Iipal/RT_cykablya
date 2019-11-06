@@ -19,7 +19,7 @@ void	*ft_memalloc(size_t const size)
 	out = NULL;
 	if (size)
 	{
-		if (!(out = malloc(size)))
+		if (!(out = valloc(size)))
 			return (out);
 		ft_memset(out, 0, size);
 	}

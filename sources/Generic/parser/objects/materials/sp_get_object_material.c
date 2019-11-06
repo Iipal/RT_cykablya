@@ -12,8 +12,9 @@
 
 #include "parser.h"
 
-static inline char	*s_get_mat_name(JSON_Object const *mat,
-						size_t const obj_serial)
+extern inline char __attribute__((INLINE,ARCH))
+	*s_get_mat_name(JSON_Object const *mat,
+					size_t const obj_serial)
 {
 	char const	*mat_type = NULL;
 
@@ -25,9 +26,10 @@ static inline char	*s_get_mat_name(JSON_Object const *mat,
 	return ((char*)mat_type);
 }
 
-t_material_sf		*sp_get_object_material(JSON_Object const *obj_json,
-						union u_hitables *restrict obj,
-						size_t const obj_serial)
+t_material_sf __attribute__((ALIGN,ARCH))
+	*sp_get_object_material(JSON_Object const *obj_json,
+							union u_hitables *restrict obj,
+							size_t const obj_serial)
 {
 	enum e_material		i;
 	JSON_Object const	*mat = json_object_get_object(obj_json, P_O_MATERIAL);

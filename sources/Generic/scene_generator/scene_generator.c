@@ -58,9 +58,6 @@ static void __attribute__((ALIGN,ARCH,__nonnull__(1)))
 		}
 		a += 1.0f;
 	}
-	spheres[i++] = sphere(vec(0.0f, 1.0f, 0.0f), 1.0f);
-    spheres[i++] = sphere(vec(-4.0f, 1.0f, 0.0f), 1.0f);
-    spheres[i++] = sphere(vec(4.0f, 1.0f, 0.0f), 1.0f);
 }
 
 static void __attribute__((ALIGN,ARCH,__nonnull__(1)))
@@ -77,32 +74,20 @@ static void __attribute__((ALIGN,ARCH,__nonnull__(1)))
 		return ;
 	i = 1UL;
 	materials[i++] = material(LAMBERTIAN, vec(0.5f, 0.5f, 0.5f));
-	a = -limit;
-	while ((a < limit) && (i < (count - 4UL)))
+	a = -limit - 1.0f;
+	while (((a += 1.0f) < limit) && (i < (count - 4UL)))
 	{
-		b = -limit;
-		while ((b < limit) && (i < (count - 4UL)))
-		{
-			choose_mat = random_float();
-			if (choose_mat < 0.33f)
-				materials[i++] = material(LAMBERTIAN,
-					vec(random_float() * random_float(),
-						random_float() * random_float(),
-						random_float() * random_float()));
-			else if (choose_mat < 0.66f)
-				materials[i++] = material(LAMBERTIAN,
-					vec(0.5f * (1.0f + random_float()),
-						0.5f * (1.0f + random_float()),
-						0.5f * (1.0f + random_float())));
+		b = -limit - 1.0f;
+		while (((b += 1.0f) < limit) && (i < (count - 4UL)))
+			if (random_float() < 0.33f)
+	materials[i++] = material(LAMBERTIAN, vec(random_float() * random_float(),
+	random_float() * random_float(), random_float() * random_float()));
+			else if (random_float() < 0.66f)
+	materials[i++] = material(METAL, vec(0.5f * (1.0f + random_float()),
+	0.5f * (1.0f + random_float()), 0.5f * (1.0f + random_float())), 0.75f);
 			else
 				materials[i++] = material(DIELECTRIC, 1.5f);
-			b += 1.0f;
-		}
-		a += 1.0f;
 	}
-	materials[i++] = material(DIELECTRIC, 1.5f);
-    materials[i++] = material(LAMBERTIAN, vec(0.4f, 0.2f, 0.1f));
-    materials[i++] = material(METAL, vec(0.7f, 0.6f, 0.5f), 0.0f);
 }
 
 union u_hitables __attribute__((ALIGN,ARCH))
@@ -115,6 +100,14 @@ union u_hitables __attribute__((ALIGN,ARCH))
 		return (NULL);
 	spheres_generator(hitables[1].sphere.self, count);
 	materials_generator(hitables[1].sphere.material, count);
+	*(hitables[count - 3].sphere.self) = sphere(vec(0.0f, 1.0f, 0.0f), 1.0f);
+	*(hitables[count - 2].sphere.self) = sphere(vec(-4.0f, 1.0f, 0.0f), 1.0f);
+	*(hitables[count - 1].sphere.self) = sphere(vec(4.0f, 1.0f, 0.0f), 1.0f);
+	*(hitables[count - 3].sphere.material) = material(DIELECTRIC, 1.5f);
+	*(hitables[count - 2].sphere.material) = material(LAMBERTIAN,
+												vec(0.4f, 0.2f, 0.1f));
+	*(hitables[count - 1].sphere.material) = material(METAL,
+												vec(0.7f, 0.6f, 0.5f), 0.0f);
 	return ((union u_hitables*)hitables);
 }
 
