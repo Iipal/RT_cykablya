@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:49:59 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/07 11:38:49 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/07 11:51:23 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,11 @@ sp_get_v3sf_arr(t_v3sf *restrict dst,
 	const JSON_Array *restrict arr,
 	const char *restrict param_name,
 	const size_t obj_serial);
+
+double __attribute__((ALIGN,ARCH))
+sp_value_inrange(register double value,
+	register double min_range,
+	register double max_range);
 
 /*
 **	free:

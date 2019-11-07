@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 13:46:39 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/07 08:26:02 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/07 12:56:06 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ bool __attribute__((ALIGN,ARCH))
 	NODO_F(o, ERRIN(P_OBJECTS, E_NO_OBJS));
 	IFDO_F(JSONArray != json_value_get_type(o), ERRIN(P_OBJECTS, E_JARR_FMT));
 	NODO_F(o_arr = json_value_get_array(o), ERRIN(P_OBJECTS, E_JARR_FMT));
-	NODO_F(in_scene_objs = json_array_get_count(o_arr),
-		ERRIN(P_OBJECTS, E_NO_OBJS));
+	NODO_F(in_scene_objs = sp_value_inrange(
+		json_array_get_count(o_arr), 0, P_O_MAX), ERRIN(P_OBJECTS, E_NO_OBJS));
 	MEM(union u_hitables, scene->objs, in_scene_objs + 1UL, E_ALLOC);
 	*scene->objs = (union u_hitables) { GENERIC, in_scene_objs + 1UL, 0, 0 };
 	while (in_scene_objs > ++i)

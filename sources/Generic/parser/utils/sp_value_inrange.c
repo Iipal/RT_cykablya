@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene_free.c                                       :+:      :+:    :+:   */
+/*   sp_value_inrange.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/31 14:58:02 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/07 12:52:26 by tmaluh           ###   ########.fr       */
+/*   Created: 2019/11/07 11:46:33 by tmaluh            #+#    #+#             */
+/*   Updated: 2019/11/07 13:15:25 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-void __attribute__((ALIGN,ARCH))
-	*scene_free(struct s_scene *scene)
+double __attribute__((ALIGN,ARCH))
+	sp_value_inrange(register double value,
+		register double min_range,
+		register double max_range)
 {
-	size_t			i;
-	const size_t	max_objs = scene->objs->generic.count;
-
-	i = ~0UL;
-	if (scene)
-	{
-		if (scene->objs)
-			while (max_objs > ++i)
-			{
-				FREE(scene->objs[i].generic.self, free);
-				FREE(scene->objs[i].generic.material, free);
-			}
-		FREE(scene->objs, free);
-		FREE(scene, free);
-	}
-	return (NULL);
+	if (value > max_range)
+		value = max_range;
+	else if (value < min_range)
+		value = min_range;
+	return (value);
 }

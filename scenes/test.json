@@ -1,9 +1,9 @@
 {
     "render": {
         "type": "full",
-        "samples": 4,
-        "width": 1200,
-        "height": 600
+        "samples": 64,
+        "width": 1000,
+        "height": 500
     },
     "camera": {
         "look_from": [0.0, 0.0, 6.0],
@@ -20,9 +20,6 @@
             "intense": 1.0
         }
     ],
-    "random": {
-        "count": 150
-    },
     "objects": [
         {
             "type": "triangle",

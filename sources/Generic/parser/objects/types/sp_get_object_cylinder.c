@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 13:19:35 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/07 09:57:04 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/07 11:57:26 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ extern inline bool __attribute__((ALIGN,ARCH))
 	bool	is_top;
 	bool	is_height;
 
-	is_top = false;
-	is_height = false;
 	IFDO_F(5 != json_object_get_count(obj_json),
 		ERRIN_D(P_OBJECTS, obj_serial + 1, E_INVALID_COUNT, E_DEF_PARAM(5)));
 	is_top = json_object_has_value_of_type(obj_json, P_O_TOP, JSONArray);
