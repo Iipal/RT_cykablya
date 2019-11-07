@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:21:55 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/07 09:58:26 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/07 11:35:25 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,21 @@
 # define P_RS_WIDTH      "width"
 # define P_RS_HEIGHT     "height"
 
-# define P_LIGHTS        "lights"
+# define P_CAMERA        "camera"
+
+# define P_C_LOOK_FROM     "look_from"
+# define P_C_LOOK_AT       "look_at"
+# define P_C_POSITION      "pos"
+
+# define P_C_FOV           "fov"
+# define P_C_FOV_MAX       360.0f
+# define F_C_FOV_MIN       1.0f
+
+# define P_C_APERTURE      "aperture"
+# define P_C_DIST_TO_FOCUS "dist_to_focus"
+
+# define P_RANDOM        "random"
+# define P_RAND_COUNT    "count"
 
 # define P_OBJECTS       "objects"
 
@@ -53,17 +67,6 @@
 # define P_O_HEIGHT      "height"
 # define P_O_TOP         "top"
 
-# define P_CAMERA        "camera"
-
-# define P_C_LOOK_FROM     "look_from"
-# define P_C_LOOK_AT       "look_at"
-# define P_C_POSITION      "pos"
-
-# define P_C_FOV           "fov"
-# define P_C_FOV_MAX       360.0f
-# define F_C_FOV_MIN       1.0f
-
-# define P_C_APERTURE      "aperture"
-# define P_C_DIST_TO_FOCUS "dist_to_focus"
+# define P_LIGHTS        "lights"
 
 #endif

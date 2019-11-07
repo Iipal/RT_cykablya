@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:49:59 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/07 08:50:11 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/07 11:38:49 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@
 # include "libft.h"
 
 # define DECLARATION
-# include "sphere_constructor.h"
 # include "material_constructor.h"
+# include "sphere_constructor.h"
 # include "hitable_types.h"
 # include "material.h"
 # include "render.h"
@@ -40,6 +40,7 @@
 
 # define IMPLEMETNATION
 # include "hitable_types_internal.h"
+# include "scene_generator/scene_generator.h"
 # undef IMPLEMETNATION
 
 typedef void	(*t_fnptr_render)(struct s_render_params *restrict);
@@ -74,6 +75,12 @@ sp_get_render_type(const JSON_Object *restrict root,
 bool __attribute__((ALIGN,ARCH))
 sp_get_render_camera(const JSON_Object *restrict root,
 	struct s_render_params *restrict dst);
+
+/*
+**	getting random scene:
+*/
+union u_hitables __attribute__((ALIGN,ARCH))
+*sp_get_random_scene(const JSON_Object *restrict root);
 
 /*
 **	getting objects:

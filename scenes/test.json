@@ -1,7 +1,7 @@
 {
     "render": {
         "type": "full",
-        "samples": 26,
+        "samples": 4,
         "width": 1200,
         "height": 600
     },
@@ -20,6 +20,9 @@
             "intense": 1.0
         }
     ],
+    "random": {
+        "count": 150
+    },
     "objects": [
         {
             "type": "triangle",

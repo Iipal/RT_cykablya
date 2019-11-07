@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:50:23 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/07 09:52:06 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/07 11:39:13 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ struct s_scene __attribute__((ALIGN,ARCH))
 		scene_free(out));
 	NODO_R(sp_get_render_camera(obj, &out->cam), json_value_free(root),
 		scene_free(out));
+	IFDO_R(out->objs = sp_get_random_scene(obj), json_value_free(root), out);
 	NODO_R(sp_get_objects(obj, out), json_value_free(root), scene_free(out));
 	NODO_R(sp_get_lights(obj, out), json_value_free(root), scene_free(out));
 	return out;
