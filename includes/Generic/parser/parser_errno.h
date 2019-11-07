@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 17:44:42 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/06 10:14:03 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/07 09:41:27 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,22 @@
 # define E_IN_RENDER_SIZE "in " P_RENDER " params"
 # define E_NO_OBJS E_NOT_FOUNDED(P_OBJECTS)
 
-# define E_DEF_PARAM(literal) "default count of parameters is - " #literal
-
 # define E_DESC_FMT(_what) "wrong " _what " format"
 # define E_VEC_FMT  E_DESC_FMT("vector")
 # define E_JARR_FMT E_DESC_FMT("json array")
 # define E_TYPE_FMT E_DESC_FMT("json parameter")
 # define E_MAT_FMT E_DESC_FMT(P_O_MATERIAL)
+# define E_CYLINDER_FMT E_DESC_FMT(P_OT_CYLINDER)
+
+# define E_DEF_PARAM(literal) "default count of parameters is - " #literal
 
 # define E_INVALID "invalid or missing"
 # define E_INVALID_TYPE(_what) "is an invalid " _what " type"
 # define E_INVALID_O_MAT E_INVALID_TYPE(P_O_MATERIAL)
 # define E_INVALID_O_TYPE E_INVALID_TYPE(P_OBJECTS)
 # define E_INVALID_COUNT "invalid count of params"
+
+# define E_I_CYLINDER P_OT_CYLINDER " must to have 'height' or 'top' parameter"
 
 # define ERRIN_N(at, n, e, m) ft_printf(E_PREFIX": %s [%d]: '%s' %s\n",at,n,e,m)
 # define ERRIN_D(at, n, m, e) ft_printf(E_PREFIX": %s [%d]: %s (%s)\n",at,n,m,e)

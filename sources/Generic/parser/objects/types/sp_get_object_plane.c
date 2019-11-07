@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 13:15:51 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/07 08:52:26 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/07 10:04:50 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ extern inline t_plane_sf __attribute__((ALIGN,ARCH))
 	int8_t			i;
 
 	i = -1;
-	MEM(t_plane_sf, p, 1UL, E_ALLOC);
 	while (4 > ++i)
 		NO_F(sp_get_v3sf_arr(&temp[i], json_array_get_array(obj_arr, i),
 			P_O_POSITION, obj_serial));
+	MEM(t_plane_sf, p, 1UL, E_ALLOC);
 	*p = plane(temp[0], temp[1], temp[2], temp[3]);
 	return (p);
 }

@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:58:02 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/07 08:26:18 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/07 09:52:19 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void __attribute__((ALIGN,ARCH))
 	{
 		while (max_objs > ++i)
 		{
-			FREE(scene->objs[i].cone.self, free);
-			FREE(scene->objs[i].cone.material, free);
+			FREE(scene->objs[i].generic.self, free);
+			FREE(scene->objs[i].generic.material, free);
 		}
 		FREE(scene->objs, free);
 		FREE(scene, free);
