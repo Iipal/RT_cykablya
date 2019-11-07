@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 01:01:47 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/07 08:41:14 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/07 16:55:27 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_material_sf __attribute__((ALIGN,ARCH))
 	NODO_R(json_object_has_value_of_type(mat, P_O_M_ALBEDO, JSONArray),
 		ERRIN_N(P_OBJECTS " " P_O_MATERIAL, obj_serial + 1,
 			P_O_MATERIAL " " P_O_M_ALBEDO, E_INVALID), NULL);
-	NO_R(sp_get_v3sf_arr(&albedo, json_object_get_array(mat, P_O_M_ALBEDO),
+	NO_R(spu_get_v3sf_arr(&albedo, json_object_get_array(mat, P_O_M_ALBEDO),
 		P_O_M_ALBEDO, obj_serial), NULL);
 	MEM(t_material_sf, m, 1UL, E_ALLOC);
 	*m = material(LAMBERTIAN, albedo);

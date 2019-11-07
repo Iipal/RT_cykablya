@@ -6,13 +6,13 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 13:15:51 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/07 09:01:34 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/07 17:10:30 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-extern inline bool __attribute__((ALIGN,ARCH))
+extern inline bool __attribute__((INLINE,ARCH))
 	s_validate_cone_data(const JSON_Object *obj_json,
 		const size_t obj_serial)
 {
@@ -27,7 +27,7 @@ extern inline bool __attribute__((ALIGN,ARCH))
 	return (true);
 }
 
-extern inline t_cone_sf	__attribute__((ALIGN, ARCH))
+extern inline t_cone_sf __attribute__((INLINE,ARCH))
 	*s_get_cone_data(const JSON_Object *obj_json,
 		const size_t obj_serial)
 {
@@ -36,7 +36,7 @@ extern inline t_cone_sf	__attribute__((ALIGN, ARCH))
 	float		radius;
 	float		height;
 
-	NO_F(sp_get_v3sf_arr(&pos, json_object_get_array(obj_json, P_O_POSITION),
+	NO_F(spu_get_v3sf_arr(&pos, json_object_get_array(obj_json, P_O_POSITION),
 		P_O_POSITION, obj_serial));
 	radius = json_object_get_number(obj_json, P_O_RADIUS);
 	height = json_object_get_number(obj_json, P_O_HEIGHT);

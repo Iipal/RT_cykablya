@@ -6,13 +6,13 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 13:15:51 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/07 10:04:50 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/07 17:16:07 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-extern inline bool __attribute__((ALIGN,ARCH))
+extern inline bool __attribute__((INLINE,ARCH))
 	s_validate_plane_data(const JSON_Object *restrict obj_json,
 		const size_t obj_serial)
 {
@@ -33,7 +33,7 @@ extern inline t_plane_sf __attribute__((ALIGN,ARCH))
 
 	i = -1;
 	while (4 > ++i)
-		NO_F(sp_get_v3sf_arr(&temp[i], json_array_get_array(obj_arr, i),
+		NO_F(spu_get_v3sf_arr(&temp[i], json_array_get_array(obj_arr, i),
 			P_O_POSITION, obj_serial));
 	MEM(t_plane_sf, p, 1UL, E_ALLOC);
 	*p = plane(temp[0], temp[1], temp[2], temp[3]);
@@ -50,7 +50,7 @@ bool __attribute__((ALIGN,ARCH))
 
 	NO_F(s_validate_plane_data(obj_json, obj_serial));
 	NO_F(p = s_get_plane_data(json_object_get_array(obj_json, P_O_POSITION),
-		obj_serial))
+		obj_serial));
 	NO_F(mat = sp_get_object_material(obj_json, obj, obj_serial));
 	*obj = (union u_hitables){ PLANE, 0, p, mat };
 	return (true);

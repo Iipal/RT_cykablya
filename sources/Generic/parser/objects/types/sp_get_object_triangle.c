@@ -6,13 +6,13 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 13:19:35 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/07 10:10:45 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/07 17:00:30 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-extern inline bool __attribute__((ALIGN,ARCH))
+extern inline bool __attribute__((INLINE,ARCH))
 	s_validate_triangle_data(const JSON_Object *restrict obj_json,
 		const size_t obj_serial)
 {
@@ -33,7 +33,7 @@ extern inline t_tetrahedron_sf __attribute__((ALIGN,ARCH))
 
 	i = -1;
 	while (3 > ++i)
-		NO_F(sp_get_v3sf_arr(&temp[i], json_array_get_array(obj_arr, i),
+		NO_F(spu_get_v3sf_arr(&temp[i], json_array_get_array(obj_arr, i),
 			P_O_POSITION, obj_serial));
 	MEM(t_tetrahedron_sf, t, 1UL, E_ALLOC);
 	*t = tetrahedron(temp[0], temp[1], temp[2]);
@@ -41,9 +41,9 @@ extern inline t_tetrahedron_sf __attribute__((ALIGN,ARCH))
 }
 
 bool __attribute__((ALIGN,ARCH))
-sp_get_object_triangle(const JSON_Object *restrict obj_json,
-	union u_hitables *restrict obj,
-	const size_t obj_serial)
+	sp_get_object_triangle(const JSON_Object *restrict obj_json,
+		union u_hitables *restrict obj,
+		const size_t obj_serial)
 {
 	t_material_sf		*mat;
 	t_tetrahedron_sf	*t;

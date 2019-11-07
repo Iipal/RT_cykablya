@@ -35,8 +35,12 @@ int __attribute__((ALIGN,ARCH))
 		ft_putendl_fd("You must to give me a only 1 .json file.", 2);
 		return (EXIT_FAILURE);
 	}
+	clock_t	start, end;
+	start = clock();
 	if (!(s = scene_parser(*argv)))
 		return (EXIT_FAILURE);
+	end = clock();
+	printf("parse time: %lf\n", (double)(end - start) / CLOCKS_PER_SEC);
 
 	const size_t				render_threads = 8UL;
 	const size_t				render_tasks = render_threads << 2UL;
@@ -77,73 +81,8 @@ int __attribute__((ALIGN,ARCH))
 			Params + i);
 	}
 
-//!!! Для рандомной сцены
-
-	// const size_t					count = 100UL;
-	// union u_hitables	*restrict	hitables;
-	// if (!(hitables = scene_generator(count)))
-	// 	return (-1);
-
-	// for (size_t i = 0; i < render_tasks; i++)
-	// {
-	// 	Params[i].screen_width = s->render.w;
-	// 	Params[i].screen_height = s->render.h;
-	// 	Params[i].start = render_part * i;
-	// 	Params[i].stop = render_part * (i + 1);
-	// 	Params[i].step = 1UL;
-	// 	Params[i].hitables = hitables;
-	// 	Params[i].samples = s->render.samples;
-	// 	Params[i].screen = screen;
-	// 	Params[i].look_from = vec( 13.0f, 2.0f, 3.0f );//s->cam.look_from;
-	// 	Params[i].look_at = s->cam.look_at;
-	// 	Params[i].position = s->cam.position;
-	// 	Params[i].fov = 20.0f;//s->cam.fov;
-	// 	Params[i].aspect_ratio = (float)s->render.w / (float)s->render.h;
-	// 	Params[i].aperture = 0.1f;//s->cam.aperture;
-	// 	Params[i].dist_to_focus = 10.0f;//s->cam.dist_to_focus;
-	// 	tpool_add_work(render_pool, (void(*)(void*))s->render.fn,
-	// 		Params + i);
-	// }
-
-//!!!
-
-	// tpool_wait(render_pool);
-
-
-
-
-
-
-
-
 	while (-42)
 	{
-
-		// for (size_t current_samples = 2; current_samples < samples; current_samples += 1UL)
-		// {
-		// 	for (size_t i = 0; i < render_tasks; i++)
-		// 	{
-		// 		Params[i].s->render.w = s->render.w;
-		// 		Params[i].s->render.h = s->render.h;
-		// 		Params[i].start = render_part * i;
-		// 		Params[i].stop = render_part * (i + 1);
-		// 		Params[i].step = 1UL;
-		// 		Params[i].hitables = hitables;
-		// 		Params[i].samples = current_samples;
-		// 		Params[i].screen = screen;
-		// 		Params[i].fov = fov;
-		// 		tpool_add_work(render_pool, (void(*)(void*))render_std, Params + i);
-		// 		state = mfb_update(window, screen);
-		// 		if (state != STATE_OK)
-		// 			break ;
-		// 	}
-		// 	if (state != STATE_OK)
-		// 		break ;
-		// 	tpool_wait(render_pool);
-		// }
-		// tpool_destroy(render_pool);
-
-
 		state = mfb_update(window, screen);
 		if (state == STATE_EXIT)
 			_Exit(0);

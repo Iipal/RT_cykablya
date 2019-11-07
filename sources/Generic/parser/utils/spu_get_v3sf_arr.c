@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sp_get_v3sf_arr.c                                  :+:      :+:    :+:   */
+/*   spu_get_v3sf_arr.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/31 18:54:37 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/07 08:19:23 by tmaluh           ###   ########.fr       */
+/*   Created: 2019/11/07 16:58:43 by tmaluh            #+#    #+#             */
+/*   Updated: 2019/11/07 16:58:49 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
 bool __attribute__((ALIGN,ARCH))
-	sp_get_v3sf_arr(t_v3sf *restrict dst,
+	spu_get_v3sf_arr(t_v3sf *restrict dst,
 		const JSON_Array *restrict arr,
 		const char *restrict param_name,
 		const size_t obj_serial)

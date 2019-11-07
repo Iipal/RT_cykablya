@@ -6,12 +6,13 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 13:19:35 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/07 11:57:26 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/07 17:00:38 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
-extern inline bool __attribute__((ALIGN,ARCH))
+
+extern inline bool __attribute__((INLINE,ARCH))
 	s_validate_cylinder_data(const JSON_Object *restrict obj_json,
 		const size_t obj_serial)
 {
@@ -41,7 +42,7 @@ extern inline t_cylinder_sf __attribute__((ALIGN,ARCH))
 	float			radius;
 	const bool		is_height = json_object_has_value(obj_json, P_O_HEIGHT);
 
-	NO_F(sp_get_v3sf_arr(&pos, json_object_get_array(obj_json, P_O_POSITION),
+	NO_F(spu_get_v3sf_arr(&pos, json_object_get_array(obj_json, P_O_POSITION),
 		P_O_POSITION, obj_serial));
 	radius = json_object_get_number(obj_json, P_O_RADIUS);
 	MEM(t_cylinder_sf, c, 1UL, E_ALLOC);
@@ -52,7 +53,7 @@ extern inline t_cylinder_sf __attribute__((ALIGN,ARCH))
 	}
 	else
 	{
-		NO_F(sp_get_v3sf_arr(&h_t, json_object_get_array(obj_json, P_O_TOP),
+		NO_F(spu_get_v3sf_arr(&h_t, json_object_get_array(obj_json, P_O_TOP),
 			P_O_TOP, obj_serial));
 		*c = cylinder(pos, h_t, radius);
 	}

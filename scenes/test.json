@@ -1,7 +1,7 @@
 {
     "render": {
         "type": "full",
-        "samples": 64,
+        "samples": 16,
         "width": 1000,
         "height": 500
     },

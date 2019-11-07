@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:49:59 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/07 11:51:23 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/07 16:56:03 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,10 @@ sp_get_render_camera(const JSON_Object *restrict root,
 	struct s_render_params *restrict dst);
 
 /*
-**	getting random scene:
+**	getting random objects:
 */
 union u_hitables __attribute__((ALIGN,ARCH))
-*sp_get_random_scene(const JSON_Object *restrict root);
+*sp_get_random_objects(const JSON_Object *restrict root);
 
 /*
 **	getting objects:
@@ -152,13 +152,13 @@ sp_get_lights(const JSON_Object *restrict root, struct s_scene *restrict scene);
 **	utils:
 */
 bool __attribute__((ALIGN,ARCH))
-sp_get_v3sf_arr(t_v3sf *restrict dst,
+spu_get_v3sf_arr(t_v3sf *restrict dst,
 	const JSON_Array *restrict arr,
 	const char *restrict param_name,
 	const size_t obj_serial);
 
 double __attribute__((ALIGN,ARCH))
-sp_value_inrange(register double value,
+spu_value_inrange(register double value,
 	register double min_range,
 	register double max_range);
 

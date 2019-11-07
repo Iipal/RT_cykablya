@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:17:57 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/07 08:28:48 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/07 16:55:27 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ bool __attribute__((ALIGN,ARCH))
 
 	NOM_F(E_NO_CAM, cam);
 	NO_F(s_validate_camera_data(cam));
-	NO_F(sp_get_v3sf_arr(&dst->look_from,
+	NO_F(spu_get_v3sf_arr(&dst->look_from,
 		json_object_get_array(cam, P_C_LOOK_FROM), P_C_LOOK_FROM, 0UL));
-	NO_F(sp_get_v3sf_arr(&dst->look_at,
+	NO_F(spu_get_v3sf_arr(&dst->look_at,
 		json_object_get_array(cam, P_C_LOOK_AT), P_C_LOOK_AT, 0UL));
-	NO_F(sp_get_v3sf_arr(&dst->position,
+	NO_F(spu_get_v3sf_arr(&dst->position,
 		json_object_get_array(cam, P_C_POSITION), P_C_POSITION, 0UL));
 	dst->fov = json_object_get_number(cam, P_C_FOV);
 	dst->aperture = json_object_get_number(cam, P_C_APERTURE);
