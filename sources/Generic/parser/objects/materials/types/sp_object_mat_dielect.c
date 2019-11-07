@@ -6,16 +6,16 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 01:02:18 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/06 09:59:14 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/07 08:48:17 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
 t_material_sf __attribute__((ALIGN,ARCH))
-	*sp_object_mat_dielect(JSON_Object const *mat,
-							union u_hitables *restrict obj,
-							size_t const obj_serial)
+	*sp_object_mat_dielect(JSON_Object const *restrict mat,
+		union u_hitables *restrict obj,
+		const size_t obj_serial)
 {
 	t_material_sf	*m;
 

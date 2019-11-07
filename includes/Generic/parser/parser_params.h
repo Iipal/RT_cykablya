@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:21:55 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/06 09:37:19 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/06 20:21:26 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,10 @@
 
 # define P_O_M_ALBEDO    "albedo"
 # define P_O_M_FUZZ      "fuzz"
+
 # define P_O_POSITION    "pos"
 # define P_O_RADIUS      "radius"
+# define P_O_HEIGHT      "height"
 
 # define P_CAMERA        "camera"
 

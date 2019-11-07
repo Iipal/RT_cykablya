@@ -6,14 +6,14 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 10:24:31 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/06 10:09:48 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/07 08:50:15 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
 extern inline bool __attribute__((ARCH,INLINE))
-	s_validate_render_data(JSON_Object const *r)
+	s_validate_render_data(const JSON_Object *restrict r)
 {
 	IFDO_F(4 != json_object_get_count(r), ERRIN(E_IN_RENDER, E_DEF_PARAM(4)));
 	NODO_F(json_object_has_value_of_type(r, P_RS_WIDTH, JSONNumber),
@@ -28,8 +28,8 @@ extern inline bool __attribute__((ARCH,INLINE))
 }
 
 bool __attribute__((ALIGN,ARCH))
-	sp_get_render_type(JSON_Object const *root,
-						t_render *const render)
+	sp_get_render_type(const JSON_Object *restrict root,
+		struct s_render *restrict render)
 {
 	int8_t					i;
 	char const				*rtype;

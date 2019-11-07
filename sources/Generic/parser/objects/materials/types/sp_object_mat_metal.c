@@ -6,16 +6,16 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 18:21:45 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/06 10:06:16 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/07 08:41:18 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
 t_material_sf __attribute__((ALIGN,ARCH))
-	*sp_object_mat_metal(JSON_Object const *mat,
-						union u_hitables *restrict obj,
-						size_t const obj_serial)
+	*sp_object_mat_metal(JSON_Object const *restrict mat,
+		union u_hitables *restrict obj,
+		const size_t obj_serial)
 {
 	t_material_sf	*m;
 	t_v3sf			albedo;

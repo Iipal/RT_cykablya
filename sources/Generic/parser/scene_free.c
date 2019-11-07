@@ -6,18 +6,26 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:58:02 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/04 11:19:28 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/07 08:26:18 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
 void __attribute__((ALIGN,ARCH))
-	*scene_free(t_scene *scene)
+	*scene_free(struct s_scene *scene)
 {
+	size_t			i;
+	const size_t	max_objs = scene->objs->generic.count;
 
+	i = ~0UL;
 	if (scene)
 	{
+		while (max_objs > ++i)
+		{
+			FREE(scene->objs[i].cone.self, free);
+			FREE(scene->objs[i].cone.material, free);
+		}
 		FREE(scene->objs, free);
 		FREE(scene, free);
 	}

@@ -26,7 +26,7 @@
 int __attribute__((ALIGN,ARCH))
 	main(int argc, char *argv[])
 {
-	t_scene *s;
+	struct s_scene	*s;
 
 	--argc;
 	++argv;

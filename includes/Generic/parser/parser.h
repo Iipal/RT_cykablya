@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:49:59 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/05 20:47:34 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/07 08:50:11 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,98 +44,116 @@
 
 typedef void	(*t_fnptr_render)(struct s_render_params *restrict);
 
-typedef struct	s_render
+struct	s_render
 {
 	t_fnptr_render	fn;
 	size_t			w;
 	size_t			h;
 	size_t			samples;
-}				t_render;
+};
 
-typedef struct	s_scene
+struct	s_scene
 {
-	t_render					render;
+	struct s_render				render;
 	struct s_render_params		cam;
 	union u_hitables *restrict	objs;
-}				t_scene;
+};
 
-t_scene __attribute__((ALIGN,ARCH))
-*scene_parser(char *file);
+/*
+**	start parser:
+*/
+struct s_scene __attribute__((ALIGN,ARCH))
+*scene_parser(const char *restrict file);
 
+/*
+**	getting render and camera settings:
+*/
 bool __attribute__((ALIGN,ARCH))
-sp_get_render_type(const JSON_Object *root, t_render *const render);
-
+sp_get_render_type(const JSON_Object *restrict root,
+	struct s_render *restrict render);
 bool __attribute__((ALIGN,ARCH))
-sp_get_render_camera(const JSON_Object *root,
-					struct s_render_params *const dst);
+sp_get_render_camera(const JSON_Object *restrict root,
+	struct s_render_params *restrict dst);
 
-t_material_sf __attribute__((ALIGN,ARCH))
-*sp_get_object_material(const JSON_Object *obj_json,
-						union u_hitables *restrict obj,
-						size_t obj_serial);
-
-typedef t_material_sf	*(*t_fn_mats)(const JSON_Object*,
-									union u_hitables *restrict,
-									size_t);
-
-t_material_sf __attribute__((ALIGN,ARCH))
-*sp_object_mat_normal(const JSON_Object *mat,
-					union u_hitables *restrict obj,
-					size_t obj_serial);
-
-t_material_sf __attribute__((ALIGN,ARCH))
-*sp_object_mat_lambert(const JSON_Object *mat,
-					union u_hitables *restrict obj,
-					size_t obj_serial);
-
-t_material_sf __attribute__((ALIGN,ARCH))
-*sp_object_mat_metal(const JSON_Object *mat,
-					union u_hitables *restrict obj,
-					size_t obj_serial);
-
-t_material_sf __attribute__((ALIGN,ARCH))
-*sp_object_mat_dielect(const JSON_Object *mat,
-						union u_hitables *restrict obj,
-						size_t obj_serial);
-
+/*
+**	getting objects:
+*/
 bool __attribute__((ALIGN,ARCH))
-sp_get_objects(const JSON_Object *root, t_scene *const scene);
+sp_get_objects(const JSON_Object *restrict root,
+	struct s_scene *restrict scene);
 
-typedef bool	(*t_fn_objs)(const JSON_Object*,
+typedef bool	(*t_fn_objs)(const JSON_Object *restrict,
 					union u_hitables *restrict,
-					size_t);
+					const size_t);
 
 bool __attribute__((ALIGN,ARCH))
-sp_get_object_sphere(const JSON_Object *obj_json,
-					union u_hitables *restrict obj,
-					size_t obj_serial);
+sp_get_object_sphere(const JSON_Object *restrict obj_json,
+	union u_hitables *restrict obj,
+	const size_t obj_serial);
 bool __attribute__((ALIGN,ARCH))
-sp_get_object_cone(const JSON_Object *obj_json,
-					union u_hitables *restrict obj,
-					size_t obj_serial);
+sp_get_object_cone(const JSON_Object *restrict obj_json,
+	union u_hitables *restrict obj,
+	const size_t obj_serial);
 bool __attribute__((ALIGN,ARCH))
-sp_get_object_plane(const JSON_Object *obj_json,
-					union u_hitables *restrict obj,
-					size_t obj_serial);
+sp_get_object_plane(const JSON_Object *restrict obj_json,
+	union u_hitables *restrict obj,
+	const size_t obj_serial);
 bool __attribute__((ALIGN,ARCH))
-sp_get_object_triangle(const JSON_Object *obj_json,
-					union u_hitables *restrict obj,
-					size_t obj_serial);
+sp_get_object_triangle(const JSON_Object *restrict obj_json,
+	union u_hitables *restrict obj,
+	const size_t obj_serial);
 bool __attribute__((ALIGN,ARCH))
-sp_get_object_cyiinder(const JSON_Object *obj_json,
-			union u_hitables *restrict obj,
-			size_t obj_serial);
+sp_get_object_cyiinder(const JSON_Object *restrict obj_json,
+	union u_hitables *restrict obj,
+	const size_t obj_serial);
 
-bool __attribute__((ALIGN,ARCH))
-sp_get_lights(const JSON_Object *root, t_scene *const scene);
+/*
+**	getting object materials:
+*/
+t_material_sf __attribute__((ALIGN,ARCH))
+*sp_get_object_material(const JSON_Object *restrict obj_json,
+	union u_hitables *restrict obj,
+	const size_t obj_serial);
 
-bool __attribute__((ALIGN,ARCH))
-sp_get_v3sf_arr(t_v3sf *const dst,
-			JSON_Array const *const arr,
-			char const *const param_name,
-			size_t obj_serial);
+typedef t_material_sf	*(*t_fn_mats)(const JSON_Object *restrict,
+							union u_hitables *restrict,
+							const size_t);
 
+t_material_sf __attribute__((ALIGN,ARCH))
+*sp_object_mat_normal(const JSON_Object *restrict mat,
+	union u_hitables *restrict obj,
+	const size_t obj_serial);
+t_material_sf __attribute__((ALIGN,ARCH))
+*sp_object_mat_lambert(const JSON_Object *restrict mat,
+	union u_hitables *restrict obj,
+	const size_t obj_serial);
+t_material_sf __attribute__((ALIGN,ARCH))
+*sp_object_mat_metal(const JSON_Object *restrict mat,
+	union u_hitables *restrict obj,
+	const size_t obj_serial);
+t_material_sf __attribute__((ALIGN,ARCH))
+*sp_object_mat_dielect(const JSON_Object *restrict mat,
+	union u_hitables *restrict obj,
+	const size_t obj_serial);
+/*
+**	getting lights:
+*/
+bool __attribute__((ALIGN,ARCH))
+sp_get_lights(const JSON_Object *restrict root, struct s_scene *restrict scene);
+
+/*
+**	utils:
+*/
+bool __attribute__((ALIGN,ARCH))
+sp_get_v3sf_arr(t_v3sf *restrict dst,
+	const JSON_Array *restrict arr,
+	const char *restrict param_name,
+	const size_t obj_serial);
+
+/*
+**	free:
+*/
 void __attribute__((ALIGN,ARCH))
-*scene_free(t_scene *scene);
+*scene_free(struct s_scene *scene);
 
 #endif

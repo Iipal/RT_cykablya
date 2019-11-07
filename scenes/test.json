@@ -11,7 +11,7 @@
         "pos": [0.0, 1.0, 0.0],
         "fov": 15.0,
         "aperture": 0.1,
-        "dist_to_focus": 6.5
+        "dist_to_focus": 7
     },
     "lights": [
         {
@@ -22,24 +22,35 @@
     ],
     "objects": [
         {
+            "type": "cone",
+            "material": {
+                "type": "dielectric",
+                "fuzz": 15
+            },
+            "pos": [ 0.0, -1.0, -1.0 ],
+            "radius": 0.5,
+            "height": 1.6
+        },
+        {
             "type": "plane",
             "material": {
                 "type": "lambertian",
-                "albedo": [ 0.5, 0.9, 0.85 ]
+                "albedo": [ 0.8, 0.28, 0.28 ]
             },
-            "pos": [[ 0.1, 0.0, -0.1 ],
-                    [ 0.0, 0.1, -0.1 ],
-                    [ 0.0, 0.0, -0.3 ],
-                    [ 0.2, 0.0, -0.5 ]]
+            "pos": [[ 0.2, 0.0, 0.1 ],
+                    [ 0.1, 0.1, 0.1 ],
+                    [ 0.1, 0.0, 0.3 ],
+                    [ 0.3, 0.0, 0.5 ]]
         },
         {
             "type": "sphere",
             "material": {
-                "type": "lambertian",
-                "albedo": [ 0.5, 0.3, 0.65 ]
+                "type": "metal",
+                "albedo": [ 0.5, 0.3, 0.65 ],
+                "fuzz": 102
             },
-            "pos": [0.0, 0.1, -1.0],
-            "radius": 0.45
+            "pos": [0.0, 0.6, -1.0],
+            "radius": 0.1
         },
         {
             "type": "sphere",

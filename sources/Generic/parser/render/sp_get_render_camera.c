@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:17:57 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/06 10:14:13 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/07 08:28:48 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ static inline bool __attribute__((INLINE,ARCH))
 }
 
 bool __attribute__((ALIGN,ARCH))
-	sp_get_render_camera(JSON_Object const *root,
-						struct s_render_params *const dst)
+	sp_get_render_camera(const JSON_Object *restrict root,
+		struct s_render_params *restrict dst)
 {
 	JSON_Object const	*cam = json_object_get_object(root, P_CAMERA);
 

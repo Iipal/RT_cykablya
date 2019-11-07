@@ -6,15 +6,15 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 14:01:36 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/06 19:56:59 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/07 08:23:05 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
 extern inline bool __attribute__((ALIGN,ARCH))
-	s_validate_sphere_data(JSON_Object const *obj_json,
-				size_t const obj_serial)
+	s_validate_sphere_data(const JSON_Object *restrict obj_json,
+		const size_t obj_serial)
 {
 	IFDO_F(4 != json_object_get_count(obj_json),
 		ERRIN_D(P_OBJECTS, obj_serial + 1, E_INVALID_COUNT, E_DEF_PARAM(4)));
@@ -26,8 +26,8 @@ extern inline bool __attribute__((ALIGN,ARCH))
 }
 
 extern inline t_sphere_sf __attribute__((ALIGN,ARCH))
-	*s_get_sphere_pos(JSON_Object const *obj_json,
-		size_t const obj_serial)
+	*s_get_sphere_data(const JSON_Object *restrict obj_json,
+		const size_t obj_serial)
 {
 	t_sphere_sf	*s;
 	t_v3sf		pos;
@@ -42,16 +42,16 @@ extern inline t_sphere_sf __attribute__((ALIGN,ARCH))
 }
 
 bool __attribute__((ALIGN,ARCH))
-	sp_get_object_sphere(JSON_Object const *obj_json,
-						union u_hitables *restrict obj,
-						size_t const obj_serial)
+	sp_get_object_sphere(const JSON_Object *restrict obj_json,
+		union u_hitables *restrict obj,
+		const size_t obj_serial)
 {
 	t_material_sf	*mat;
 	t_sphere_sf		*s;
 
 	NO_F(s_validate_sphere_data(obj_json, obj_serial));
 	NO_F(mat = sp_get_object_material(obj_json, obj, obj_serial));
-	NO_F(s = s_get_sphere_pos(obj_json, obj_serial))
+	NO_F(s = s_get_sphere_data(obj_json, obj_serial))
 	*obj = (union u_hitables){ SPHERE, 0, s, mat };
 	return (true);
 }

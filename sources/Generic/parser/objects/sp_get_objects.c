@@ -6,22 +6,22 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 13:46:39 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/05 21:16:24 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/07 08:26:02 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
 static bool __attribute__((ALIGN,ARCH))
-	s_get_current_object(JSON_Object const *obj_json,
-						union u_hitables *restrict obj,
-						size_t const obj_serial)
+	s_get_current_object(const JSON_Object *obj_json,
+		union u_hitables *restrict obj,
+		const size_t obj_serial)
 {
 	static t_fn_objs	o_fns[] = { sp_get_object_sphere, sp_get_object_cone,
 		sp_get_object_cyiinder, sp_get_object_plane, sp_get_object_triangle };
-	static char	const	*o_types[] = { P_OT_SPHERE, P_OT_CONE, P_OT_CYLINDER,
+	static const char	*o_types[] = { P_OT_SPHERE, P_OT_CONE, P_OT_CYLINDER,
 											P_OT_PLANE, P_OT_TRIANGLE };
-	char const			*o_type = json_object_get_string(obj_json, P_O_TYPE);
+	const char			*o_type = json_object_get_string(obj_json, P_O_TYPE);
 	size_t				i;
 
 	i = ~0UL;
@@ -34,9 +34,10 @@ static bool __attribute__((ALIGN,ARCH))
 }
 
 bool __attribute__((ALIGN,ARCH))
-	sp_get_objects(JSON_Object const *root, t_scene *const scene)
+	sp_get_objects(const JSON_Object *restrict root,
+		struct s_scene *restrict scene)
 {
-	JSON_Value const	*o = json_object_get_value(root, P_OBJECTS);
+	const JSON_Value	*o = json_object_get_value(root, P_OBJECTS);
 	JSON_Array			*o_arr;
 	JSON_Object			*o_json;
 	size_t				in_scene_objs;

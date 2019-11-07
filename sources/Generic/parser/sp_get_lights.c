@@ -6,16 +6,17 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 15:57:48 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/01 16:07:19 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/07 08:27:17 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
 bool __attribute__((ALIGN,ARCH))
-	sp_get_lights(JSON_Object const *root, t_scene *const scene)
+	sp_get_lights(const JSON_Object *restrict root,
+		struct s_scene *restrict scene)
 {
-	JSON_Value const	*l = json_object_get_value(root, P_LIGHTS);
+	const JSON_Value	*l = json_object_get_value(root, P_LIGHTS);
 	JSON_Array			*l_arr;
 	size_t				i;
 
