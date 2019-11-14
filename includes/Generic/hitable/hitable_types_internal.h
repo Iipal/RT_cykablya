@@ -36,7 +36,7 @@ typedef float	__attribute__((__ext_vector_type__(12),ALIGN))	t_plane_sf;
 struct  s_generic
 {
 	enum e_hitables_types	type;
-	size_t					count : sizeof(enum e_hitables_types) * __CHAR_BIT__;
+	size_t					count : sizeof(int) * __CHAR_BIT__;
 	void	*restrict		self;
 	void	*restrict		material;
 };
@@ -47,7 +47,7 @@ struct  s_generic
 struct  s_spheres
 {
 	enum e_hitables_types		type;
-	size_t						count : sizeof(enum e_hitables_types) * __CHAR_BIT__;
+	size_t						count : sizeof(int) * __CHAR_BIT__;
 	t_sphere_sf		*restrict	self;
 	t_material_sf	*restrict	material;
 };
@@ -58,7 +58,7 @@ struct  s_spheres
 struct  s_cones
 {
 	enum e_hitables_types		type;
-	size_t						count : sizeof(enum e_hitables_types) * __CHAR_BIT__;
+	size_t						count : sizeof(int) * __CHAR_BIT__;
 	t_cone_sf		*restrict	self;
 	t_material_sf	*restrict	material;
 };
@@ -69,7 +69,7 @@ struct  s_cones
 struct  s_cylinders
 {
 	enum e_hitables_types		type;
-	size_t						count : sizeof(enum e_hitables_types) * __CHAR_BIT__;
+	size_t						count : sizeof(int) * __CHAR_BIT__;
 	t_cylinder_sf	*restrict	self;
 	t_material_sf	*restrict	material;
 };
@@ -80,7 +80,7 @@ struct  s_cylinders
 struct  s_tetrahedrons
 {
 	enum e_hitables_types			type;
-	size_t							count : sizeof(enum e_hitables_types) * __CHAR_BIT__;
+	size_t							count : sizeof(int) * __CHAR_BIT__;
 	t_tetrahedron_sf	*restrict	self;
 	t_material_sf		*restrict	material;
 };
@@ -91,7 +91,7 @@ struct  s_tetrahedrons
 struct  s_planes
 {
 	enum e_hitables_types		type;
-	size_t						count : sizeof(enum e_hitables_types) * __CHAR_BIT__;
+	size_t						count : sizeof(int) * __CHAR_BIT__;
 	t_plane_sf		*restrict	self;
 	t_material_sf	*restrict	material;
 };

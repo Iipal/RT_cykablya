@@ -15,9 +15,9 @@
 #  include "attributes.h"
 #  include "vector_types.h"
 
-
 #  ifndef S_RENDER_PARAMS
 #   define S_RENDER_PARAMS
+
 struct s_render_params
 {
 	uint32_t	__attribute__((ALIGN))	*restrict	screen;
@@ -36,6 +36,7 @@ struct s_render_params
 	float											aperture;
 	float											dist_to_focus;
 };
+
 #  endif
 
 void __attribute__((ALIGN,ARCH))
@@ -46,8 +47,8 @@ void __attribute__((ALIGN,ARCH))
 render_full(struct s_render_params *restrict param);
 
 
-// #  ifndef IMPLEMETNATION
-// #   include "free_attributes.h"
-// #  endif
+#  ifndef IMPLEMETNATION
+#   include "free_attributes.h"
+#  endif
 # endif
 #endif

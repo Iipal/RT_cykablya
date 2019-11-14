@@ -12,7 +12,9 @@
 
 #ifndef VECTOR_H
 # define VECTOR_H
-# define DECLARATION
+# ifndef DECLARATION
+#  define DECLARATION
+# endif
 # include "vector_types.h"
 # include "vector_constructor.h"
 # include "reduce_add.h"

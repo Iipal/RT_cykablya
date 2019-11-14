@@ -15,9 +15,7 @@ static t_v3sf
 	return (p);
 }
 
-#include <stddef.h>
-
-static float __attribute__((__const__,__target__("avx,avx2")))
+static float __attribute__((CONST,SMALL_STACK,ARCH))
 	schlick(register float cosine, register float ri)
 {
 	size_t					i;
@@ -35,18 +33,7 @@ static float __attribute__((__const__,__target__("avx,avx2")))
 }
 
 
-
-# include "vector.h"
-# include "material.h"
-# include "vector_int_types.h"
-# include "record_types_internal.h"
-
-# include "random_float.h"
-
-#include <assert.h>
-
-
-static t_v3sf __attribute__((__overloadable__,__target__("avx,avx2")))
+static t_v3sf __attribute__((CONST,SMALL_STACK,ARCH))
 	scatter_labmbertian(
 		register const union u_hitables * restrict hitables,
 		register const t_v3sf point,
@@ -65,7 +52,7 @@ static t_v3sf __attribute__((__overloadable__,__target__("avx,avx2")))
 			return (vec(0.0f, 0.0f, 0.0f));
 }
 
-static t_v3sf __attribute__((__overloadable__,__target__("avx,avx2")))
+static t_v3sf __attribute__((CONST,SMALL_STACK,ARCH))
 	scatter_metal(
 		register const union u_hitables * restrict hitables,
 		register const t_record_sf record,
@@ -92,7 +79,7 @@ static t_v3sf __attribute__((__overloadable__,__target__("avx,avx2")))
 }
 
 
-t_v3sf __attribute__((__overloadable__,__target__("avx,avx2")))
+t_v3sf __attribute__((CONST,CLONE,SMALL_STACK,ARCH))
 	color(register const t_ray_sf r,
 		register const union u_hitables * restrict hitables,
 		register const size_t depth)
@@ -175,8 +162,7 @@ t_v3sf __attribute__((__overloadable__,__target__("avx,avx2")))
 	}
 }
 
-
-t_v3sf __attribute__((__overloadable__,__target__("avx,avx2")))
+t_v3sf __attribute__((CONST,CLONE,SMALL_STACK,ARCH))
 	color(register const t_ray_sf r,
 		register const union u_hitables * restrict hitables)
 {

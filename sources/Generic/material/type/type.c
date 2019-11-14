@@ -4,7 +4,7 @@
 # include "type.h"
 #endif
 
-enum e_material __attribute__((__target__("avx,avx2")))
+enum e_material __attribute__((CONST,CLONE,ARCH))
 	type(register const t_material_sf material)
 {
 	return ((enum e_material)(((t_material_si)material)[4]));

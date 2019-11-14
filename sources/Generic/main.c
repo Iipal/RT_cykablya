@@ -22,6 +22,7 @@
 # include "plane_constructor.h"
 
 # include "parser.h"
+# include "libft.h"
 
 int __attribute__((ALIGN,ARCH))
 	main(int argc, char *argv[])
@@ -50,12 +51,12 @@ int __attribute__((ALIGN,ARCH))
 	struct Window	*restrict	window;
 	UpdateState					state;
 	struct s_tpool	*restrict	render_pool;
-	static const float			fov = 15.0f;
 
-	if (!(window = mfb_open_ex("BLYAD'", s->render.w, s->render.h, 1)))
+	if (!(window = mfb_open_ex("BLYAT'", s->render.w, s->render.h, 1)))
 		return (-1);
 	if (!(screen = (__typeof__(screen))(valloc(sizeof(*screen) * s->render.w * s->render.h))))
 		return (-1);
+	ft_bzero(screen, (sizeof(*screen) * s->render.w * s->render.h));
 
 	struct s_render_params	*restrict	Params = valloc((sizeof(*Params)) * render_tasks);
 	render_pool = tpool_create(render_threads);

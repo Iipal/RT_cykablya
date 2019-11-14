@@ -3,6 +3,7 @@
 
 # ifndef E_HITABLES_TYPES
 #  define E_HITABLES_TYPES
+
 enum	e_hitables_types
 {
 	GENERIC,
@@ -12,6 +13,7 @@ enum	e_hitables_types
 	PLANE,
 	TETRAHEDRON
 };
+
 # endif
 
 struct	s_generic;

@@ -13,5 +13,4 @@
 # include "record_iter.h"
 # include "color.h"
 # include "hit.h"
-
 #endif

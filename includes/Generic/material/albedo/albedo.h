@@ -2,16 +2,21 @@
 # define ALBEDO_H
 
 # ifdef IMPLEMETNATION
+#  include "attributes.h"
 #  include "vector_types.h"
 #  include "material_types_internal.h"
 # endif
 
 # ifdef DECLARATION
+#  include "attributes.h"
 #  include "material_types.h"
 #  include "vector_types.h"
 
-t_v3sf __attribute__((__target__("avx")))
+t_v3sf __attribute__((CONST,CLONE,ARCH))
 albedo(register const t_material_sf material);
 
+#  ifndef IMPLEMETNATION
+#   include "free_attributes.h"
+#  endif
 # endif
 #endif

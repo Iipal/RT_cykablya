@@ -56,6 +56,6 @@ bool __attribute__((ALIGN,ARCH))
 	NO_F(s_validate_cone_data(obj_json, obj_serial));
 	NO_F(mat = sp_get_object_material(obj_json, obj, obj_serial));
 	NO_F(c = s_get_cone_data(obj_json, obj_serial));
-	*obj = (union u_hitables){ CONE, 0, c, mat };
+	*obj = (union u_hitables){{ CONE, 0, c, mat }};
 	return (true);
 }

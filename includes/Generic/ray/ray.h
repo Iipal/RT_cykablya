@@ -6,5 +6,4 @@
 # include "point_at_parameter.h"
 # include "origin.h"
 # include "direction.h"
-
 #endif

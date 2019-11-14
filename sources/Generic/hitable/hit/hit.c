@@ -4,35 +4,25 @@
 # include "hit.h"
 #endif
 
-#include "material.h"
+# include "material.h"
 # include "cone_constructor.h"
 # include "cylinder_constructor.h"
 # include "tetrahedron_constructor.h"
 # include "plane_constructor.h"
 
-typedef short __attribute__((__ext_vector_type__(16),__aligned__(32)))	t_record_mask_hi;
-typedef char __attribute__((__ext_vector_type__(32),__aligned__(32)))	t_record_mask_qi;
-
-union	u_record_helper
-{
-	t_record_sf			sf;
-	t_record_mask_qi	qi;
-	t_record_mask_hi	hi;
-} __attribute__((__aligned__(32)));
-
-static inline _Bool __attribute__((__overloadable__,__target__("avx"),__const__))
+static inline _Bool __attribute__((CONST,CLONE,ARCH))
 	hit_condition(register const t_record_sf record)
 {
 	return ((_Bool)((t_record_mask_qi)record)[0]);
 }
 
-static inline float __attribute__((__overloadable__,__target__("avx"),__const__))
+static inline float __attribute__((CONST,CLONE,ARCH))
 	hit_distance(register const t_record_sf record)
 {
 	return ((record)[1]);
 }
 
-t_record_sf __attribute__((__overloadable__,__target__("avx")))
+t_record_sf __attribute__((CONST,CLONE,ARCH))
 	hit(register const union u_hitables * restrict hitables,
 		register const t_ray_sf ray,
 		register const float t_min,

@@ -52,6 +52,6 @@ bool __attribute__((ALIGN,ARCH))
 	NO_F(p = s_get_plane_data(json_object_get_array(obj_json, P_O_POSITION),
 		obj_serial));
 	NO_F(mat = sp_get_object_material(obj_json, obj, obj_serial));
-	*obj = (union u_hitables){ PLANE, 0, p, mat };
+	*obj = (union u_hitables){{ PLANE, 0, p, mat }};
 	return (true);
 }

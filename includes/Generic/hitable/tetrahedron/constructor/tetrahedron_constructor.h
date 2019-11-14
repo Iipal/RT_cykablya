@@ -31,8 +31,7 @@ tetrahedron(register const t_v3sf a,
 			register const t_v3sf b,
 			register const t_v3sf c);
 t_v3sf __attribute__((CONST,CLONE,ARCH))
-normal(register const t_tetrahedron_sf t,
-		register const t_v3sf point);
+normal(register const t_tetrahedron_sf t);
 t_record_sf __attribute__((CONST,CLONE,ARCH))
 hit(register const t_tetrahedron_sf t,
 	register const t_ray_sf ray,

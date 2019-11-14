@@ -10,7 +10,7 @@ static union u_hitables __attribute__((ALIGN,ARCH))
 	union u_hitables	*restrict	hitables;
 	t_material_sf		*restrict	materials;
 	t_sphere_sf			*restrict	spheres;
-	ptrdiff_t						i;
+	size_t							i;
 
 	if (!(hitables = (__typeof__(hitables))
 		(valloc((sizeof(*hitables) * count)))))
@@ -65,7 +65,6 @@ static void __attribute__((ALIGN,ARCH,__nonnull__(1)))
 						register const size_t count)
 {
 	size_t		i;
-	float		choose_mat;
 	float		a;
 	float		b;
 	const float	limit = sqroot((float)count) / 2.0f;
@@ -94,7 +93,6 @@ union u_hitables __attribute__((ALIGN,ARCH))
 	*scene_generator(register const size_t count)
 {
 	union u_hitables	*restrict	hitables;
-	size_t							i;
 
 	if (!(hitables = (__typeof__(hitables))(scene_generator_alloc(count))))
 		return (NULL);

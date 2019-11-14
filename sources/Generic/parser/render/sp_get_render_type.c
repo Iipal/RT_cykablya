@@ -31,14 +31,14 @@ bool __attribute__((ALIGN,ARCH))
 	sp_get_render_type(const JSON_Object *restrict root,
 		struct s_render *restrict render)
 {
-	int8_t					i;
+	size_t					i;
 	char const				*rtype;
 	JSON_Object const		*r = json_object_get_object(root, P_RENDER);
 	t_fnptr_render const	valid_renders[] = { render_normal, render_full };
 	char const				*valid_rtypes[] = { P_RT_STD, P_RT_NORMAL,
 												P_RT_FULL };
 
-	i = -1;
+	i = ~0UL;
 	render->fn = render_std;
 	NODO_F(r, ERRIN_I(E_INVALID_TYPE(P_RENDER), ""));
 	NO_F(s_validate_render_data(r));

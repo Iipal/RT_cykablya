@@ -14,10 +14,16 @@
 #  endif
 # endif
 
-#ifndef T_CONE_SF
-# define T_CONE_SF
+
+# ifdef DECLARATION
+#  include "sphere_types.h"
+#  include "vector_types.h"
+#  ifndef T_CONE_SF
+#   define T_CONE_SF
+
 typedef float	__attribute__((__ext_vector_type__(5),ALIGN))	t_cone_sf;
-#endif
+
+#  endif
 
 t_v3sf __attribute__((CONST,CLONE,ARCH))
 center(register const t_cone_sf cone);
@@ -47,25 +53,6 @@ hit(register const t_cone_sf cone,
 t_v3sf __attribute__((CONST,ARCH))
 rotate(register const t_v3sf vec,
 		register const t_v3sf rot);
-
-# ifdef DECLARATION
-#  include "sphere_types.h"
-#  include "vector_types.h"
-
-// t_sphere_sf __attribute__((__overloadable__,__target__("avx")))
-// sphere(register const t_v3sf center, register const t_v3sf radius);
-// t_sphere_sf __attribute__((__overloadable__,__target__("avx")))
-// sphere(register const t_v3sf center, register const float radius);
-// t_sphere_df __attribute__((__overloadable__,__target__("avx")))
-// sphere(register const t_v3df center, register const t_v3df radius);
-// t_sphere_df __attribute__((__overloadable__,__target__("avx")))
-// sphere(register const t_v3df center, register const double radius);
-// struct s_sphere_sf __attribute__((__overloadable__))
-// *sphere(void);
-// struct s_sphere_sf __attribute__((__overloadable__))
-// *sphere(const float f);
-// struct s_sphere_df __attribute__((__overloadable__))
-// *sphere(const double f);
 
 #  ifndef IMPLEMETNATION
 #   include "free_attributes.h"

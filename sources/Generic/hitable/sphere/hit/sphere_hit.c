@@ -4,7 +4,7 @@
 # include "sphere_hit.h"
 #endif
 
-t_record_sf __attribute__((__overloadable__,__target__("avx")))
+t_record_sf __attribute__((CONST,CLONE,ARCH))
 	hit(register const t_sphere_sf sphere,
 		register const t_ray_sf ray,
 		register const float t_min,

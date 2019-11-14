@@ -33,9 +33,8 @@ plane(register const t_v3sf a,
 		register const t_v3sf c,
 		register const t_v3sf d);
 t_v3sf __attribute__((CONST,CLONE,ARCH))
-normal(register const t_plane_sf plane,
-		register const t_v3sf point);
-static _Bool __attribute__((CONST,CLONE,ARCH))
+normal(register const t_plane_sf plane);
+_Bool __attribute__((CONST,CLONE,ARCH))
 is_inside(register const t_plane_sf p,
 		register const t_v3sf q);
 t_record_sf __attribute__((CONST,CLONE,ARCH))
