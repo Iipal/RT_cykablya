@@ -78,6 +78,7 @@ int __attribute__((ALIGN,ARCH))
 		Params[i].aspect_ratio = (float)s->render.w / (float)s->render.h;
 		Params[i].aperture = s->cam.aperture;
 		Params[i].dist_to_focus = s->cam.dist_to_focus;
+		Params[i].is_gi_enable = s->is_gi;
 		tpool_add_work(render_pool, (void(*)(void*))s->render.fn,
 			Params + i);
 	}

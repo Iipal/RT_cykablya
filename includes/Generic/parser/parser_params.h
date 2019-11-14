@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:21:55 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/14 19:19:19 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/14 20:23:24 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define PARSER_PARAM_NAMES_H
 
 # define P_RENDER          "render"
+
+# define P_GI              "GI"
 
 # define P_R_TYPE          "type"
 # define P_RT_STD          "std"

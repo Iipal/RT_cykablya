@@ -35,6 +35,8 @@ struct s_render_params
 	float											aspect_ratio;
 	float											aperture;
 	float											dist_to_focus;
+	_Bool											is_gi_enable;
+	char											stub[3];
 };
 
 #  endif

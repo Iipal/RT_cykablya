@@ -15,6 +15,12 @@ static t_v3sf
 	return (p);
 }
 
+static _Bool __attribute__((CONST,SMALL_STACK,ARCH))
+	gi(register const union u_hitables *restrict hitables)
+{
+	return ((_Bool)(hitables->generic.self));
+}
+
 static float __attribute__((CONST,SMALL_STACK,ARCH))
 	schlick(register float cosine, register float ri)
 {
@@ -70,7 +76,7 @@ static t_v3sf __attribute__((CONST,SMALL_STACK,ARCH))
 		* random_in_unit_sphere());
 		if (dot(direction(scattered), normal(record)) > 0.0f)
 			return (albedo(*(hitables[iter(record)].sphere.material))
-					* color(scattered, hitables, depth + 1UL));
+			* color(scattered, hitables, depth + 1UL));
 		else
 			return (albedo(*(hitables[iter(record)].sphere.material)));
 	}
@@ -81,10 +87,11 @@ static t_v3sf __attribute__((CONST,SMALL_STACK,ARCH))
 
 t_v3sf __attribute__((CONST,CLONE,SMALL_STACK,ARCH))
 	color(register const t_ray_sf r,
-		register const union u_hitables * restrict hitables,
+		register const union u_hitables *restrict hitables,
 		register const size_t depth)
 {
 	register const t_record_sf	record = hit(hitables, r, 0.001f, __FLT_MAX__);
+	const t_v3sf				f = (normalize(direction(r)).y + 1.0f) * 0.5f;
 	const size_t				i = ((t_record_mask_hi)record)[1];
 
 	if (condition(record) && material(record) == EMITTER)
@@ -162,9 +169,11 @@ t_v3sf __attribute__((CONST,CLONE,SMALL_STACK,ARCH))
 	// }
 	else
 	{
-		const t_v3sf			factor = (normalize(direction(r)).y + 1.0f) * 0.5f;
-
-		return (vec(1.0f, 1.0f, 1.0f) - factor + vec(0.5f, 0.7f, 1.0f) * factor);
+		if (gi(hitables))
+			return (vec(1.0f, 1.0f, 1.0f) - f
+					+ vec(0.5f, 0.7f, 1.0f) * f);
+		else
+			return (vec(0.0f, 0.0f, 0.0f));
 	}
 }
 
