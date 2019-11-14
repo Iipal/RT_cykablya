@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:49:59 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/14 18:02:07 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/14 19:30:55 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ sp_get_object_triangle(const JSON_Object *restrict obj_json,
 	union u_hitables *restrict obj,
 	const size_t obj_serial);
 bool __attribute__((ALIGN,ARCH))
-sp_get_object_cyiinder(const JSON_Object *restrict obj_json,
+sp_get_object_cylinder(const JSON_Object *restrict obj_json,
 	union u_hitables *restrict obj,
 	const size_t obj_serial);
 
@@ -129,6 +129,9 @@ t_material_sf __attribute__((ALIGN,ARCH))
 *sp_object_mat_normal(const JSON_Object *restrict mat,
 	const size_t obj_serial);
 t_material_sf __attribute__((ALIGN,ARCH))
+*sp_object_mat_color(const JSON_Object *restrict mat,
+	const size_t obj_serial);
+t_material_sf __attribute__((ALIGN,ARCH))
 *sp_object_mat_lambert(const JSON_Object *restrict mat,
 	const size_t obj_serial);
 t_material_sf __attribute__((ALIGN,ARCH))
@@ -137,7 +140,9 @@ t_material_sf __attribute__((ALIGN,ARCH))
 t_material_sf __attribute__((ALIGN,ARCH))
 *sp_object_mat_dielect(const JSON_Object *restrict mat,
 	const size_t obj_serial);
-
+t_material_sf __attribute__((ALIGN,ARCH))
+*sp_object_mat_emitter(const JSON_Object *restrict mat,
+	const size_t obj_serial);
 /*
 **	utils:
 */

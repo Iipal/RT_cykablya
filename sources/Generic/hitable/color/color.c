@@ -87,7 +87,13 @@ t_v3sf __attribute__((CONST,CLONE,SMALL_STACK,ARCH))
 	register const t_record_sf	record = hit(hitables, r, 0.001f, __FLT_MAX__);
 	const size_t				i = ((t_record_mask_hi)record)[1];
 
-	if (condition(record) && (material(record) == LAMBERTIAN))
+	if (condition(record) && material(record) == EMITTER)
+		return (albedo(*(hitables[iter(record)].sphere.material)));
+	else if (condition(record) && (material(record) == NORMAL))
+		return (normal(record) * (normal(record) + normal(record)));
+	else if (condition(record) && (material(record) == COLOR))
+		return (albedo(*(hitables[iter(record)].sphere.material)));
+	else if (condition(record) && (material(record) == LAMBERTIAN))
 		return (scatter_labmbertian(hitables, point(record), normal(record),
 			albedo(*(hitables[iter(record)].sphere.material)), depth));
 	else if (condition(record) && (material(record) == METAL))

@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 13:46:39 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/07 16:55:36 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/14 19:30:08 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static bool __attribute__((ALIGN,ARCH))
 		const size_t obj_serial)
 {
 	static t_fn_objs	o_fns[] = { sp_get_object_sphere, sp_get_object_cone,
-		sp_get_object_cyiinder, sp_get_object_plane, sp_get_object_triangle };
+		sp_get_object_cylinder, sp_get_object_plane, sp_get_object_triangle };
 	static const char	*o_types[] = { P_OT_SPHERE, P_OT_CONE, P_OT_CYLINDER,
 											P_OT_PLANE, P_OT_TRIANGLE };
 	const char			*o_type = json_object_get_string(obj_json, P_O_TYPE);

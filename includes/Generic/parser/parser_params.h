@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:21:55 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/07 18:58:35 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/14 19:19:19 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,11 @@
 
 # define P_O_M_TYPE        "type"
 # define P_O_MT_NORMAL     "normal"
+# define P_O_MT_COLOR      "color"
 # define P_O_MT_LAMBERT    "lambertian"
 # define P_O_MT_METAL      "metal"
 # define P_O_MT_DIELECT    "dielectric"
+# define P_O_MT_EMITTER    "emitter"
 
 # define P_O_M_ALBEDO      "albedo"
 # define P_O_M_FUZZ        "fuzz"

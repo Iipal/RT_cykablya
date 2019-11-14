@@ -1,9 +1,9 @@
 {
     "render": {
         "type": "full",
-        "samples": 16,
-        "width": 1000,
-        "height": 500
+        "samples": 128,
+        "width": 2560,
+        "height": 1080
     },
     "camera": {
         "look_from": [0.0, 0.0, 6.0],
@@ -13,13 +13,6 @@
         "aperture": 0.1,
         "dist_to_focus": 7
     },
-    "lights": [
-        {
-            "type": "point",
-            "pos": [0.0, 0.0, 0.0],
-            "intense": 1.0
-        }
-    ],
     "objects": [
         {
             "type": "triangle",
@@ -102,6 +95,32 @@
                 "fuzz": 500
             },
             "pos": [1.0, 0.0, -1.0],
+            "radius": 0.5
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "color",
+                "albedo": [ 1.0, 0.0, 0.0 ]
+            },
+            "pos": [1.0, 0.0, 15.0],
+            "radius": 4
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "emitter",
+                "albedo": [ 4, 4, 4 ]
+            },
+            "pos": [1.0, 0.0, 45.0],
+            "radius": 10
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "normal"
+            },
+            "pos": [1.0, 0.0, 1.0],
             "radius": 0.5
         },
         {
