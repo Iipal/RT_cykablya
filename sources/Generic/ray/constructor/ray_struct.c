@@ -4,7 +4,7 @@
 # include "ray_constructor.h"
 #endif
 
-struct s_ray_sf __attribute__((__overloadable__))
+struct s_ray_sf __attribute__((PURE,CLONE,ARCH))
 	*ray(void)
 {
 	struct s_ray_sf	*ptr;
@@ -15,7 +15,7 @@ struct s_ray_sf __attribute__((__overloadable__))
 	return (ptr);
 }
 
-struct s_ray_sf __attribute__((__overloadable__))
+struct s_ray_sf __attribute__((PURE,CLONE,ARCH))
 	*ray(const float init)
 {
 	struct s_ray_sf	*ptr;
@@ -27,7 +27,7 @@ struct s_ray_sf __attribute__((__overloadable__))
 	return (ptr);
 }
 
-struct s_ray_df __attribute__((__overloadable__))
+struct s_ray_df __attribute__((PURE,CLONE,ARCH))
 	*ray(const double init)
 {
 	struct s_ray_df	*ptr;

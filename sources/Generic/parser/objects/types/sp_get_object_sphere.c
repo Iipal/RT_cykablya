@@ -52,6 +52,6 @@ bool __attribute__((ALIGN,ARCH))
 	NO_F(s_validate_sphere_data(obj_json, obj_serial));
 	NO_F(mat = sp_get_object_material(obj_json, obj, obj_serial));
 	NO_F(s = s_get_sphere_data(obj_json, obj_serial));
-	*obj = (union u_hitables){ SPHERE, 0, s, mat };
+	*obj = (union u_hitables){{ SPHERE, 0, s, mat }};
 	return (true);
 }

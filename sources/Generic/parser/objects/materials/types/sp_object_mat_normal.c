@@ -19,6 +19,7 @@ t_material_sf __attribute__((ALIGN,ARCH))
 {
 	t_material_sf	*m;
 
+	(void)obj;
 	IFDO_R(1 != json_object_get_count(mat),
 		ERRIN_D(P_OBJECTS " " P_O_MATERIAL, obj_serial + 1,
 			E_INVALID_COUNT, E_DEF_PARAM(1)), NULL);

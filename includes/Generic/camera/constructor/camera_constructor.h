@@ -11,6 +11,10 @@
 #   include <malloc.h>
 #  endif
 #  include "camera_types_internal.h"
+#  include "lower_left_corner.h"
+#  include "horizontal.h"
+#  include "vertical.h"
+#  include "camera_origin.h"
 # endif
 
 # ifdef DECLARATION
@@ -18,18 +22,15 @@
 
 struct s_camera_sf __attribute__((ARCH,CLONE,ALIGN))
 *camera(void);
-
 struct s_camera_sf __attribute__((ARCH,CLONE,ALIGN))
 *camera(register const float fov, register const float aspect_ratio);
-
 struct s_camera_sf __attribute__((ARCH,CLONE,ALIGN))
 *camera(register const t_v3sf look_from,
 		register const t_v3sf look_at,
 		register const t_v3sf position,
 		register const float fov,
 		register const float aspect_ratio);
-
-struct s_advanced_camera_sf __attribute__((__overloadable__))
+struct s_advanced_camera_sf __attribute__((CLONE))
 *camera(register const t_v3sf look_from,
 		register const t_v3sf look_at,
 		register const t_v3sf position,

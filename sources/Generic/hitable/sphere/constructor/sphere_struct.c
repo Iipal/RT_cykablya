@@ -4,7 +4,7 @@
 # include "sphere_constructor.h"
 #endif
 
-struct s_sphere_sf __attribute__((__overloadable__))
+struct s_sphere_sf __attribute__((CLONE,ARCH))
 	*sphere(void)
 {
 	struct s_sphere_sf	*s;
@@ -15,7 +15,7 @@ struct s_sphere_sf __attribute__((__overloadable__))
 	return (s);
 }
 
-struct s_sphere_sf __attribute__((__overloadable__))
+struct s_sphere_sf __attribute__((CLONE,ARCH))
 	*sphere(const float f)
 {
 	struct s_sphere_sf	*s;
@@ -27,7 +27,7 @@ struct s_sphere_sf __attribute__((__overloadable__))
 	return (s);
 }
 
-struct s_sphere_df __attribute__((__overloadable__))
+struct s_sphere_df __attribute__((CLONE,ARCH))
 	*sphere(const double f)
 {
 	struct s_sphere_df	*s;

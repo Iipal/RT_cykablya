@@ -6,7 +6,9 @@
 
 float random_float(void)
 {
-	return ((float)u32_rand() / 5e9f);
+	const unsigned	rnd = u32_rand();
+
+	return ((float)rnd / 5e9f);
 }
 
 #if defined(IMPLEMETNATION) && defined(DECLARATION)

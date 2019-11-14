@@ -4,7 +4,7 @@
 # include "fuzz.h"
 #endif
 
-float __attribute__((__target__("avx")))
+float __attribute__((CONST,SMALL_STACK,ARCH))
 	fuzz(register const t_material_sf material)
 {
 	return (material[5]);

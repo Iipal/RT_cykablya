@@ -19,6 +19,7 @@ t_material_sf __attribute__((ALIGN,ARCH))
 {
 	t_material_sf	*m;
 
+	(void)obj;
 	NODO_R(json_object_has_value_of_type(mat, P_O_M_FUZZ, JSONNumber),
 		ERRIN_N(P_OBJECTS " " P_O_MATERIAL, obj_serial + 1,
 			P_O_MATERIAL " " P_O_M_FUZZ, E_INVALID), NULL);

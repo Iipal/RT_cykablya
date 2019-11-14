@@ -2,7 +2,6 @@
 # define THREAD_POOL_H
 
 # ifdef IMPLEMETNATION
-
 #  pragma GCC diagnostic ignored "-Wlong-long"
 #  pragma GCC diagnostic ignored "-Wpadded"
 #  pragma GCC diagnostic ignored "-Wredundant-decls"
@@ -66,7 +65,6 @@ struct                  s_tpool_work
 # endif
 
 # ifdef DECLARATION
-
 
 struct                  s_tpool;
 

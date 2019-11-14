@@ -43,19 +43,18 @@ t_plane_sf __attribute__((CONST,CLONE,ARCH))
 }
 
 t_v3sf __attribute__((CONST,CLONE,ARCH))
-	normal(register const t_plane_sf plane,
-			register const t_v3sf point)
+	normal(register const t_plane_sf plane)
 {
     return normalize(cross(
     	plane_b(plane) - plane_a(plane),
     	plane_c(plane) - plane_a(plane)));
 }
 
-static _Bool __attribute__((CONST,CLONE,ARCH))
+_Bool __attribute__((CONST,CLONE,ARCH))
 	is_inside(register const t_plane_sf p,
 			register const t_v3sf q)
 {
-	t_v3sf	n = normal(p, q);
+	t_v3sf	n = normal(p);
 
 	t_v3sf	ua = plane_b(p) - plane_a(p);
 	t_v3sf	ub = plane_c(p) - plane_b(p);
@@ -81,20 +80,20 @@ t_record_sf __attribute__((CONST,CLONE,ARCH))
 		register const t_record_sf current_record)
 {
 
-	t_v3sf	n = normal(plane, origin(ray));
+	t_v3sf	n = normal(plane);
 	t_v3sf	v_dif = plane_a(plane) - origin(ray);
 	float	v_dot_n = dot(direction(ray), n);
 	float	t;
 
-	if (__builtin_fabs(v_dot_n) < 1.e-4f)
+	if (__builtin_fabsf(v_dot_n) < 1.e-4f)
 		return (record(current_record));
 	t = dot(v_dif, n) / v_dot_n;
-	if (__builtin_fabs(t) < 0.0001f)
+	if (__builtin_fabsf(t) < 0.0001f)
 		return (record(current_record));
 	if ((t < t_max) && (t > t_min)
 	&& is_inside(plane, point_at_parameter(ray, t)))
 		return record(t, point_at_parameter(ray, t),
-			normal(plane, point_at_parameter(ray, t)));
+			normal(plane));
 	else
 		return (record(current_record));
 }

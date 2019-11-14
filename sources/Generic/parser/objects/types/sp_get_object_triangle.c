@@ -52,6 +52,6 @@ bool __attribute__((ALIGN,ARCH))
 	NO_F(t = s_get_triangle_data(json_object_get_array(obj_json, P_O_POSITION),
 		obj_serial));
 	NO_F(mat = sp_get_object_material(obj_json, obj, obj_serial));
-	*obj = (union u_hitables){ TETRAHEDRON, 0, t, mat };
+	*obj = (union u_hitables){{ TETRAHEDRON, 0, t, mat }};
 	return (true);
 }

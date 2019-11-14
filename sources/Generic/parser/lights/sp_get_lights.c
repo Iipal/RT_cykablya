@@ -20,6 +20,9 @@ bool __attribute__((ALIGN,ARCH))
 	JSON_Array			*l_arr;
 	size_t				i;
 
+	(void)l_arr;
+	(void)i;
+	(void)scene;
 	NODO_F(l, ERRIN_I(E_IN_LIGHTS, P_LIGHTS));
 	IFDO_F(JSONArray != json_value_get_type(l), ERRIN(E_IN_LIGHTS, E_JARR_FMT));
 	return (true);

@@ -43,4 +43,17 @@ struct		s_camera_df
 };
 
 # endif
+
+# ifndef E_CAMERA_PARAMS
+#  define E_CAMERA_PARAMS
+
+enum	e_camera_params
+{
+	FOV,
+	ASPECT_RATIO,
+	APERTURE,
+	FOCUS_DISTANCE
+};
+
+# endif
 #endif

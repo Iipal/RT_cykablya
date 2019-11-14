@@ -50,7 +50,7 @@ bool __attribute__((ALIGN,ARCH))
 	NODO_F(in_scene_objs = spu_value_inrange(
 		json_array_get_count(o_arr), 0, P_O_MAX), ERRIN(P_OBJECTS, E_NO_OBJS));
 	MEM(union u_hitables, scene->objs, in_scene_objs + 1UL, E_ALLOC);
-	*scene->objs = (union u_hitables) { GENERIC, in_scene_objs + 1UL, 0, 0 };
+	*scene->objs = (union u_hitables){{ GENERIC, in_scene_objs + 1UL, 0, 0 }};
 	while (in_scene_objs > ++i)
 	{
 		NODO_F(o_json = json_array_get_object(o_arr, i),

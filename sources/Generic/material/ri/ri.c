@@ -4,7 +4,7 @@
 # include "ri.h"
 #endif
 
-float __attribute__((__target__("avx")))
+float __attribute__((CONST,CLONE,ARCH))
 	ri(register const t_material_sf material)
 {
 	return (material[5]);

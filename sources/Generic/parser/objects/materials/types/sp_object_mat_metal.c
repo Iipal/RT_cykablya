@@ -21,6 +21,7 @@ t_material_sf __attribute__((ALIGN,ARCH))
 	t_v3sf			albedo;
 	float			fuzz;
 
+	(void)obj;
 	IFDO_R(3 != json_object_get_count(mat),
 		ERRIN_D(P_OBJECTS " " P_O_MATERIAL, obj_serial + 1,
 			E_INVALID_COUNT, E_DEF_PARAM(3)), NULL);

@@ -4,7 +4,7 @@
 # include "albedo.h"
 #endif
 
-t_v3sf __attribute__((__target__("avx")))
+t_v3sf __attribute__((CONST,CLONE,ARCH))
 	albedo(register const t_material_sf material)
 {
 	return ((t_v3sf){ material[0], material[1], material[2] });

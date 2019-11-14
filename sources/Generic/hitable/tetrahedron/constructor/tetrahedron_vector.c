@@ -35,8 +35,7 @@ t_tetrahedron_sf __attribute__((CONST,CLONE,ARCH))
 }
 
 t_v3sf __attribute__((CONST,CLONE,ARCH))
-	normal(register const t_tetrahedron_sf t,
-			register const t_v3sf point)
+	normal(register const t_tetrahedron_sf t)
 {
     return normalize(cross(
     	plane_b(t) - plane_a(t),
@@ -47,7 +46,7 @@ static _Bool __attribute__((CONST,CLONE,ARCH))
 	is_inside(register const t_tetrahedron_sf t,
 			register const t_v3sf q)
 {
-	t_v3sf	n = normal(t, q);
+	t_v3sf	n = normal(t);
 
 	t_v3sf	ua = plane_b(t) - plane_a(t);
 	t_v3sf	ub = plane_c(t) - plane_b(t);
@@ -70,26 +69,23 @@ t_record_sf __attribute__((CONST,CLONE,ARCH))
 		register const t_record_sf current_record)
 {
 
-	t_v3sf	n = normal(tetrahedron, origin(ray));
+	t_v3sf	n = normal(tetrahedron);
 	t_v3sf	v_dif = plane_a(tetrahedron) - origin(ray);
 	float	v_dot_n = dot(direction(ray), n);
 	float	t;
 
-	if (__builtin_fabs(v_dot_n) < 1.e-4f)
+	if (__builtin_fabsf(v_dot_n) < 1.e-4f)
 		return (record(current_record));
 	t = dot(v_dif, n) / v_dot_n;
-	if (__builtin_fabs(t) < 0.0001f)
+	if (__builtin_fabsf(t) < 0.0001f)
 		return (record(current_record));
 	if ((t < t_max) && (t > t_min)
 	&& is_inside(tetrahedron, point_at_parameter(ray, t)))
 		return record(t, point_at_parameter(ray, t),
-			normal(tetrahedron, point_at_parameter(ray, t)));
+			normal(tetrahedron));
 	else
 		return (record(current_record));
 }
-
-
-
 
 #if defined(IMPLEMETNATION) && defined(DECLARATION)
 # undef IMPLEMETNATION
