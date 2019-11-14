@@ -6,13 +6,14 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:50:23 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/14 21:24:43 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/14 21:54:48 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-static bool	s_check_gi(JSON_Object *obj)
+static inline bool __attribute__((ALIGN,ARCH))
+	s_check_gi(JSON_Object *obj)
 {
 	bool	ret;
 
