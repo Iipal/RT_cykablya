@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vec_dot.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dshepele <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/14 22:21:31 by dshepele          #+#    #+#             */
+/*   Updated: 2019/11/14 22:21:32 by dshepele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef VEC_DOT_H
 # define VEC_DOT_H
 
@@ -23,8 +35,5 @@ vec_dot(register const t_v4sf x, register const t_v4sf y);
 t_v4df __attribute__((CONST,CLONE,SMALL_STACK,ARCH))
 vec_dot(register const t_v4df x, register const t_v4df y);
 
-#  ifndef IMPLEMETNATION
-#   include "free_attributes.h"
-#  endif
 # endif
 #endif

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   dot.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dshepele <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/14 22:05:11 by dshepele          #+#    #+#             */
+/*   Updated: 2019/11/14 22:05:13 by dshepele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef DOT_H
 # define DOT_H
 
@@ -23,8 +35,5 @@ dot(register const t_v4sf x, register const t_v4sf y);
 double __attribute__((CONST,CLONE,SMALL_STACK,ARCH))
 dot(register const t_v4df x, register const t_v4df y);
 
-#  ifndef IMPLEMETNATION
-#   include "free_attributes.h"
-#  endif
 # endif
 #endif

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   refract_reflect.h                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dshepele <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/14 22:11:08 by dshepele          #+#    #+#             */
+/*   Updated: 2019/11/14 22:11:09 by dshepele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef REFRACT_REFLECT_H
 # define REFRACT_REFLECT_H
 
@@ -41,8 +53,5 @@ refract_reflect(register const t_v4df x,
 				register const double e,
 				register const t_v4df reflect);
 
-#  ifndef IMPLEMETNATION
-#   include "free_attributes.h"
-#  endif
 # endif
 #endif

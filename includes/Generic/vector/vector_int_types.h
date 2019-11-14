@@ -1,48 +1,60 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vector_int_types.h                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dshepele <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/14 22:45:36 by dshepele          #+#    #+#             */
+/*   Updated: 2019/11/14 22:45:37 by dshepele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef VECTOR_INT_TYPES_H
 # define VECTOR_INT_TYPES_H
 # ifndef C_VEC
-#  define C_VEC(n) (__ext_vector_type__(n),__aligned__)
+#  define C_VEC(n) __ext_vector_type__(n),__aligned__
 # endif
 # ifndef T_V2SI
 #  define T_V2SI
 
-typedef int __attribute__(C_VEC(2))		t_v2si;
+typedef int __attribute__((C_VEC(2)))		t_v2si;
 
 # endif
 # ifndef T_V3SI
 #  define T_V3SI
 
-typedef int __attribute__(C_VEC(3))		t_v3si;
+typedef int __attribute__((C_VEC(3)))		t_v3si;
 
 # endif
 # ifndef T_V4SI
 #  define T_V4SI
 
-typedef int __attribute__(C_VEC(4))		t_v4si;
+typedef int __attribute__((C_VEC(4)))		t_v4si;
 
 # endif
 # ifndef T_V8SI
 #  define T_V8SI
 
-typedef int __attribute__(C_VEC(8))		t_v8si;
+typedef int __attribute__((C_VEC(8)))		t_v8si;
 
 # endif
 # ifndef T_V2DI
 #  define T_V2DI
 
-typedef long __attribute__(C_VEC(2))	t_v2di;
+typedef long int __attribute__((C_VEC(2)))	t_v2di;
 
 # endif
 # ifndef T_V3DI
 #  define T_V3DI
 
-typedef long __attribute__(C_VEC(3))	t_v3di;
+typedef long int __attribute__((C_VEC(3)))	t_v3di;
 
 # endif
 # ifndef T_V4DI
 #  define T_V4DI
 
-typedef long __attribute__(C_VEC(4))	t_v4di;
+typedef long int __attribute__((C_VEC(4)))	t_v4di;
 
 # endif
 # if defined(C_VEC)

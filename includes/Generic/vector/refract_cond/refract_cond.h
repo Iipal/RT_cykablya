@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   refract_cond.h                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dshepele <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/14 22:10:32 by dshepele          #+#    #+#             */
+/*   Updated: 2019/11/14 22:10:33 by dshepele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef REFRACT_COND_H
 # define REFRACT_COND_H
 
@@ -35,8 +47,5 @@ refract_cond(register const t_v4df x,
 			register const t_v4df n,
 			register const double e);
 
-#  ifndef IMPLEMETNATION
-#   include "free_attributes.h"
-#  endif
 # endif
 #endif

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   length_squared.h                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dshepele <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/14 22:07:57 by dshepele          #+#    #+#             */
+/*   Updated: 2019/11/14 22:07:58 by dshepele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LENGTH_SQUARED_H
 # define LENGTH_SQUARED_H
 
@@ -23,8 +35,5 @@ length_squared(register const t_v4sf vec);
 double __attribute__((CONST,CLONE,SMALL_STACK,ARCH))
 length_squared(register const t_v4df vec);
 
-#  ifndef IMPLEMETNATION
-#   include "free_attributes.h"
-#  endif
 # endif
 #endif

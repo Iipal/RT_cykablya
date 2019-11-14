@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   refract_do.h                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dshepele <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/14 22:10:51 by dshepele          #+#    #+#             */
+/*   Updated: 2019/11/14 22:10:52 by dshepele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef REFRACT_DO_H
 # define REFRACT_DO_H
 
@@ -41,8 +53,5 @@ refract_do(register const t_v4df x,
 			register const double e,
 			register const double k);
 
-#  ifndef IMPLEMETNATION
-#   include "free_attributes.h"
-#  endif
 # endif
 #endif
