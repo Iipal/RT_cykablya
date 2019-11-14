@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 01:01:47 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/07 16:55:27 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/14 18:01:48 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,11 @@
 
 t_material_sf __attribute__((ALIGN,ARCH))
 	*sp_object_mat_lambert(JSON_Object const *restrict mat,
-		union u_hitables *restrict obj,
 		const size_t obj_serial)
 {
 	t_material_sf	*m;
 	t_v3sf			albedo;
 
-	(void)obj;
 	IFDO_R(2 != json_object_get_count(mat),
 		ERRIN_D(P_OBJECTS " " P_O_MATERIAL, obj_serial + 1,
 			E_INVALID_COUNT, E_DEF_PARAM(2)), NULL);

@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:49:59 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/14 18:00:53 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/14 18:02:07 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,24 +123,19 @@ t_material_sf __attribute__((ALIGN,ARCH))
 	const size_t obj_serial);
 
 typedef t_material_sf	*(*t_fn_mats)(const JSON_Object *restrict,
-							union u_hitables *restrict,
 							const size_t);
 
 t_material_sf __attribute__((ALIGN,ARCH))
 *sp_object_mat_normal(const JSON_Object *restrict mat,
-	union u_hitables *restrict obj,
 	const size_t obj_serial);
 t_material_sf __attribute__((ALIGN,ARCH))
 *sp_object_mat_lambert(const JSON_Object *restrict mat,
-	union u_hitables *restrict obj,
 	const size_t obj_serial);
 t_material_sf __attribute__((ALIGN,ARCH))
 *sp_object_mat_metal(const JSON_Object *restrict mat,
-	union u_hitables *restrict obj,
 	const size_t obj_serial);
 t_material_sf __attribute__((ALIGN,ARCH))
 *sp_object_mat_dielect(const JSON_Object *restrict mat,
-	union u_hitables *restrict obj,
 	const size_t obj_serial);
 
 /*

@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 18:21:45 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/07 17:17:08 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/14 18:01:45 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,12 @@
 
 t_material_sf __attribute__((ALIGN,ARCH))
 	*sp_object_mat_metal(JSON_Object const *restrict mat,
-		union u_hitables *restrict obj,
 		const size_t obj_serial)
 {
 	t_material_sf	*m;
 	t_v3sf			albedo;
 	float			fuzz;
 
-	(void)obj;
 	IFDO_R(3 != json_object_get_count(mat),
 		ERRIN_D(P_OBJECTS " " P_O_MATERIAL, obj_serial + 1,
 			E_INVALID_COUNT, E_DEF_PARAM(3)), NULL);

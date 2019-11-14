@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 17:10:28 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/07 08:32:18 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/14 18:02:26 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_material_sf __attribute__((ALIGN,ARCH))
 	i = MATERIAL_START;
 	while (MATERIAL_END > ++i)
 		if (!ft_strcmp(mat_name, valid_mats[i - 1]))
-			return (fn_mats[i - 1](mat, obj, obj_serial));
+			return (fn_mats[i - 1](mat, obj_serial));
 	ERRIN_N(P_OBJECTS " " P_O_MATERIAL,
 		obj_serial + 1, mat_name, E_INVALID_O_MAT);
 	return (NULL);
