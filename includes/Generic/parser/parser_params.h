@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:21:55 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/07 13:24:06 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/07 18:58:35 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@
 # define P_C_POSITION      "pos"
 
 # define P_C_FOV           "fov"
-# define P_C_FOV_MAX       360.0f
-# define F_C_FOV_MIN       1.0f
+# define P_C_FOV_MIN       1.0
+# define P_C_FOV_MAX       360.0
 
 # define P_C_APERTURE      "aperture"
 # define P_C_DIST_TO_FOCUS "dist_to_focus"
