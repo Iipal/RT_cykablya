@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   point_at_parameter.h                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sdatskov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/14 22:37:36 by sdatskov          #+#    #+#             */
+/*   Updated: 2019/11/14 22:37:37 by sdatskov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef POINT_AT_PARAMETER_H
 # define POINT_AT_PARAMETER_H
 
@@ -38,7 +50,6 @@ point_at_parameter(const t_ray_df r,
 					register const t_v3df t);
 
 #  ifndef IMPLEMETNATION
-#   include "free_attributes.h"
 #  endif
 # endif
 #endif

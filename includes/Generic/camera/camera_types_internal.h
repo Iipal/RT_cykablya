@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   camera_types_internal.h                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sdatskov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/14 21:56:18 by sdatskov          #+#    #+#             */
+/*   Updated: 2019/11/14 21:56:20 by sdatskov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CAMERA_TYPES_INTERNAL_H
 # define CAMERA_TYPES_INTERNAL_H
 # include "vector_types.h"
@@ -34,6 +46,7 @@ struct		s_advanced_camera_sf
 
 # ifndef S_CAMERA_DF
 #  define S_CAMERA_DF
+
 struct		s_camera_df
 {
 	t_v3df	*restrict	lower_left_corner;

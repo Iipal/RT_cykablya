@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fuzz.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sdatskov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/14 22:18:52 by sdatskov          #+#    #+#             */
+/*   Updated: 2019/11/14 22:18:55 by sdatskov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FUZZ_H
 # define FUZZ_H
 
@@ -16,7 +28,6 @@ float __attribute__((CONST,SMALL_STACK,ARCH))
 fuzz(register const t_material_sf material);
 
 #  ifndef IMPLEMETNATION
-#   include "free_attributes.h"
 #  endif
 # endif
 #endif

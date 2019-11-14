@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lower_left_corner.h                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sdatskov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/14 22:01:35 by sdatskov          #+#    #+#             */
+/*   Updated: 2019/11/14 22:01:36 by sdatskov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LOWER_LEFT_CORNER_H
 # define LOWER_LEFT_CORNER_H
 
@@ -19,7 +31,6 @@ t_v3sf __attribute__((ARCH,CLONE,ALIGN,SMALL_STACK))
 *lower_left_corner(register const t_v3sf vec);
 
 #  ifndef IMPLEMETNATION
-#   include "free_attributes.h"
 #  endif
 # endif
 #endif

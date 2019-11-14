@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   origin.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sdatskov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/14 22:37:13 by sdatskov          #+#    #+#             */
+/*   Updated: 2019/11/14 22:37:14 by sdatskov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef ORIGIN_H
 # define ORIGIN_H
 
@@ -22,7 +34,6 @@ t_v3df __attribute__((PURE,CLONE,ARCH))
 origin(const struct s_ray_df *const restrict r);
 
 #  ifndef IMPLEMETNATION
-#   include "free_attributes.h"
 #  endif
 # endif
 #endif

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   camera_constructor.h                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sdatskov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/14 21:59:38 by sdatskov          #+#    #+#             */
+/*   Updated: 2019/11/14 21:59:40 by sdatskov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CAMERA_CONSTRUCTOR_H
 # define CAMERA_CONSTRUCTOR_H
 
@@ -37,7 +49,6 @@ struct s_advanced_camera_sf __attribute__((CLONE))
 		register const t_v4sf params);
 
 #  ifndef IMPLEMETNATION
-#   include "free_attributes.h"
 #  endif
 # endif
 #endif

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   material_constructor.h                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sdatskov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/14 22:18:22 by sdatskov          #+#    #+#             */
+/*   Updated: 2019/11/14 22:18:24 by sdatskov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MATERIAL_CONSTRUCTOR_H
 # define MATERIAL_CONSTRUCTOR_H
 
@@ -24,7 +36,6 @@ material(register const enum e_material current_material,
 		register const float ri);
 
 #  ifndef IMPLEMETNATION
-#   include "free_attributes.h"
 #  endif
 # endif
 #endif

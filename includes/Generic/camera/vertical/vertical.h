@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vertical.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sdatskov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/14 22:06:16 by sdatskov          #+#    #+#             */
+/*   Updated: 2019/11/14 22:06:17 by sdatskov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef VERTICAL_H
 # define VERTICAL_H
 
@@ -18,7 +30,6 @@ t_v3sf __attribute__((ARCH,CLONE,ALIGN,SMALL_STACK))
 *vertical(register const t_v3sf vec);
 
 #  ifndef IMPLEMETNATION
-#   include "free_attributes.h"
 #  endif
 # endif
 #endif

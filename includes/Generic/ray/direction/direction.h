@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   direction.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sdatskov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/14 22:37:01 by sdatskov          #+#    #+#             */
+/*   Updated: 2019/11/14 22:37:02 by sdatskov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef DIRECTION_H
 # define DIRECTION_H
 
@@ -22,7 +34,6 @@ t_v3df __attribute__((PURE,CLONE,ARCH))
 direction(const struct s_ray_df *const restrict r);
 
 #  ifndef IMPLEMETNATION
-#   include "free_attributes.h"
 #  endif
 # endif
 #endif
