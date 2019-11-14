@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 13:19:35 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/14 19:30:41 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/14 22:11:15 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ extern inline t_cylinder_sf __attribute__((ALIGN,ARCH))
 	MEM(t_cylinder_sf, c, 1UL, E_ALLOC);
 	if (is_height)
 	{
-		h_t[0] = json_object_get_number(obj_json, P_O_HEIGHT);
+		h_t[0] = spu_value_inrange(json_object_get_number(obj_json, P_O_HEIGHT),
+					P_O_HEIGHT_MIN, P_O_HEIGHT_MAX);
 		*c = cylinder(pos, radius, h_t[0]);
 	}
 	else

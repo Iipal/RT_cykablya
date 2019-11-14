@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 10:24:31 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/07 15:29:15 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/14 22:02:38 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,12 @@ bool __attribute__((ALIGN,ARCH))
 	NO_F(s_validate_render_data(r));
 	NODO_F(rtype = json_object_get_string(r, P_R_TYPE),
 		ERRIN(E_IN_RENDER_TYPE, E_INVALID_TYPE(P_RENDER)));
-	render->w = json_object_get_number(r, P_RS_WIDTH);
-	render->h = json_object_get_number(r, P_RS_HEIGHT);
-	render->samples = json_object_get_number(r, P_R_SAMPLES);
+	render->w = spu_value_inrange(json_object_get_number(r, P_RS_WIDTH),
+		P_RS_MIN, P_RS_MAX);
+	render->h = spu_value_inrange(json_object_get_number(r, P_RS_HEIGHT),
+		P_RS_MIN, P_RS_MAX);
+	render->samples = spu_value_inrange(json_object_get_number(r, P_R_SAMPLES),
+		P_R_SAMPLES_MIN, P_R_SAMPLES_MIN);
 	while ((sizeof(valid_rtypes) / sizeof(*valid_rtypes)) > ++i)
 		if (!ft_strcmp(valid_rtypes[i], rtype))
 		{
