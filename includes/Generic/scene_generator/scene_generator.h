@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   scene_generator.h                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sdatskov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/14 22:38:33 by sdatskov          #+#    #+#             */
+/*   Updated: 2019/11/14 22:38:34 by sdatskov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SCENE_GENERATOR_H
 # define SCENE_GENERATOR_H
 
@@ -18,9 +30,6 @@
 #  include "vector_types.h"
 # endif
 
-union u_hitables __attribute__((ALIGN,ARCH))
-*scene_generator(register const size_t count);
-
 # ifdef DECLARATION
 #  include <stddef.h>
 #  include "attributes.h"
@@ -30,8 +39,5 @@ union u_hitables __attribute__((ALIGN,ARCH))
 union u_hitables __attribute__((ALIGN,ARCH))
 *scene_generator(register const size_t count);
 
-#  ifndef IMPLEMETNATION
-#   include "free_attributes.h"
-#  endif
 # endif
 #endif

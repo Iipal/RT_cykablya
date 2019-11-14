@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ray_constructor.h                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sdatskov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/14 22:36:33 by sdatskov          #+#    #+#             */
+/*   Updated: 2019/11/14 22:36:34 by sdatskov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef RAY_CONSTRUCTOR_H
 # define RAY_CONSTRUCTOR_H
 
@@ -30,7 +42,6 @@ t_ray_df __attribute__((PURE,CLONE,ARCH))
 ray(const t_v3df v[static 2]);
 
 #  ifndef IMPLEMETNATION
-#   include "free_attributes.h"
 #  endif
 # endif
 #endif

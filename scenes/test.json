@@ -1,9 +1,9 @@
 {
     "render": {
         "type": "full",
-        "samples": 128,
-        "width": 2560,
-        "height": 1080
+        "samples": 12,
+        "width": 1280,
+        "height": 720
     },
     "camera": {
         "look_from": [0.0, 0.0, 6.0],

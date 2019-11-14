@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ray_vector.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sdatskov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/14 21:42:18 by sdatskov          #+#    #+#             */
+/*   Updated: 2019/11/14 21:42:19 by sdatskov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #if !defined(IMPLEMETNATION) && !defined(DECLARATION)
 # define IMPLEMETNATION
 # define DECLARATION
@@ -18,7 +30,7 @@ t_ray_sf __attribute__((PURE,CLONE,ARCH))
 	ray(const t_v3sf v[static 2])
 {
 	return (((const union u_ray_sf){
-		.aliased = *(const t_ray_sf_a*)v }).aligned);
+.aliased = *(const t_ray_sf_a*)v }).aligned);
 }
 
 t_ray_df __attribute__((CONST,CLONE,ARCH))
@@ -35,9 +47,8 @@ t_ray_df __attribute__((PURE,CLONE,ARCH))
 	ray(const t_v3df v[static 2])
 {
 	return (((const union u_ray_df){
-		.aliased = *(const t_ray_df_a*)v }).aligned);
+.aliased = *(const t_ray_df_a*)v }).aligned);
 }
-
 
 #if defined(IMPLEMETNATION) && defined(DECLARATION)
 # undef IMPLEMETNATION

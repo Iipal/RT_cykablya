@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ri.h                                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sdatskov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/14 22:19:21 by sdatskov          #+#    #+#             */
+/*   Updated: 2019/11/14 22:19:22 by sdatskov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef RI_H
 # define RI_H
 
@@ -16,7 +28,6 @@ float __attribute__((CONST,CLONE,ARCH))
 ri(register const t_material_sf material);
 
 #  ifndef IMPLEMETNATION
-#   include "free_attributes.h"
 #  endif
 # endif
 #endif

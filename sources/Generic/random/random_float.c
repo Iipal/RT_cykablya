@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   random_float.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sdatskov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/14 21:22:14 by sdatskov          #+#    #+#             */
+/*   Updated: 2019/11/14 21:22:15 by sdatskov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #if !defined(IMPLEMETNATION) && !defined(DECLARATION)
 # define IMPLEMETNATION
 # define DECLARATION
 # include "random_float.h"
 #endif
 
-float random_float(void)
+float	random_float(void)
 {
 	const unsigned	rnd = u32_rand();
 
@@ -15,4 +27,3 @@ float random_float(void)
 # undef IMPLEMETNATION
 # undef DECLARATION
 #endif
-
