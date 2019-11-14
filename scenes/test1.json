@@ -18,7 +18,7 @@
             "type": "sphere",
             "material": {
                 "type": "metal",
-                "albedo": [ 1.0, 1.0, 1.0 ],
+                "albedo": [ 1.0, 0.7, 1.0 ],
                 "fuzz": 0.0
             },
             "pos": [1.0, 0.0, -1.0],
@@ -28,7 +28,7 @@
             "type": "sphere",
             "material": {
                 "type": "metal",
-                "albedo": [ 1.0, 0, 0 ],
+                "albedo": [ 1.0, 0.5, 0.65 ],
                 "fuzz": 0.0
             },
             "pos": [1.0, 0.0, 1.0],
