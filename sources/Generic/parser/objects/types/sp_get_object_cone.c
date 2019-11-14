@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 13:15:51 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/07 17:10:30 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/14 22:11:39 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ extern inline t_cone_sf __attribute__((INLINE,ARCH))
 	NO_F(spu_get_v3sf_arr(&pos, json_object_get_array(obj_json, P_O_POSITION),
 		P_O_POSITION, obj_serial));
 	radius = json_object_get_number(obj_json, P_O_RADIUS);
-	height = json_object_get_number(obj_json, P_O_HEIGHT);
+	height = spu_value_inrange(json_object_get_number(obj_json, P_O_HEIGHT),
+		P_O_HEIGHT_MIN, P_O_HEIGHT_MAX);
 	MEM(t_cone_sf, c, 1UL, E_ALLOC);
 	*c = cone(pos, radius, height);
 	return (c);

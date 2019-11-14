@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 18:21:45 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/14 18:01:45 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/14 22:13:23 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ t_material_sf __attribute__((ALIGN,ARCH))
 			P_O_MATERIAL " " P_O_M_FUZZ, E_INVALID), NULL);
 	NO_F(spu_get_v3sf_arr(&albedo, json_object_get_array(mat, P_O_M_ALBEDO),
 		P_O_M_ALBEDO, obj_serial));
-	fuzz = json_object_get_number(mat, P_O_M_FUZZ);
+	fuzz = spu_value_inrange(json_object_get_number(mat, P_O_M_FUZZ),
+		P_O_M_FUZZ_MIN, P_O_M_FUZZ_MAX);
 	MEM(t_material_sf, m, 1UL, E_ALLOC);
 	*m = material(METAL, albedo, fuzz);
 	return (m);

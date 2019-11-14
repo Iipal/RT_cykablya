@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:17:57 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/07 17:48:01 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/14 22:16:57 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,9 @@ bool __attribute__((ALIGN,ARCH))
 		json_object_get_array(cam, P_C_POSITION), P_C_POSITION, 0UL));
 	dst->fov = spu_value_inrange(json_object_get_number(cam, P_C_FOV),
 		P_C_FOV_MIN, P_C_FOV_MAX);
-	dst->aperture = json_object_get_number(cam, P_C_APERTURE);
-	dst->dist_to_focus = json_object_get_number(cam, P_C_DIST_TO_FOCUS);
+	dst->aperture = spu_value_inrange(json_object_get_number(cam, P_C_APERTURE),
+		P_C_APERTURE_MIN, P_C_APERTURE_MAX);
+	dst->dist_to_focus = spu_value_inrange(json_object_get_number(cam,
+	P_C_DIST_TO_FOCUS), P_C_DIST_TO_FOCUS_MIN, P_C_DIST_TO_FOCUS_MAX);
 	return (true);
 }

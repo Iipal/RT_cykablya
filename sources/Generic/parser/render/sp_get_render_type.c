@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 10:24:31 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/07 15:29:15 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/14 22:19:09 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ bool __attribute__((ALIGN,ARCH))
 	size_t					i;
 	char const				*rtype;
 	JSON_Object const		*r = json_object_get_object(root, P_RENDER);
-	t_fnptr_render const	valid_renders[] = { render_normal, render_full };
+	t_fnptr_render const	valid_renders[] = { render_std, render_normal,
+												render_full };
 	char const				*valid_rtypes[] = { P_RT_STD, P_RT_NORMAL,
 												P_RT_FULL };
 
@@ -44,15 +45,15 @@ bool __attribute__((ALIGN,ARCH))
 	NO_F(s_validate_render_data(r));
 	NODO_F(rtype = json_object_get_string(r, P_R_TYPE),
 		ERRIN(E_IN_RENDER_TYPE, E_INVALID_TYPE(P_RENDER)));
-	render->w = json_object_get_number(r, P_RS_WIDTH);
-	render->h = json_object_get_number(r, P_RS_HEIGHT);
-	render->samples = json_object_get_number(r, P_R_SAMPLES);
-	while ((sizeof(valid_rtypes) / sizeof(*valid_rtypes)) > ++i)
+	render->w = spu_value_inrange(json_object_get_number(r, P_RS_WIDTH),
+		P_RS_MIN, P_RS_MAX);
+	render->h = spu_value_inrange(json_object_get_number(r, P_RS_HEIGHT),
+		P_RS_MIN, P_RS_MAX);
+	render->samples = spu_value_inrange(json_object_get_number(r, P_R_SAMPLES),
+		P_R_SAMPLES_MIN, P_R_SAMPLES_MIN);
+	while (ARR_SIZE(valid_renders) > ++i)
 		if (!ft_strcmp(valid_rtypes[i], rtype))
-		{
-			render->fn = (i ? valid_renders[i - 1] : render_std);
-			return (true);
-		}
+			return ((bool)(render->fn = valid_renders[i]));
 	ERRIN(E_IN_RENDER_TYPE, E_INVALID_TYPE(P_RENDER));
 	return (false);
 }
