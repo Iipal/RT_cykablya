@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:49:59 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/14 19:30:55 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/14 20:33:35 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ struct	s_scene
 	struct s_render				render;
 	struct s_render_params		cam;
 	union u_hitables *restrict	objs;
+	bool						is_gi;
 };
 
 /*

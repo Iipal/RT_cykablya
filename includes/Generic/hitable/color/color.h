@@ -4,6 +4,7 @@
 # ifdef IMPLEMETNATION
 #  include "attributes.h"
 #  include <stddef.h>
+#  include <stdbool.h>
 #  include "hit.h"
 #  include "record_types.h"
 #  include "record_types_internal.h"
@@ -16,6 +17,7 @@
 # ifdef DECLARATION
 #  include "attributes.h"
 #  include <stddef.h>
+#  include <stdbool.h>
 #  include "vector_types.h"
 #  include "ray_types.h"
 #  include "hitable_types.h"
