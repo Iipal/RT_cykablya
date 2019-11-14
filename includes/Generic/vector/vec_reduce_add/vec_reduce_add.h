@@ -15,7 +15,7 @@
 # ifdef IMPLEMETNATION
 #  include "attributes.h"
 #  include "vector_types.h"
-#  include "asm_vec_reduce_add"
+#  include "asm_vec_reduce_add.h"
 # endif
 
 # ifdef DECLARATION
