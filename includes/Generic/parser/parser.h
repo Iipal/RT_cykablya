@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:49:59 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/07 16:56:03 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/14 18:00:53 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,11 +142,6 @@ t_material_sf __attribute__((ALIGN,ARCH))
 *sp_object_mat_dielect(const JSON_Object *restrict mat,
 	union u_hitables *restrict obj,
 	const size_t obj_serial);
-/*
-**	getting lights:
-*/
-bool __attribute__((ALIGN,ARCH))
-sp_get_lights(const JSON_Object *restrict root, struct s_scene *restrict scene);
 
 /*
 **	utils:
