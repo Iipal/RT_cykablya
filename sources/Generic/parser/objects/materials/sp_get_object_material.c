@@ -40,6 +40,7 @@ t_material_sf __attribute__((ALIGN,ARCH))
 	static char			*valid_mats[] = { P_O_MT_NORMAL, P_O_MT_COLOR,
 		P_O_MT_LAMBERT, P_O_MT_METAL, P_O_MT_DIELECT, P_O_MT_EMITTER, };
 
+	(void)obj;
 	NO_F(mat_name);
 	i = MATERIAL_START;
 	while (MATERIAL_END > ++i)
