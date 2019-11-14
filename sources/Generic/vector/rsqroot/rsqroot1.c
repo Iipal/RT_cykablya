@@ -4,13 +4,13 @@
 # include "rsqroot.h"
 #endif
 
-float __attribute__((__overloadable__,__const__,__aligned__,__target__("avx"),__no_split_stack__))
+float __attribute__((CONST,CLONE,SMALL_STACK,ARCH))
 	rsqroot(register const float x)
 {
 	return (1.0f / asm_sqrtf(x));
 }
 
-double __attribute__((__overloadable__,__const__,__aligned__,__target__("avx"),__no_split_stack__))
+double __attribute__((CONST,CLONE,SMALL_STACK,ARCH))
 	rsqroot(register const double x)
 {
 	return (1.0 / asm_sqrt(x));
