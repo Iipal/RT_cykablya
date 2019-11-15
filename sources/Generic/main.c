@@ -48,9 +48,6 @@ int __attribute__((ALIGN,ARCH))
 	const size_t				render_tasks = render_threads << 2UL;
 	const size_t				render_part =
 		(s->render.w * s->render.h / render_tasks);
-	uint32_t	*restrict		screen;
-	// struct Window	*restrict	window;
-	UpdateState					state;
 	struct s_tpool	*restrict	render_pool;
 
 	struct s_sdl	*restrict	wnd;
@@ -58,19 +55,7 @@ int __attribute__((ALIGN,ARCH))
 		return (-1);
 	*wnd = (struct s_sdl){ 0 };
 
-
-
 	printf("STATUS:%d\n", sdl_init(wnd, s->render.w, s->render.h, "BLYAT'"));
-	printf("WINDOW:%d\n", sdl_create_window(wnd, s->render.w, s->render.h, "BLYAT'"));
-
-
-	// if (!(window = mfb_open_ex("BLYAT'", s->render.w, s->render.h, 1)))
-	// 	return (-1);
-	// if (!(screen = (__typeof__(screen))(valloc(sizeof(*screen) * s->render.w * s->render.h))))
-	// 	return (-1);
-	// ft_bzero(screen, (sizeof(*screen) * s->render.w * s->render.h));
-
-	screen = wnd->pxls;
 
 	struct s_render_params	*restrict	Params = valloc((sizeof(*Params)) * render_tasks);
 	render_pool = tpool_create(render_threads);
@@ -84,7 +69,7 @@ int __attribute__((ALIGN,ARCH))
 		Params[i].step = 1UL;
 		Params[i].hitables = s->objs;
 		Params[i].samples = s->render.samples;
-		Params[i].screen = screen;
+		Params[i].screen = wnd->pxls;
 		Params[i].look_from = s->cam.look_from;
 		Params[i].look_at = s->cam.look_at;
 		Params[i].position = s->cam.position;
@@ -124,7 +109,6 @@ int __attribute__((ALIGN,ARCH))
 
 	tpool_wait(render_pool);
 	tpool_destroy(render_pool);
-	free(screen);
 	free(Params);
 	// if (state != STATE_EXIT || state == STATE_OK)
 	// 	mfb_close(window);
