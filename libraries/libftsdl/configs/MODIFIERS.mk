@@ -28,6 +28,10 @@ else ifeq ($(OS_DETECT),$(OS_OSX))
 							-I $(FRAMEWORKS_DIR)/SDL2_image.framework/Headers \
 							-I $(FRAMEWORKS_DIR)/SDL2_ttf.framework/Headers \
 							-F $(FRAMEWORKS_DIR)
+	COMPILE_APP_RULE	+=	-I $(FRAMEWORKS_DIR)/SDL2.framework/Headers \
+							-I $(FRAMEWORKS_DIR)/SDL2_image.framework/Headers \
+							-I $(FRAMEWORKS_DIR)/SDL2_ttf.framework/Headers \
+							-F $(FRAMEWORKS_DIR)
 else ifeq ($(OS_DETECT),$(OS_WINDOWS))
 	CLEAR = clean"
 endif
