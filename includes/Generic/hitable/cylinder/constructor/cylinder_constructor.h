@@ -7,6 +7,7 @@
 #  include "vector.h"
 #  include "ray.h"
 #  include "hitable.h"
+#  include "solution.h"
 #  if defined(__APPLE__)
 #   include <stdlib.h>
 #  else

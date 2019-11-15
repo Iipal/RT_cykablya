@@ -25,6 +25,7 @@
 # include "libft.h"
 # include "Generic/libftsdl.h"
 
+
 int __attribute__((ALIGN,ARCH))
 	main(int argc, char *argv[])
 {

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sshevchu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/15 18:37:48 by sshevchu          #+#    #+#             */
+/*   Updated: 2019/11/15 18:37:51 by sshevchu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #if !defined(IMPLEMETNATION) && !defined(DECLARATION)
 # define IMPLEMETNATION
 # define DECLARATION
@@ -28,15 +40,14 @@ void __attribute__((ALIGN,ARCH))
 		col = vec(0.0f, 0.0f, 0.0f);
 		sample = param->samples;
 		while (--sample)
-			col	+= color(ray(cam,
+			col += color(ray(cam,
 				(t_v3sf)(((float)(i % (__typeof__(i))(param->screen_width))
 				+ random_float()) / param->screen_width),
 				(t_v3sf)(1.0f
 				- ((float)(i / (__typeof__(i))(param->screen_width))
 				+ random_float()) / param->screen_height)), param->hitables,
 				0UL);
-		*(param->screen + i)
-		= color_to_rgb(col / (float)(param->samples));
+		*(param->screen + i) = color_to_rgb(col / (float)(param->samples));
 	}
 	free(cam);
 }
@@ -58,14 +69,13 @@ void __attribute__((ALIGN,ARCH))
 		col = vec(0.0f, 0.0f, 0.0f);
 		sample = param->samples;
 		while (--sample)
-			col	+= color(ray(cam,
+			col += color(ray(cam,
 				(((float)(i % (__typeof__(i))(param->screen_width))
 				+ random_float()) / param->screen_width),
 			(1.0f - ((float)(i / (__typeof__(i))(param->screen_width))
 				+ random_float()) / param->screen_height)),
 			param->hitables, 0UL);
-		*(param->screen + i)
-		= color_to_rgb(col / (float)(param->samples));
+		*(param->screen + i) = color_to_rgb(col / (float)(param->samples));
 	}
 	free(cam);
 }

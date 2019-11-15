@@ -4,50 +4,6 @@
 # include "cone_constructor.h"
 #endif
 
-static t_v3sf __attribute__((CONST,ARCH))
-	rotate_x(register const t_v3sf v,
-			register const float x)
-{
-	return (vec(
-		v.x,
-		v.y * __builtin_cosf(x) - v.z * __builtin_sinf(x),
-		v.y * __builtin_cosf(x) + v.z * __builtin_sinf(x)
-	));
-}
-
-static t_v3sf __attribute__((CONST,ARCH))
-	rotate_y(register const t_v3sf v,
-			register const float y)
-{
-	return (vec(
-		v.x * __builtin_cosf(y) + v.z * __builtin_sinf(y),
-		v.y,
-		v.x * -__builtin_sinf(y) + v.z * __builtin_cosf(y)
-	));
-}
-
-static t_v3sf __attribute__((CONST,ARCH))
-	rotate_z(register const t_v3sf v,
-			register const float z)
-{
-	return (vec(
-		v.x * __builtin_cosf(z) - v.y * __builtin_sinf(z),
-		v.x * __builtin_sinf(z) + v.y * __builtin_cosf(z),
-		v.z
-	));
-}
-
-t_v3sf __attribute__((CONST,ARCH))
-	rotate(register const t_v3sf vec,
-			register const t_v3sf rot)
-{
-	return (vec * rotate_x(vec, rot.x)
-				* rotate_y(vec, rot.y)
-				* rotate_z(vec, rot.z));
-}
-
-
-
 t_v3sf __attribute__((CONST,CLONE,ARCH))
 	center(register const t_cone_sf cone)
 {
@@ -87,18 +43,6 @@ t_v3sf __attribute__((CONST,CLONE,ARCH))
     				+ (point.z-center(cone).z)*(point.z-center(cone).z));
     t_v3sf n = { point.x-center(cone).x, r*(radius(cone)/height(cone)), point.z-center(cone).z };
     return normalize(n);
-}
-
-static float __attribute__((CONST,CLONE,ARCH))
-	solution(register const float a,
-			register const float b,
-			register const float c)
-{
-	const float		d = b * b - 4.0f * (a * c);
-	const float		x_0 = (-b - sqroot(d)) / (2.0f * a);
-	const float		x_1 = (-b + sqroot(d)) / (2.0f * a);
-
-	return ((x_0 > x_1) ? x_1 : x_0);
 }
 
 t_record_sf __attribute__((CONST,CLONE,ARCH))

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   color_to_rgb.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sshevchu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/15 18:35:39 by sshevchu          #+#    #+#             */
+/*   Updated: 2019/11/15 18:35:43 by sshevchu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #if !defined(IMPLEMETNATION) && !defined(DECLARATION)
 # define IMPLEMETNATION
 # define DECLARATION
@@ -10,7 +22,7 @@ static t_v3sf __attribute__((CONST,SMALL_STACK,ARCH))
 	const float	alpha = 1.09929682680944f;
 	const float	beta = 0.018053968510807f;
 
-	return vec(
+	return (vec(
 		(col.x < beta)
 		? 4.500f * col.x
 		: alpha * sqroot(col.x) - (alpha - 1.0f),
@@ -19,8 +31,7 @@ static t_v3sf __attribute__((CONST,SMALL_STACK,ARCH))
 		: alpha * sqroot(col.y) - (alpha - 1.0f),
 		(col.z < beta)
 		? 4.500f * col.z
-		: alpha * sqroot(col.z) - (alpha - 1.0f)
-	);
+		: alpha * sqroot(col.z) - (alpha - 1.0f)));
 }
 
 static unsigned __attribute__((CONST,SMALL_STACK,ARCH))
@@ -37,11 +48,10 @@ unsigned __attribute__((CONST,SMALL_STACK,ARCH))
 {
 	register const t_v3sf	color_shrink = { 255.99f, 255.99f, 255.99f };
 
-	return color_to_rgb_helper(
+	return (color_to_rgb_helper(
 		__builtin_convertvector(
 			gamma_rec2020(
-				(col / (col + 1.0f))
-				) * color_shrink, t_v3su));
+				(col / (col + 1.0f))) * color_shrink, t_v3su)));
 }
 
 #if defined(IMPLEMETNATION) && defined(DECLARATION)

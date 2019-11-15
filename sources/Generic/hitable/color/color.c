@@ -18,7 +18,7 @@ static t_v3sf
 static _Bool __attribute__((CONST,SMALL_STACK,ARCH))
 	gi(register const union u_hitables *restrict hitables)
 {
-	return ((_Bool)(hitables->generic.self));
+	return (!!(hitables->generic.self));
 }
 
 static float __attribute__((CONST,SMALL_STACK,ARCH))
