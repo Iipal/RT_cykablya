@@ -18,7 +18,8 @@
 # Otherwise try "reset" or use whatever u want
 #
 
-FRAMEWORKS_DIR	:=	$(CURDIR)/frameworks
+FRAMEWORKS_DIR	:=	$(CURDIR)/libraries/libftsdl/frameworks
+$(info $(FRAMEWORKS_DIR))
 
 ifeq ($(OS_DETECT),$(OS_LINUX))
 	CLEAR = clear && printf "\e[3J"
@@ -45,11 +46,6 @@ ifeq ($(OS_DETECT),$(OS_LINUX))
 else ifeq ($(OS_DETECT),$(OS_OSX))
 	CLEAR = clear && printf "\e[3J"
 # 	COMPILE_APP_RULE	+=	-framework MetalKit -framework Metal -framework cocoa
-	
-	COMPILE_OBJ_RULE	+=	-I $(FRAMEWORKS_DIR)/SDL2.framework/Headers \
-							-I $(FRAMEWORKS_DIR)/SDL2_image.framework/Headers \
-							-I $(FRAMEWORKS_DIR)/SDL2_ttf.framework/Headers \
-							-F $(FRAMEWORKS_DIR)
 
 	COMPILE_APP_RULE	+=	-rpath $(FRAMEWORKS_DIR) \
 							-framework SDL2 \
