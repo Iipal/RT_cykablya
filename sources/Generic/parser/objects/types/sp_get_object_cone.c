@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 13:15:51 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/14 22:11:39 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/15 13:17:14 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ bool __attribute__((ALIGN,ARCH))
 	t_cone_sf		*c;
 
 	NO_F(s_validate_cone_data(obj_json, obj_serial));
-	NO_F(mat = sp_get_object_material(obj_json, obj, obj_serial));
+	NO_F(mat = sp_get_object_material(obj_json, obj_serial));
 	NO_F(c = s_get_cone_data(obj_json, obj_serial));
 	*obj = (union u_hitables){{ CONE, 0, c, mat }};
 	return (true);

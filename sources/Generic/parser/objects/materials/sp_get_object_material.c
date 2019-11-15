@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 17:10:28 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/14 19:30:50 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/15 13:16:24 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ extern inline const char __attribute__((INLINE,ARCH))
 
 t_material_sf __attribute__((ALIGN,ARCH))
 	*sp_get_object_material(const JSON_Object *restrict obj_json,
-							union u_hitables *restrict obj,
 							const size_t obj_serial)
 {
 	enum e_material		i;
@@ -40,7 +39,6 @@ t_material_sf __attribute__((ALIGN,ARCH))
 	static char			*valid_mats[] = { P_O_MT_NORMAL, P_O_MT_COLOR,
 		P_O_MT_LAMBERT, P_O_MT_METAL, P_O_MT_DIELECT, P_O_MT_EMITTER, };
 
-	(void)obj;
 	NO_F(mat_name);
 	i = MATERIAL_START;
 	while (MATERIAL_END > ++i)

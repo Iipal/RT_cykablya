@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:49:59 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/14 20:33:35 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/15 13:22:23 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <stdlib.h>
 # include <stdio.h>
-# include <stdbool.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <errno.h>
@@ -23,10 +22,10 @@
 
 # include "attributes.h"
 
-# include "parser_params.h"
+# include "parser_data.h"
 # include "parser_errno.h"
+# include "parser_params.h"
 
-# include "parson.h"
 # include "ft_printf.h"
 # include "libft.h"
 
@@ -34,32 +33,7 @@
 # include "material_constructor.h"
 # include "sphere_constructor.h"
 # include "hitable_types.h"
-# include "material.h"
-# include "render.h"
 # undef DECLARATION
-
-# define IMPLEMETNATION
-# include "hitable_types_internal.h"
-# include "scene_generator/scene_generator.h"
-# undef IMPLEMETNATION
-
-typedef void	(*t_fnptr_render)(struct s_render_params *restrict);
-
-struct	s_render
-{
-	t_fnptr_render	fn;
-	size_t			w;
-	size_t			h;
-	size_t			samples;
-};
-
-struct	s_scene
-{
-	struct s_render				render;
-	struct s_render_params		cam;
-	union u_hitables *restrict	objs;
-	bool						is_gi;
-};
 
 /*
 **	start parser:
@@ -76,6 +50,8 @@ sp_get_render_type(const JSON_Object *restrict root,
 bool __attribute__((ALIGN,ARCH))
 sp_get_render_camera(const JSON_Object *restrict root,
 	struct s_render_params *restrict dst);
+bool __attribute__((ALIGN,ARCH))
+sp_get_gi(const JSON_Object *restrict obj);
 
 /*
 **	getting random objects:
@@ -89,10 +65,6 @@ union u_hitables __attribute__((ALIGN,ARCH))
 bool __attribute__((ALIGN,ARCH))
 sp_get_objects(const JSON_Object *restrict root,
 	struct s_scene *restrict scene);
-
-typedef bool	(*t_fn_objs)(const JSON_Object *restrict,
-					union u_hitables *restrict,
-					const size_t);
 
 bool __attribute__((ALIGN,ARCH))
 sp_get_object_sphere(const JSON_Object *restrict obj_json,
@@ -120,11 +92,7 @@ sp_get_object_cylinder(const JSON_Object *restrict obj_json,
 */
 t_material_sf __attribute__((ALIGN,ARCH))
 *sp_get_object_material(const JSON_Object *restrict obj_json,
-	union u_hitables *restrict obj,
 	const size_t obj_serial);
-
-typedef t_material_sf	*(*t_fn_mats)(const JSON_Object *restrict,
-							const size_t);
 
 t_material_sf __attribute__((ALIGN,ARCH))
 *sp_object_mat_normal(const JSON_Object *restrict mat,
@@ -144,6 +112,13 @@ t_material_sf __attribute__((ALIGN,ARCH))
 t_material_sf __attribute__((ALIGN,ARCH))
 *sp_object_mat_emitter(const JSON_Object *restrict mat,
 	const size_t obj_serial);
+
+/*
+**	After parser validation data:
+*/
+void __attribute__((ALIGN,ARCH))
+sp_post_validation(struct s_scene *restrict s);
+
 /*
 **	utils:
 */

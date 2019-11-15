@@ -6,12 +6,12 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:21:55 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/14 22:15:00 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/15 12:54:16 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_PARAM_NAMES_H
-# define PARSER_PARAM_NAMES_H
+#ifndef PARSER_PARAMS_H
+# define PARSER_PARAMS_H
 
 # define P_RENDER          "render"
 

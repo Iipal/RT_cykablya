@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 14:01:36 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/07 17:15:49 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/15 13:16:53 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ bool __attribute__((ALIGN,ARCH))
 	t_sphere_sf		*s;
 
 	NO_F(s_validate_sphere_data(obj_json, obj_serial));
-	NO_F(mat = sp_get_object_material(obj_json, obj, obj_serial));
+	NO_F(mat = sp_get_object_material(obj_json, obj_serial));
 	NO_F(s = s_get_sphere_data(obj_json, obj_serial));
 	*obj = (union u_hitables){{ SPHERE, 0, s, mat }};
 	return (true);

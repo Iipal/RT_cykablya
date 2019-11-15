@@ -6,22 +6,11 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:50:23 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/14 22:09:20 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/15 13:22:25 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
-
-static inline bool __attribute__((ALIGN,ARCH))
-	s_check_gi(JSON_Object *obj)
-{
-	bool	ret;
-
-	ret = true;
-	if (json_object_has_value_of_type(obj, P_GI, JSONBoolean))
-		ret = json_object_get_boolean(obj, P_GI);
-	return (ret);
-}
 
 struct s_scene __attribute__((ALIGN,ARCH))
 	*scene_parser(const char *restrict file)
@@ -33,16 +22,18 @@ struct s_scene __attribute__((ALIGN,ARCH))
 	root = json_parse_file(file);
 	obj = json_value_get_object(root);
 	MEM(struct s_scene, out, 1UL, E_ALLOC);
-	out->is_gi = s_check_gi(obj);
 	IFDOMR(E_SYNTAX, !root || !obj, json_value_free(root), scene_free(out));
+	out->is_gi = sp_get_gi(obj);
 	NODO_R(sp_get_render_type(obj, &out->render), json_value_free(root),
 		scene_free(out));
 	NODO_R(sp_get_render_camera(obj, &out->cam), json_value_free(root),
 		scene_free(out));
 	if ((out->objs = sp_get_random_objects(obj)))
 		out->objs->generic.self = (void*)out->is_gi;
-	IFDO_R(out->objs, json_value_free(root), out);
-	NODO_R(sp_get_objects(obj, out), json_value_free(root), scene_free(out));
+	else
+		NODO_R(sp_get_objects(obj, out),
+			json_value_free(root), scene_free(out));
 	json_value_free(root);
+	sp_post_validation(out);
 	return (out);
 }
