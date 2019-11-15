@@ -13,6 +13,7 @@
 
 # ifdef DECLARATION
 #  include "attributes.h"
+#  include <stdint.h>
 #  include "vector_types.h"
 
 #  ifndef S_RENDER_PARAMS

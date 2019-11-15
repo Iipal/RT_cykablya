@@ -23,6 +23,7 @@
 
 # include "parser.h"
 # include "libft.h"
+# include "Generic/libftsdl.h"
 
 int __attribute__((ALIGN,ARCH))
 	main(int argc, char *argv[])
@@ -48,15 +49,28 @@ int __attribute__((ALIGN,ARCH))
 	const size_t				render_part =
 		(s->render.w * s->render.h / render_tasks);
 	uint32_t	*restrict		screen;
-	struct Window	*restrict	window;
+	// struct Window	*restrict	window;
 	UpdateState					state;
 	struct s_tpool	*restrict	render_pool;
 
-	if (!(window = mfb_open_ex("BLYAT'", s->render.w, s->render.h, 1)))
+	struct s_sdl	*restrict	wnd;
+	if (!(wnd = (__typeof__(wnd))(valloc(sizeof(*wnd)))))
 		return (-1);
-	if (!(screen = (__typeof__(screen))(valloc(sizeof(*screen) * s->render.w * s->render.h))))
-		return (-1);
-	ft_bzero(screen, (sizeof(*screen) * s->render.w * s->render.h));
+	*wnd = (struct s_sdl){ 0 };
+
+
+
+	printf("STATUS:%d\n", sdl_init(wnd, s->render.w, s->render.h, "BLYAT'"));
+	printf("WINDOW:%d\n", sdl_create_window(wnd, s->render.w, s->render.h, "BLYAT'"));
+
+
+	// if (!(window = mfb_open_ex("BLYAT'", s->render.w, s->render.h, 1)))
+	// 	return (-1);
+	// if (!(screen = (__typeof__(screen))(valloc(sizeof(*screen) * s->render.w * s->render.h))))
+	// 	return (-1);
+	// ft_bzero(screen, (sizeof(*screen) * s->render.w * s->render.h));
+
+	screen = wnd->pxls;
 
 	struct s_render_params	*restrict	Params = valloc((sizeof(*Params)) * render_tasks);
 	render_pool = tpool_create(render_threads);
@@ -83,19 +97,37 @@ int __attribute__((ALIGN,ARCH))
 			Params + i);
 	}
 
-	while (-42)
+	_Bool	running;
+	running = 1;
+
+	while (running)
 	{
-		state = mfb_update(window, screen);
-		if (state == STATE_EXIT)
-			_Exit(0);
+		SDL_Event	event;
+
+		while (SDL_PollEvent(&event))
+		{
+			switch(event.type){
+				case SDL_QUIT:	running = 0;
+								_Exit(0);
+				case SDL_KEYDOWN: switch(event.key.keysym.sym){
+									case SDLK_ESCAPE:	running = 0;
+														_Exit(0); }
+				break;
+			}
+		}
+		SDL_UpdateWindowSurface(wnd->w);
+
+		// state = mfb_update(window, screen);
+		// if (state == STATE_EXIT)
+		// 	_Exit(0);
 	}
 
 	tpool_wait(render_pool);
 	tpool_destroy(render_pool);
 	free(screen);
 	free(Params);
-	if (state != STATE_EXIT || state == STATE_OK)
-		mfb_close(window);
+	// if (state != STATE_EXIT || state == STATE_OK)
+	// 	mfb_close(window);
 }
 
 #if defined(IMPLEMETNATION) && defined(DECLARATION)

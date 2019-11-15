@@ -13,7 +13,7 @@
 #ifndef LIBFTSDL_MACROSES_H
 # define LIBFTSDL_MACROSES_H
 
-# define FPS_FONT "libftsdl/resources/fonts/04B_03__.TTF"
+# define FPS_FONT "./libraries/libftsdl/resources/fonts/04B_03__.TTF"
 # define FPS_FONT_SIZE 18
 
 # define CONVERT_FROM_CANVAS(x, y, win_x, win_y) (__v2si){x+win_x/2, y+win_y/2}
