@@ -1,0 +1,19 @@
+{
+    "render": {
+        "type": "full",
+        "samples": 12,
+        "width": 1280,
+        "height": 720
+    },
+    "camera": {
+        "look_from": [13.0, 2.0, 3.0],
+        "look_at": [0.0, 0.0, 0.0],
+        "pos": [0.0, 1.0, 0.0],
+        "fov": 45.0,
+        "aperture": 0.1,
+        "dist_to_focus": 9.5
+    },
+    "random": {
+        "count": 10 
+    }
+}

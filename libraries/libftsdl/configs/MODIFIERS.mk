@@ -23,7 +23,7 @@ $(info $(FRAMEWORKS_DIR))
 
 ifeq ($(OS_DETECT),$(OS_LINUX))
 	CLEAR = clear && printf "\e[3J"
-	COMPILE_APP_RULE	+=	-lX11 -pthread -lm
+	COMPILE_APP_RULE	+=	-lX11 -pthread -lm -lSDL2 -lSDL2_image -lSDL2_ttf
 else ifeq ($(OS_DETECT),$(OS_OSX))
 	CLEAR = clear && printf "\e[3J"
 
