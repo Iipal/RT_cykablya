@@ -45,6 +45,7 @@ extern inline t_cylinder_sf __attribute__((ALIGN,ARCH))
 	NO_F(spu_get_v3sf_arr(&pos, json_object_get_array(obj_json, P_O_POSITION),
 		P_O_POSITION, obj_serial));
 	radius = json_object_get_number(obj_json, P_O_RADIUS);
+	h_t = (t_v3sf) { 0.0f, 0.0f, 0.0f };
 	MEM(t_cylinder_sf, c, 1UL, E_ALLOC);
 	if (is_height)
 	{
