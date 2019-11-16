@@ -59,8 +59,6 @@ extern inline t_cylinder_sf __attribute__((ALIGN,ARCH))
 			P_O_TOP, obj_serial));
 		*c = cylinder(pos, h_t, radius);
 	}
-	printf("[%zu]: pos: { %f %f %f }; h_t: { %f %f %f }; \n", obj_serial + 1,
-		pos[0], pos[1], pos[2], h_t[0], h_t[1], h_t[2]);
 	return (c);
 }
 
