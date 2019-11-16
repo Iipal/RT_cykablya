@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   color.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dshepele <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/16 23:08:18 by dshepele          #+#    #+#             */
+/*   Updated: 2019/11/16 23:08:19 by dshepele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef COLOR_H
 # define COLOR_H
 
@@ -24,14 +36,11 @@
 
 t_v3sf __attribute__((CONST,CLONE,SMALL_STACK,ARCH))
 color(register const t_ray_sf ray,
-	register const union u_hitables * restrict hitables);
+	register const union u_hitables *restrict hitables);
 t_v3sf __attribute__((CONST,CLONE,SMALL_STACK,ARCH))
 color(register const t_ray_sf r,
-	register const union u_hitables * restrict hitables,
+	register const union u_hitables *restrict hitables,
 	register const size_t depth);
 
-#  ifndef IMPLEMETNATION
-#   include "free_attributes.h"
-#  endif
 # endif
 #endif

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   color_to_rgb.h                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dshepele <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/16 22:31:15 by dshepele          #+#    #+#             */
+/*   Updated: 2019/11/16 22:31:16 by dshepele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef COLOR_TO_RGB_H
 # define COLOR_TO_RGB_H
 
@@ -5,10 +17,7 @@
 #  include "attributes.h"
 #  include "vector.h"
 #  include "vector_types.h"
-#  ifndef T_V3SU
-#   define T_V3SU
-typedef unsigned __attribute__((__ext_vector_type__(3),__aligned__))    t_v3su;
-#  endif
+#  include "asm_color_to_rgb.h"
 # endif
 
 # ifdef DECLARATION

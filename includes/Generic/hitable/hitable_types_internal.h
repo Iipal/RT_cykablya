@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hitable_types_internal.h                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dshepele <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/16 23:09:04 by dshepele          #+#    #+#             */
+/*   Updated: 2019/11/16 23:09:05 by dshepele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef HITABLE_TYPES_INTERNAL_H
 # define HITABLE_TYPES_INTERNAL_H
 
@@ -13,7 +25,7 @@
 # ifndef S_GENERIC
 #  define S_GENERIC
 
-struct  s_generic
+struct	s_generic
 {
 	enum e_hitables_types	type;
 	size_t					count : sizeof(int) * __CHAR_BIT__;
@@ -25,7 +37,7 @@ struct  s_generic
 # ifndef S_SPHERES
 #  define S_SPHERES
 
-struct  s_spheres
+struct	s_spheres
 {
 	enum e_hitables_types		type;
 	size_t						count : sizeof(int) * __CHAR_BIT__;
@@ -37,7 +49,7 @@ struct  s_spheres
 # ifndef S_CONES
 #  define S_CONES
 
-struct  s_cones
+struct	s_cones
 {
 	enum e_hitables_types		type;
 	size_t						count : sizeof(int) * __CHAR_BIT__;
@@ -49,7 +61,7 @@ struct  s_cones
 # ifndef S_CYLINDERS
 #  define S_CYLINDERS
 
-struct  s_cylinders
+struct	s_cylinders
 {
 	enum e_hitables_types		type;
 	size_t						count : sizeof(int) * __CHAR_BIT__;
@@ -61,7 +73,7 @@ struct  s_cylinders
 # ifndef S_TETRAHEDRONS
 #  define S_TETRAHEDRONS
 
-struct  s_tetrahedrons
+struct	s_tetrahedrons
 {
 	enum e_hitables_types			type;
 	size_t							count : sizeof(int) * __CHAR_BIT__;
@@ -73,7 +85,7 @@ struct  s_tetrahedrons
 # ifndef S_PLANES
 #  define S_PLANES
 
-struct  s_planes
+struct	s_planes
 {
 	enum e_hitables_types		type;
 	size_t						count : sizeof(int) * __CHAR_BIT__;

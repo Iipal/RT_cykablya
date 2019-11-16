@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.h                                           :+:      :+:    :+:   */
+/*   asm_color_to_rgb.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshepele <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/16 23:06:08 by dshepele          #+#    #+#             */
-/*   Updated: 2019/11/16 23:06:10 by dshepele         ###   ########.fr       */
+/*   Created: 2019/11/16 22:41:00 by dshepele          #+#    #+#             */
+/*   Updated: 2019/11/16 22:41:05 by dshepele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPHERE_H
-# define SPHERE_H
-# define DECLARATION
-# include "sphere_types.h"
-# include "sphere_constructor.h"
-# include "center.h"
-# include "radius.h"
-# include "discriminant.h"
-# include "sphere_hit.h"
+#ifndef ASM_COLOR_TO_RGB_H
+# define ASM_COLOR_TO_RGB_H
+
+# ifndef T_V3SU
+#  define T_V3SU
+#  ifndef VEC
+#   define VEC(n) __attribute__((__ext_vector_type__(n),__aligned__))
+#  endif
+
+typedef	unsigned int __attribute__((VEC(3)))	t_v3su;
+
+#  ifdef VEC
+#   undef VEC
+#  endif
+# endif
 #endif
