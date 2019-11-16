@@ -22,8 +22,5 @@ radius(const struct s_sphere_sf *const restrict s);
 t_v3df __attribute__((PURE,CLONE,ARCH))
 radius(const struct s_sphere_df *const restrict s);
 
-#  ifndef IMPLEMETNATION
-#   include "free_attributes.h"
-#  endif
 # endif
 #endif

@@ -3,7 +3,6 @@
 # define DECLARATION
 #endif
 
-# include <MiniFB.h>
 # include "ray.h"
 # include "sphere.h"
 # include "thread_pool.h"
@@ -102,17 +101,10 @@ int __attribute__((ALIGN,ARCH))
 			}
 		}
 		SDL_UpdateWindowSurface(wnd->w);
-
-		// state = mfb_update(window, screen);
-		// if (state == STATE_EXIT)
-		// 	_Exit(0);
 	}
-
 	tpool_wait(render_pool);
 	tpool_destroy(render_pool);
 	free(Params);
-	// if (state != STATE_EXIT || state == STATE_OK)
-	// 	mfb_close(window);
 }
 
 #if defined(IMPLEMETNATION) && defined(DECLARATION)

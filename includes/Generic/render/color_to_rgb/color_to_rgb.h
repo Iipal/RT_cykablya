@@ -18,8 +18,5 @@ typedef unsigned __attribute__((__ext_vector_type__(3),__aligned__))    t_v3su;
 unsigned __attribute__((CONST,SMALL_STACK,ARCH))
 color_to_rgb(register const t_v3sf col);
 
-#  ifndef IMPLEMETNATION
-#   include "free_attributes.h"
-#  endif
 # endif
 #endif

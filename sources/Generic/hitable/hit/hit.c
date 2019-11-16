@@ -5,10 +5,6 @@
 #endif
 
 # include "material.h"
-# include "cone_constructor.h"
-# include "cylinder_constructor.h"
-# include "tetrahedron_constructor.h"
-# include "plane_constructor.h"
 
 static inline _Bool __attribute__((CONST,CLONE,ARCH))
 	hit_condition(register const t_record_sf record)
@@ -21,6 +17,40 @@ static inline float __attribute__((CONST,CLONE,ARCH))
 {
 	return ((record)[1]);
 }
+
+
+
+struct	s_hlp
+{
+	const union u_hitables	*restrict	hitables;
+	const union u_record_helper			prev_record;
+	const t_ray_sf						ray;
+	const t_v2sf						time;
+	const size_t						i;
+};
+
+static t_record_sf __attribute__((CONST,CLONE,ARCH))
+	hit_sphere(const struct s_hlp s)
+{
+	register union u_record_helper	currect_record;
+
+	currect_record.sf = hit(*(s.hitables[s.i].sphere.self),
+		s.ray, s.time, s.prev_record.sf);
+	if (hit_condition(currect_record.sf)
+	&& hit_distance(currect_record.sf) < s.time.y)
+	{
+		currect_record.qi[1] =
+		(char)(type(*(s.hitables[s.i].sphere.material)));
+		currect_record.hi[1] = (short)(s.i);
+	}
+	return (currect_record.sf);
+}
+
+
+
+
+
+
 
 t_record_sf __attribute__((CONST,CLONE,ARCH))
 	hit(register const union u_hitables * restrict hitables,
@@ -38,23 +68,15 @@ t_record_sf __attribute__((CONST,CLONE,ARCH))
 	closest_so_far = t_max;
 	i = ~0UL;
 	while (++i < hitables->generic.count)
-		if (hitables[i].generic.type == SPHERE)
-		{
-			currect_record.sf = hit(*(hitables[i].sphere.self),
-					ray, t_min, closest_so_far, currect_record.sf);
-			if (hit_condition(currect_record.sf)
-			&& hit_distance(currect_record.sf) < closest_so_far)
-			{
-				closest_so_far = hit_distance(currect_record.sf);
-				currect_record.qi[1] = (char)(type(*(hitables[i].sphere.material)));
-				currect_record.hi[1] = (short)(i);
-				return_candidate = currect_record.sf;
-			}
-		}
+		if ((hitables[i].generic.type == SPHERE) && (hit_condition(currect_record.sf = hit_sphere((const struct s_hlp){
+		hitables, currect_record, ray, vec(t_min, closest_so_far), i }))))
+			return_candidate = currect_record.sf;
+
+
 		else if (hitables[i].generic.type == CONE)
 		{
 			currect_record.sf = hit(*(hitables[i].cone.self),
-					ray, t_min, closest_so_far, currect_record.sf);
+					ray, vec(t_min, closest_so_far), currect_record.sf);
 			if (hit_condition(currect_record.sf)
 			&& hit_distance(currect_record.sf) < closest_so_far)
 			{
@@ -67,7 +89,7 @@ t_record_sf __attribute__((CONST,CLONE,ARCH))
 		else if (hitables[i].generic.type == CYLINDER)
 		{
 			currect_record.sf = hit(*(hitables[i].cylinder.self),
-					ray, t_min, closest_so_far, currect_record.sf);
+					ray, vec(t_min, closest_so_far), currect_record.sf);
 			if (hit_condition(currect_record.sf)
 			&& hit_distance(currect_record.sf) < closest_so_far)
 			{
@@ -80,7 +102,7 @@ t_record_sf __attribute__((CONST,CLONE,ARCH))
 		else if (hitables[i].generic.type == TETRAHEDRON)
 		{
 			currect_record.sf = hit(*(hitables[i].tetrahedron.self),
-					ray, t_min, closest_so_far, currect_record.sf);
+					ray, vec(t_min, closest_so_far), currect_record.sf);
 			if (hit_condition(currect_record.sf)
 			&& hit_distance(currect_record.sf) < closest_so_far)
 			{
@@ -93,7 +115,7 @@ t_record_sf __attribute__((CONST,CLONE,ARCH))
 		else if (hitables[i].generic.type == PLANE)
 		{
 			currect_record.sf = hit(*(hitables[i].plane.self),
-					ray, t_min, closest_so_far, currect_record.sf);
+					ray, vec(t_min, closest_so_far), currect_record.sf);
 			if (hit_condition(currect_record.sf)
 			&& hit_distance(currect_record.sf) < closest_so_far)
 			{

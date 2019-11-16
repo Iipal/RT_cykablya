@@ -18,12 +18,8 @@
 t_record_sf __attribute__((CONST,CLONE,ARCH))
 hit(register const t_sphere_sf sphere,
 	register const t_ray_sf ray,
-	register const float t_min,
-	register const float t_max,
+	register const t_v2sf time,
 	register const t_record_sf current_record);
 
-#  ifndef IMPLEMETNATION
-#   include "free_attributes.h"
-#  endif
 # endif
 #endif

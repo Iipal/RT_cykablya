@@ -31,8 +31,5 @@ struct s_sphere_sf __attribute__((CLONE,ARCH))
 struct s_sphere_df __attribute__((CLONE,ARCH))
 *sphere(const double f);
 
-#  ifndef IMPLEMETNATION
-#   include "free_attributes.h"
-#  endif
 # endif
 #endif

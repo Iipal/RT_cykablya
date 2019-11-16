@@ -49,9 +49,5 @@ render_normal(struct s_render_params *restrict param);
 void __attribute__((ALIGN,ARCH))
 render_full(struct s_render_params *restrict param);
 
-
-#  ifndef IMPLEMETNATION
-#   include "free_attributes.h"
-#  endif
 # endif
 #endif

@@ -9,7 +9,11 @@
 #  include "hitable_types_internal.h"
 #  include "vector_types_internal.h"
 #  include "vector_types.h"
-#  include "sphere_hit.h"
+#  include "sphere.h"
+#  include "cone.h"
+#  include "cylinder.h"
+#  include "tetrahedron.h"
+#  include "plane.h"
 # endif
 
 # ifdef DECLARATION
@@ -24,8 +28,5 @@ hit(register const union u_hitables * restrict hitables,
 	register const float t_min,
 	register const float t_max);
 
-#  ifndef IMPLEMETNATION
-#   include "free_attributes.h"
-#  endif
 # endif
 #endif

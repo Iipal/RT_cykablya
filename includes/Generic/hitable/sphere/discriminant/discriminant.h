@@ -31,8 +31,5 @@ discriminant(const t_v3df a,
 			const t_v3df oc,
 			const t_v3df radius);
 
-#  ifndef IMPLEMETNATION
-#   include "free_attributes.h"
-#  endif
 # endif
 #endif

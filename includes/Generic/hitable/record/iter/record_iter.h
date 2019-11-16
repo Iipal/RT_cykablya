@@ -15,8 +15,5 @@
 size_t __attribute__((CONST,CLONE,ARCH))
 iter(register const t_record_sf record);
 
-#  ifndef IMPLEMETNATION
-#   include "free_attributes.h"
-#  endif
 # endif
 #endif
