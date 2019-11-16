@@ -52,15 +52,16 @@ struct s_camera_sf __attribute__((ARCH,CLONE,ALIGN))
 	*camera(register const t_v3sf look_from,
 			register const t_v3sf look_at,
 			register const t_v3sf position,
-			register const float fov,
-			register const float aspect_ratio)
+			register const t_v2sf params)
 {
 	const t_v3sf		w = normalize(look_from - look_at);
 	const t_v3sf		u = normalize(cross(position, w));
-	const float			h_height = __builtin_tanf(fov * (M_PI / 180.f) * 0.5f);
-	const float			half_width = aspect_ratio * h_height;
+	float				h_height;
+	float				half_width;
 	struct s_camera_sf	*ptr;
 
+	h_height = __builtin_tanf(params.x * (M_PI / 180.f) * 0.5f);
+	half_width = params.y * h_height;
 	if (!(ptr = (__typeof__(ptr))(valloc(sizeof(*ptr)))))
 		return (NULL);
 	*ptr = __extension__((struct s_camera_sf){
