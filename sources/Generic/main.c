@@ -36,19 +36,17 @@ static void __attribute__((ALIGN,ARCH))
 
 	while (-42)
 	{
-		SDL_PollEvent(&event);
-		if (event.type == SDL_QUIT)
-			_Exit(0);
-		else if ((event.type == SDL_WINDOWEVENT)
-		&& ((event.window.event == SDL_WINDOWEVENT_EXPOSED)
-		|| (event.window.event == SDL_WINDOWEVENT_ENTER)
-		|| (event.window.event == SDL_WINDOWEVENT_SHOWN)))
-			SDL_UpdateWindowSurface(wnd->w);
-		else if ((event.type == SDL_KEYDOWN)
-		&& (event.key.keysym.sym == SDLK_ESCAPE))
-			_Exit(0);
-		else
-			continue ;
+		while (SDL_PollEvent(&event))
+		{
+			if (event.type == SDL_QUIT)
+				_Exit(0);
+			else if ((event.type == SDL_KEYDOWN)
+			&& (event.key.keysym.sym == SDLK_ESCAPE))
+				_Exit(0);
+			else
+				continue ;
+		}
+		SDL_UpdateWindowSurface(wnd->w);
 	}
 	tpool_wait(render_pool);
 	tpool_destroy(render_pool);
