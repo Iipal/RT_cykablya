@@ -26,7 +26,8 @@ void __attribute__((ALIGN,ARCH))
 			max_objs = scene->objs->generic.count;
 			while (max_objs > ++i)
 			{
-				FREE(scene->objs[i].generic.self, free);
+				if ((void*)0x1 != scene->objs[i].generic.self)
+					FREE(scene->objs[i].generic.self, free);
 				FREE(scene->objs[i].generic.material, free);
 			}
 		}
