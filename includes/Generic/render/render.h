@@ -37,7 +37,7 @@ struct s_render_params
 	float											aperture;
 	float											dist_to_focus;
 	_Bool											is_gi_enable;
-	char											stub[3];
+	int												stub : __CHAR_BIT__ * 3;
 };
 
 #  endif

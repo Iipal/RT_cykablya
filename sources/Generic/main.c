@@ -24,87 +24,114 @@
 # include "libft.h"
 # include "Generic/libftsdl.h"
 
+static struct s_tpool __attribute__((ALIGN,ARCH))
+	rendering_pool(
+		struct s_tpool *restrict render_pool,
+		struct s_sdl *restrict wnd,
+		struct s_scene *restrict s,
+		const size_t render_threads)
+{
+	const size_t	render_tasks = render_threads << 2UL;
+	const size_t	render_part = (s->render.w * s->render.h / render_tasks);
+	size_t			i;
+	struct s_render_params	*restrict	params;
+
+	if (!(params = (__typeof__(params))(valloc(sizeof(*params) * render_tasks))))
+		_Exit(EXIT_FAILURE);
+	if (!(render_pool = tpool_create(render_threads)))
+		_Exit(EXIT_FAILURE);
+	i = ~0UL;
+	while (++i < render_tasks)
+	{
+		params[i] = (struct s_render_params){
+			.screen_width = s->render.w, .screen_height = s->render.h,
+			.start = render_part * i, .stop = render_part * (i + 1),
+			.step = 1UL, .hitables = s->objs, .samples = s->render.samples,
+			.screen = wnd->pxls, .look_from = s->cam.look_from,
+			.look_at = s->cam.look_at, .position = s->cam.position,
+			.fov = s->cam.fov, .aperture = s->cam.aperture,
+			.aspect_ratio = (float)s->render.w / (float)s->render.h,
+			.dist_to_focus = s->cam.dist_to_focus, .is_gi_enable = s->is_gi
+		};
+		tpool_add_work(render_pool, (void(*)(void*))s->render.fn, params + i);
+	}
+}
+
+static void __attribute__((ALIGN,ARCH))
+	sdl_loop(struct s_tpool *restrict render_pool,
+			struct s_sdl *restrict wnd,
+			struct s_render_params *restrict params)
+{
+	SDL_Event		event;
+	const Uint32	window_id = SDL_GetWindowID(wnd->w);
+
+	while (-42)
+	{
+		SDL_PollEvent(&event);
+		if (event.type == SDL_QUIT)
+			_Exit(0);
+		else if ((event.type == SDL_WINDOWEVENT)
+		&& ((event.window.event == SDL_WINDOWEVENT_EXPOSED)
+		|| (event.window.event == SDL_WINDOWEVENT_ENTER)
+		|| (event.window.event == SDL_WINDOWEVENT_SHOWN)))
+			SDL_UpdateWindowSurface(wnd->w);
+		else if ((event.type == SDL_KEYDOWN)
+		&& (event.key.keysym.sym == SDLK_ESCAPE))
+			_Exit(0);
+		else
+			continue ;
+	}
+	tpool_wait(render_pool);
+	tpool_destroy(render_pool);
+	sdl_free((struct s_sdl **restrict)&wnd);
+	free(params);
+}
 
 int __attribute__((ALIGN,ARCH))
 	main(int argc, char *argv[])
 {
-	struct s_scene	*s;
+	struct s_scene	*restrict			s;
+	struct s_sdl	*restrict			wnd;
+	struct s_render_params	*restrict	params;
+	struct s_tpool	*restrict			render_pool;
 
-	--argc;
-	++argv;
-	if (1 < argc || !argc)
+	if (1 < (--argc) || !(++argv))
 	{
 		ft_putendl_fd("You must to give me a only 1 .json file.", 2);
-		return (EXIT_FAILURE);
+		_Exit(EXIT_FAILURE);
 	}
-	clock_t	start, end;
-	start = clock();
 	if (!(s = scene_parser(*argv)))
-		return (EXIT_FAILURE);
-	end = clock();
-	printf("parse time: %lf\n", (double)(end - start) / CLOCKS_PER_SEC);
+		_Exit(EXIT_FAILURE);
+	if (!(wnd = (__typeof__(wnd))(valloc(sizeof(*wnd)))))
+		_Exit(EXIT_FAILURE);
+	*wnd = (struct s_sdl){ 0 };
+	if (!sdl_init(wnd, s->render.w, s->render.h, "RT_cykablyat'"))
+		_Exit(EXIT_FAILURE);
 
 	const size_t				render_threads = 8UL;
 	const size_t				render_tasks = render_threads << 2UL;
-	const size_t				render_part =
-		(s->render.w * s->render.h / render_tasks);
-	struct s_tpool	*restrict	render_pool;
+	const size_t				render_part = (s->render.w * s->render.h / render_tasks);
 
-	struct s_sdl	*restrict	wnd;
-	if (!(wnd = (__typeof__(wnd))(valloc(sizeof(*wnd)))))
-		return (-1);
-	*wnd = (struct s_sdl){ 0 };
+	if (!(params = valloc((sizeof(*params)) * render_tasks)))
+		_Exit(EXIT_FAILURE);
+	if (!(render_pool = tpool_create(render_threads)))
+		_Exit(EXIT_FAILURE);
 
-	printf("STATUS:%d\n", sdl_init(wnd, s->render.w, s->render.h, "BLYAT'"));
+	size_t i;
+	i = ~0UL;
 
-	struct s_render_params	*restrict	Params = valloc((sizeof(*Params)) * render_tasks);
-	render_pool = tpool_create(render_threads);
-
-	for (size_t i = 0; i < render_tasks; i++)
+	while (++i < render_tasks)
 	{
-		Params[i].screen_width = s->render.w;
-		Params[i].screen_height = s->render.h;
-		Params[i].start = render_part * i;
-		Params[i].stop = render_part * (i + 1);
-		Params[i].step = 1UL;
-		Params[i].hitables = s->objs;
-		Params[i].samples = s->render.samples;
-		Params[i].screen = wnd->pxls;
-		Params[i].look_from = s->cam.look_from;
-		Params[i].look_at = s->cam.look_at;
-		Params[i].position = s->cam.position;
-		Params[i].fov = s->cam.fov;
-		Params[i].aspect_ratio = (float)s->render.w / (float)s->render.h;
-		Params[i].aperture = s->cam.aperture;
-		Params[i].dist_to_focus = s->cam.dist_to_focus;
-		Params[i].is_gi_enable = s->is_gi;
-		tpool_add_work(render_pool, (void(*)(void*))s->render.fn,
-			Params + i);
+		params[i] = (struct s_render_params){
+			wnd->pxls, s->render.w, s->render.h, 1UL,
+			render_part * i, render_part * (i + 1), s->objs,
+			s->render.samples, s->cam.look_from, s->cam.look_at,
+			s->cam.position, s->cam.fov,
+			(float)s->render.w / (float)s->render.h,
+			s->cam.aperture, s->cam.dist_to_focus, s->is_gi, 0 };
+		tpool_add_work(render_pool, (void(*)(void*))s->render.fn, params + i);
 	}
-
-	_Bool	running;
-	running = 1;
-
-	while (running)
-	{
-		SDL_Event	event;
-
-		while (SDL_PollEvent(&event))
-		{
-			switch(event.type){
-				case SDL_QUIT:	running = 0;
-								_Exit(0);
-				case SDL_KEYDOWN: switch(event.key.keysym.sym){
-									case SDLK_ESCAPE:	running = 0;
-														_Exit(0); }
-				break;
-			}
-		}
-		SDL_UpdateWindowSurface(wnd->w);
-	}
-	tpool_wait(render_pool);
-	tpool_destroy(render_pool);
-	free(Params);
+	sdl_loop(render_pool, wnd, params);
 }
 
 #if defined(IMPLEMETNATION) && defined(DECLARATION)
