@@ -54,3 +54,5 @@ dkms.conf
 RT
 RT_cykablya
 ./objects/
+.DS_Store
+./*/*/.DS_Store

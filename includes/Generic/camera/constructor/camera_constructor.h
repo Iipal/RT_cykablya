@@ -40,8 +40,7 @@ struct s_camera_sf __attribute__((ARCH,CLONE,ALIGN))
 *camera(register const t_v3sf look_from,
 		register const t_v3sf look_at,
 		register const t_v3sf position,
-		register const float fov,
-		register const float aspect_ratio);
+		register const t_v2sf params);
 struct s_advanced_camera_sf __attribute__((CLONE))
 *camera(register const t_v3sf look_from,
 		register const t_v3sf look_at,

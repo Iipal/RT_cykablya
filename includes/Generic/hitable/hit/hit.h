@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hit.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sshevchu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/17 01:10:31 by sshevchu          #+#    #+#             */
+/*   Updated: 2019/11/17 01:10:33 by sshevchu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef HIT_H
 # define HIT_H
 
@@ -9,6 +21,7 @@
 #  include "hitable_types_internal.h"
 #  include "vector_types_internal.h"
 #  include "vector_types.h"
+#  include "material.h"
 #  include "sphere.h"
 #  include "cone.h"
 #  include "cylinder.h"
@@ -23,7 +36,7 @@
 #  include "hitable_types.h"
 
 t_record_sf __attribute__((CONST,CLONE,ARCH))
-hit(register const union u_hitables * restrict hitables,
+hit(register const union u_hitables *restrict hitables,
 	register const t_ray_sf ray,
 	register const float t_min,
 	register const float t_max);
