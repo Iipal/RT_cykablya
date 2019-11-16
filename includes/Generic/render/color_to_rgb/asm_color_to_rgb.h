@@ -16,7 +16,7 @@
 # ifndef T_V3SU
 #  define T_V3SU
 #  ifndef VEC
-#   define VEC(n) __attribute__((__ext_vector_type__(n),__aligned__))
+#   define VEC(n) __ext_vector_type__(n),__aligned__
 #  endif
 
 typedef	unsigned int __attribute__((VEC(3)))	t_v3su;
