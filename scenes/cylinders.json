@@ -13,6 +13,7 @@
         "aperture": 0.1,
         "dist_to_focus": 5.5
     },
+    "GI": true,
     "objects": [
         {
             "type": "cylinder",
@@ -34,6 +35,15 @@
             "pos": [ -1.0, 0.2, 1.0 ],
             "height": 1.0,
             "radius": 0.4
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "emitter",
+                "albedo": [ 4, 4, 4 ]
+            },
+            "pos": [1.0, -0.4, -1.0],
+            "radius": 0.1
         }
     ]
 }
