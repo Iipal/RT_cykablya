@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sphere_hit.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sdatskov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/16 22:47:26 by sdatskov          #+#    #+#             */
+/*   Updated: 2019/11/16 22:47:28 by sdatskov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #if !defined(IMPLEMETNATION) && !defined(DECLARATION)
 # define IMPLEMETNATION
 # define DECLARATION
@@ -13,7 +25,7 @@ t_record_sf __attribute__((CONST,CLONE,ARCH))
 	const t_v3sf	oc = origin(ray) - center(sphere);
 	const float		a = length_squared(direction(ray));
 	const float		b = dot(oc, direction(ray));
-	const float 	d = discriminant(a, b, oc, radius(sphere));
+	const float		d = discriminant(a, b, oc, radius(sphere));
 	float			solution;
 
 	if (d > 0.0f)
@@ -21,8 +33,10 @@ t_record_sf __attribute__((CONST,CLONE,ARCH))
 		solution = (-b - sqroot(d)) / a;
 		if ((solution < time.y)
 		&& (solution > time.x))
+		{
 			return (record(solution, point_at_parameter(ray, solution),
-							center(sphere), radius(sphere)));
+					center(sphere), radius(sphere)));
+		}
 		solution = (-b + sqroot(d)) / a;
 		if ((solution < time.y)
 		&& (solution > time.x))
