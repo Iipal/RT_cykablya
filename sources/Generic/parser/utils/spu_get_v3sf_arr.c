@@ -28,7 +28,7 @@ bool __attribute__((ALIGN,ARCH))
 	{
 		IFDO_F(JSONNumber != json_value_get_type(json_array_get_value(arr, i)),
 		ERRIN_N(param_name, obj_serial + 1, "JSONArray element", E_VEC_FMT));
-		(*dst)[i] = json_array_get_number(arr, i);
+		(*dst)[i] = (float)json_array_get_number(arr, i);
 	}
 	return (true);
 }
