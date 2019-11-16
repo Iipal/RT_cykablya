@@ -3,59 +3,28 @@
 # define DECLARATION
 #endif
 
-# include "ray.h"
-# include "sphere.h"
+# define TRDS 8UL
+
+// # include "ray.h"
+// # include "sphere.h"
 # include "thread_pool.h"
 # include "render.h"
-# include "material.h"
+// # include "material.h"
 # include "attributes.h"
 
-#include "scene_generator.h"
+// #include "scene_generator.h"
 
-# include "random_float.h"
-# include <assert.h>
+// # include "random_float.h"
+// # include <assert.h>
 
-# include "cone_constructor.h"
-# include "cylinder_constructor.h"
-# include "tetrahedron_constructor.h"
-# include "plane_constructor.h"
+// # include "cone_constructor.h"
+// # include "cylinder_constructor.h"
+// # include "tetrahedron_constructor.h"
+// # include "plane_constructor.h"
 
 # include "parser.h"
 # include "libft.h"
 # include "Generic/libftsdl.h"
-
-static struct s_tpool __attribute__((ALIGN,ARCH))
-	rendering_pool(
-		struct s_tpool *restrict render_pool,
-		struct s_sdl *restrict wnd,
-		struct s_scene *restrict s,
-		const size_t render_threads)
-{
-	const size_t	render_tasks = render_threads << 2UL;
-	const size_t	render_part = (s->render.w * s->render.h / render_tasks);
-	size_t			i;
-	struct s_render_params	*restrict	params;
-
-	if (!(params = (__typeof__(params))(valloc(sizeof(*params) * render_tasks))))
-		_Exit(EXIT_FAILURE);
-	if (!(render_pool = tpool_create(render_threads)))
-		_Exit(EXIT_FAILURE);
-	i = ~0UL;
-	while (++i < render_tasks)
-	{
-		params[i] = (struct s_render_params){
-			.screen_width = s->render.w, .screen_height = s->render.h,
-			.start = render_part * i, .stop = render_part * (i + 1),
-			.step = 1UL, .hitables = s->objs, .samples = s->render.samples,
-			.screen = wnd->pxls, .look_from = s->cam.look_from,
-			.look_at = s->cam.look_at, .position = s->cam.position,
-			.fov = s->cam.fov, .aperture = s->cam.aperture,
-			.aspect_ratio = (float)s->render.w / (float)s->render.h,
-			.dist_to_focus = s->cam.dist_to_focus, .is_gi_enable = s->is_gi
-		};
-		tpool_add_work(render_pool, (void(*)(void*))s->render.fn, params + i);
-	}
-}
 
 static void __attribute__((ALIGN,ARCH))
 	sdl_loop(struct s_tpool *restrict render_pool,
@@ -87,6 +56,31 @@ static void __attribute__((ALIGN,ARCH))
 	free(params);
 }
 
+static void __attribute__((ALIGN,ARCH))
+	render_loop(
+			struct s_scene	*restrict s,
+			struct s_tpool *restrict render_pool,
+			struct s_sdl *restrict wnd,
+			struct s_render_params *restrict params)
+{
+	const size_t	render_tasks = TRDS << 2UL;
+	const size_t	render_part = (s->render.w * s->render.h / render_tasks);
+	register size_t	i;
+
+	i = ~0UL;
+	while (++i < render_tasks)
+	{
+		params[i] = (struct s_render_params){
+			wnd->pxls, s->render.w, s->render.h, 1UL,
+			render_part * i, render_part * (i + 1), s->objs,
+			s->render.samples, s->cam.look_from, s->cam.look_at,
+			s->cam.position, s->cam.fov,
+			(float)s->render.w / (float)s->render.h,
+			s->cam.aperture, s->cam.dist_to_focus, s->is_gi, 0 };
+		tpool_add_work(render_pool, (void(*)(void*))s->render.fn, params + i);
+	}
+}
+
 int __attribute__((ALIGN,ARCH))
 	main(int argc, char *argv[])
 {
@@ -107,30 +101,11 @@ int __attribute__((ALIGN,ARCH))
 	*wnd = (struct s_sdl){ 0 };
 	if (!sdl_init(wnd, s->render.w, s->render.h, "RT_cykablyat'"))
 		_Exit(EXIT_FAILURE);
-
-	const size_t				render_threads = 8UL;
-	const size_t				render_tasks = render_threads << 2UL;
-	const size_t				render_part = (s->render.w * s->render.h / render_tasks);
-
-	if (!(params = valloc((sizeof(*params)) * render_tasks)))
+	if (!(params = valloc((sizeof(*params)) * (TRDS << 2UL))))
 		_Exit(EXIT_FAILURE);
-	if (!(render_pool = tpool_create(render_threads)))
+	if (!(render_pool = tpool_create(TRDS)))
 		_Exit(EXIT_FAILURE);
-
-	size_t i;
-	i = ~0UL;
-
-	while (++i < render_tasks)
-	{
-		params[i] = (struct s_render_params){
-			wnd->pxls, s->render.w, s->render.h, 1UL,
-			render_part * i, render_part * (i + 1), s->objs,
-			s->render.samples, s->cam.look_from, s->cam.look_at,
-			s->cam.position, s->cam.fov,
-			(float)s->render.w / (float)s->render.h,
-			s->cam.aperture, s->cam.dist_to_focus, s->is_gi, 0 };
-		tpool_add_work(render_pool, (void(*)(void*))s->render.fn, params + i);
-	}
+	render_loop(s, render_pool, wnd, params);
 	sdl_loop(render_pool, wnd, params);
 }
 
