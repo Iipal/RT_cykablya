@@ -1,9 +1,9 @@
 {
     "render": {
         "type": "full",
-        "samples": 12,
-        "width": 1024,
-        "height": 768
+        "samples": 64,
+        "width": 1280,
+        "height": 720
     },
     "camera": {
         "look_from": [13.0, 2.0, 3.0],
@@ -13,7 +13,8 @@
         "aperture": 1.1,
         "dist_to_focus": 9.5
     },
+    "GI": false,
     "random": {
-        "count": 100
+        "count": 50
     }
 }
