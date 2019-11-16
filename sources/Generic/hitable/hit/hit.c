@@ -68,11 +68,23 @@ t_record_sf __attribute__((CONST,CLONE,ARCH))
 	closest_so_far = t_max;
 	i = ~0UL;
 	while (++i < hitables->generic.count)
-		if ((hitables[i].generic.type == SPHERE) && (hit_condition(currect_record.sf = hit_sphere((const struct s_hlp){
-		hitables, currect_record, ray, vec(t_min, closest_so_far), i }))))
-			return_candidate = currect_record.sf;
+		// if ((hitables[i].generic.type == SPHERE) && (hit_condition(currect_record.sf = hit_sphere((const struct s_hlp){
+		// hitables, currect_record, ray, vec(t_min, closest_so_far), i }))))
+		// 	return_candidate = currect_record.sf;
 
-
+		if (hitables[i].generic.type == SPHERE)
+		{
+			currect_record.sf = hit(*(hitables[i].sphere.self),
+					ray, vec(t_min, closest_so_far), currect_record.sf);
+			if (hit_condition(currect_record.sf)
+			&& hit_distance(currect_record.sf) < closest_so_far)
+			{
+				closest_so_far = hit_distance(currect_record.sf);
+				currect_record.qi[1] = (char)(type(*(hitables[i].sphere.material)));
+				currect_record.hi[1] = (short)(i);
+				return_candidate = currect_record.sf;
+			}
+		}
 		else if (hitables[i].generic.type == CONE)
 		{
 			currect_record.sf = hit(*(hitables[i].cone.self),
