@@ -71,7 +71,6 @@ static void __attribute__((ALIGN,ARCH))
 			struct s_render_params *restrict params)
 {
 	SDL_Event		event;
-	const Uint32	window_id = SDL_GetWindowID(wnd->w);
 
 	while (-42)
 	{

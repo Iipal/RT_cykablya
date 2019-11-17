@@ -29,7 +29,6 @@ t_v3sf __attribute__((CONST,CLONE,SMALL_STACK,ARCH))
 {
 	register const t_record_sf	record = hit(hitables, r, 0.001f, __FLT_MAX__);
 	const t_v3sf				f = (normalize(direction(r)).y + 1.0f) * 0.5f;
-	const size_t				i = ((t_record_mask_hi)record)[1];
 
 	if (condition(record) && material(record) == EMITTER)
 		return (albedo(*(hitables[iter(record)].sphere.material)));
