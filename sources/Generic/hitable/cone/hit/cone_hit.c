@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cone_hit.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sshevchu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/17 04:00:31 by sshevchu          #+#    #+#             */
+/*   Updated: 2019/11/17 04:00:32 by sshevchu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #if !defined(IMPLEMETNATION) && !defined(DECLARATION)
 # define IMPLEMETNATION
 # define DECLARATION
@@ -16,7 +28,7 @@ t_record_sf __attribute__((CONST,CLONE,ARCH))
 	float		tan;
 	float		t;
 
-	tan =  (radius(cone) / height(cone)) * (radius(cone) / height(cone));
+	tan = (radius(cone) / height(cone)) * (radius(cone) / height(cone));
 	t = solution(
 		(direction(ray).x * direction(ray).x)
 		+ (direction(ray).z * direction(ray).z)
@@ -28,8 +40,8 @@ t_record_sf __attribute__((CONST,CLONE,ARCH))
 	if ((point_at_parameter(ray, t).y > center(cone).y)
 	&& (point_at_parameter(ray, t).y < center(cone).y + height(cone))
 	&& ((t < time.y) && (t > time.x)))
-		return record(t, point_at_parameter(ray, t),
-			normal(cone, point_at_parameter(ray, t)));
+		return (record(t, point_at_parameter(ray, t),
+			normal(cone, point_at_parameter(ray, t))));
 	else
 		return (record(current_record));
 }

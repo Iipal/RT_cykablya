@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cylinder_normal.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sshevchu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/17 04:02:17 by sshevchu          #+#    #+#             */
+/*   Updated: 2019/11/17 04:02:18 by sshevchu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #if !defined(IMPLEMETNATION) && !defined(DECLARATION)
 # define IMPLEMETNATION
 # define DECLARATION
@@ -15,9 +27,9 @@ t_v3sf __attribute__((CONST,CLONE,ARCH))
 			register const t_v3sf point)
 {
 	(void)point;
-	return normalize(vec(point.x - center(cyl).x,
+	return (normalize(vec(point.x - center(cyl).x,
 						0.0f,
-						point.z - center(cyl).z));
+						point.z - center(cyl).z)));
 }
 
 t_v3sf __attribute__((CONST,CLONE,ARCH))
@@ -29,9 +41,9 @@ t_v3sf __attribute__((CONST,CLONE,ARCH))
 
 	m = dot(direction(ray), axis(cyl)) * t
 	+ dot(origin(ray) - direction(ray), axis(cyl));
-    return (normalize(point_at_parameter(ray, t)
-		    				- center(cyl)
-		    				- axis(cyl) * m));
+	return (normalize(point_at_parameter(ray, t)
+						- center(cyl)
+						- axis(cyl) * m));
 }
 
 #if defined(IMPLEMETNATION) && defined(DECLARATION)

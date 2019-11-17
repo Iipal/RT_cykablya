@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cylinder_hit.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sshevchu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/17 04:02:05 by sshevchu          #+#    #+#             */
+/*   Updated: 2019/11/17 04:02:07 by sshevchu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #if !defined(IMPLEMETNATION) && !defined(DECLARATION)
 # define IMPLEMETNATION
 # define DECLARATION
@@ -17,16 +29,19 @@ t_record_sf __attribute__((CONST,CLONE,ARCH))
 		register const t_record_sf current_record)
 {
 	const t_v3sf	oc = origin(ray) - center(cyl);
-	const float		a = length_squared(direction(ray)) - dot(direction(ray), axis(cyl)) * dot(direction(ray), axis(cyl));
-	const float		b = 2.0f * (dot(direction(ray), oc) - dot(direction(ray), axis(cyl)) * dot(oc, axis(cyl)));
-	const float 	c = length_squared(oc) - dot(oc, axis(cyl)) * dot(oc, axis(cyl)) - radius(cyl) * radius(cyl);
-	float			t = solution(a, b, c);
+	register float	t;
 
+	t = solution(length_squared(direction(ray)) - dot(direction(ray),
+	axis(cyl)) * dot(direction(ray), axis(cyl)),
+	2.0f * (dot(direction(ray), oc) - dot(direction(ray),
+	axis(cyl)) * dot(oc, axis(cyl))),
+	length_squared(oc) - dot(oc, axis(cyl)) * dot(oc, axis(cyl))
+	- radius(cyl) * radius(cyl));
 	if ((point_at_parameter(ray, t).y > center(cyl).y)
 	&& (point_at_parameter(ray, t).y < center(cyl).y + height(cyl))
 	&& (t < time.y) && (t > time.x))
-		return record(t, point_at_parameter(ray, t),
-			normal(cyl, ray, t));
+		return (record(t, point_at_parameter(ray, t),
+			normal(cyl, ray, t)));
 	else
 		return (record(current_record));
 }

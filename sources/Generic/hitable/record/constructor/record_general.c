@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   record_general.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sshevchu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/17 04:04:57 by sshevchu          #+#    #+#             */
+/*   Updated: 2019/11/17 04:04:59 by sshevchu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #if !defined(IMPLEMETNATION) && !defined(DECLARATION)
 # define IMPLEMETNATION
 # define DECLARATION
@@ -11,12 +23,10 @@ t_record_sf __attribute__((CONST,CLONE,ARCH))
 {
 	const int			val = 0x1;
 
-	return (__extension__((t_record_sf){
-		*(float*)&val,
-		solution,
-		point.x, point.y, point.z,
-		normal.x, normal.y, normal.z
-	}));
+	return ((t_record_sf){ *(float*)&val,
+							solution,
+							point.x, point.y, point.z,
+							normal.x, normal.y, normal.z });
 }
 
 t_record_df __attribute__((CONST,CLONE,ARCH))
@@ -26,12 +36,10 @@ t_record_df __attribute__((CONST,CLONE,ARCH))
 {
 	const long			val = 0x1;
 
-	return (__extension__((t_record_df){
-		*(double*)&val,
-		solution,
-		point.x, point.y, point.z,
-		normal.x, normal.y, normal.z
-	}));
+	return ((t_record_df){ *(double*)&val,
+							solution,
+							point.x, point.y, point.z,
+							normal.x, normal.y, normal.z });
 }
 
 #if defined(IMPLEMETNATION) && defined(DECLARATION)

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sphere_vector.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sshevchu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/17 04:06:39 by sshevchu          #+#    #+#             */
+/*   Updated: 2019/11/17 04:06:42 by sshevchu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #if !defined(IMPLEMETNATION) && !defined(DECLARATION)
 # define IMPLEMETNATION
 # define DECLARATION
@@ -20,7 +32,7 @@ t_sphere_sf __attribute__((CONST,CLONE,ARCH))
 	t_sphere_sf		s;
 
 	s.lo = center;
-	s.hi = ((__typeof__(center)){ radius, radius, radius });
+	s.hi = (const t_v3sf){ radius, radius, radius };
 	return (s);
 }
 
@@ -40,7 +52,7 @@ t_sphere_df __attribute__((CONST,CLONE,ARCH))
 	t_sphere_df		s;
 
 	s.lo = center;
-	s.hi = ((__typeof__(center)){ radius, radius, radius });
+	s.hi = (const t_v3df){ radius, radius, radius };
 	return (s);
 }
 
