@@ -24,6 +24,7 @@
 #  include "vector.h"
 #  include "material.h"
 #  include "vector_int_types.h"
+#  include "scatter.h"
 # endif
 
 # ifdef DECLARATION
