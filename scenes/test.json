@@ -13,6 +13,7 @@
         "aperture": 0.1,
         "dist_to_focus": 5.5
     },
+    "GI": false,
     "objects": [
         {
             "type": "triangle",
