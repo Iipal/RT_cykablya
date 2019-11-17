@@ -12,9 +12,5 @@
         "fov": 90.0,
         "aperture": 0.0001,
         "dist_to_focus": 1
-    },
-    "GI": true,
-    "random": {
-        "count": 100
     }
 }
