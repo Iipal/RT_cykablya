@@ -6,13 +6,13 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/27 13:45:17 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/09/02 21:52:46 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/05 12:08:43 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr_fd(int32_t n, int32_t const fd)
+void	ft_putnbr_fd(int64_t n, int32_t fd)
 {
 	size_t	n_len;
 	char	tmp[24];

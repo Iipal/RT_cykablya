@@ -6,16 +6,18 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 00:07:31 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/08/04 12:23:54 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/05 11:51:43 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	add_aux(int64_t const n, int64_t const b,
-				char *const out, int64_t *const p)
+static void	add_aux(int64_t n,
+				int64_t b,
+				char *restrict out,
+				int64_t *restrict p)
 {
-	static char const	base[] = "0123456789ABCDEF";
+	static const char	base[] = "0123456789ABCDEF";
 
 	if (n <= -b || b <= n)
 		add_aux(n / b, b, out, p);

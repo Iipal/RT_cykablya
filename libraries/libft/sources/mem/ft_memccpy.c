@@ -6,21 +6,22 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 17:43:45 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/08/04 02:13:01 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/05 09:36:11 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memccpy(void *const dest,
-			void const *const src,
-			uint8_t const c,
-			size_t const n)
+void	*ft_memccpy(void *restrict dest,
+			const void *restrict src,
+			uint8_t c,
+			size_t n)
 {
-	uint8_t	*const	dst = (uint8_t *const)dest;
-	uint8_t	*const	sc = (uint8_t *const)src;
+	uint8_t			*dst;
+	const uint8_t	*sc = (const uint8_t*)src;
 	size_t			i;
 
+	dst = (uint8_t*)dest;
 	i = ~0UL;
 	while (n > ++i)
 	{

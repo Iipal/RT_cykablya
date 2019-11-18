@@ -6,13 +6,13 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/26 19:11:48 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/08/24 15:57:33 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/05 11:41:41 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *const s1, char const *const s2)
+inline char	*ft_strjoin(const char *restrict s1, const char *restrict s2)
 {
 	char	*out;
 	size_t	len1;

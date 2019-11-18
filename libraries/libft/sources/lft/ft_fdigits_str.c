@@ -6,15 +6,15 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 17:41:00 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/08/04 00:59:36 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/05 09:49:06 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_fdigits_str(char const *str)
+size_t	ft_fdigits_str(const char *restrict str)
 {
-	int64_t	const	exp = ft_atol(str);
+	const int64_t	exp = ft_atol(str);
 	int64_t			mantissa;
 	size_t			mantissa_digits;
 	bool			sign;
@@ -36,7 +36,7 @@ size_t	ft_fdigits_str(char const *str)
 		else
 			mantissa_digits -= ft_digits(mantissa);
 		return (ft_digits(exp) + ft_digits(mantissa) + mantissa_digits
-			+ 1 + (!exp && sign ? 1 : 0));
+			+ 1 + ((!exp && sign) ? 1 : 0));
 	}
-	return (ft_digits(exp) + (!exp && sign ? 1 : 0));
+	return (ft_digits(exp) + ((!exp && sign) ? 1 : 0));
 }

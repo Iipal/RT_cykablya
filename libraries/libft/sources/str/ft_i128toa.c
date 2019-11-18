@@ -6,22 +6,22 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 00:22:59 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/08/04 11:03:04 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/18 01:09:41 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_str.h"
 #include "libft_utils.h"
 
-char					*ft_i128toa(__int128 n)
+char	*ft_i128toa(__int128 n)
 {
 	char		*out;
-	__int128	len;
+	__int128_t	len;
 	bool		sign;
 
+	len = (__int128_t)ft_digits((int64_t)n);
 	sign = 0 > n ? true : false;
-	len = ft_digits(n);
-	if (!(out = ft_strnew(len + sign)))
+	if (!(out = ft_strnew((size_t)(len + sign))))
 		return (out);
 	while (len--)
 	{

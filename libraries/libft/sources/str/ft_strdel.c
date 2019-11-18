@@ -6,15 +6,15 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/26 17:21:54 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/08/24 15:57:19 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/05 11:04:21 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_strdel(char **as)
+inline void	ft_strdel(char **restrict as)
 {
-	if (*as)
+	if (as && *as)
 	{
 		free(*as);
 		*as = NULL;

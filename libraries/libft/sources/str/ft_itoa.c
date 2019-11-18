@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/27 10:33:26 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/08/04 11:02:40 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/18 01:09:59 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 char	*ft_itoa(int32_t n)
 {
 	char	*out;
-	int32_t	len;
+	size_t	len;
 	bool	sign;
 
-	sign = 0 > n ? true : false;
 	len = ft_digits(n);
+	sign = (0 > n) ? true : false;
 	if (!(out = ft_strnew(len)))
 		return (out);
 	while (len--)

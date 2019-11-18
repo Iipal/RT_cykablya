@@ -6,13 +6,13 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/27 13:58:29 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/08/24 15:57:26 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/05 12:01:34 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_ss_words(char const *s, char const c)
+static size_t			ft_ss_words(const char *s, int32_t c)
 {
 	size_t	counter;
 	bool	is_word;
@@ -33,14 +33,14 @@ static size_t	ft_ss_words(char const *s, char const c)
 	return (counter);
 }
 
-static size_t	ft_ss_wlen(char *s, char const c)
+static inline size_t	ft_ss_wlen(char *restrict s, int32_t c)
 {
-	char const *const	ch = ft_strchr(s, c);
+	const char *restrict	ch = ft_strchr(s, c);
 
 	return (ch ? (size_t)(ch - s) : ft_strlen(s));
 }
 
-char			**ft_strsplit(char *s, char const c)
+char					**ft_strsplit(char *s, int32_t c)
 {
 	char	**out;
 	size_t	w_counter;

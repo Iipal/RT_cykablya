@@ -6,13 +6,13 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 20:56:04 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/08/04 01:07:12 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/05 12:03:33 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnchar(char const c, size_t n)
+void	ft_putnchar(int32_t c, size_t n)
 {
 	while (n--)
 		F_PUTCHAR(c);

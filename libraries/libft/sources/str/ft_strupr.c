@@ -6,13 +6,13 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 12:08:57 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/08/04 11:07:53 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/05 11:28:18 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strupr(char *str)
+char	*ft_strupr(char *restrict str)
 {
 	size_t	i;
 

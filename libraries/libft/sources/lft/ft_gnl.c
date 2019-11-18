@@ -6,21 +6,19 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/03 12:31:02 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/08/24 15:50:43 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/18 00:38:12 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int32_t	catline_recursive(int32_t const fd, char **data,
-								char **line, ssize_t nbytes)
+static int32_t	catline_recursive(int32_t fd, ssize_t nbytes,
+						char **restrict data, char **restrict line)
 {
-	size_t	to_nl;
 	char	*temp_nl;
+	size_t	to_nl;
 
-	to_nl = ~0UL;
-	while (data[fd][++to_nl] && '\n' != data[fd][to_nl])
-		;
+	to_nl = ft_skip_to_blank(data[fd]);
 	if ('\n' == data[fd][to_nl])
 	{
 		*line = ft_strndup(data[fd], to_nl);
@@ -40,7 +38,7 @@ static int32_t	catline_recursive(int32_t const fd, char **data,
 	return (1);
 }
 
-int8_t			ft_gnl(int32_t const fd, char **line)
+int32_t			ft_gnl(int32_t fd, char **restrict line)
 {
 	static char	*data[255];
 	char		*temp;
@@ -64,5 +62,5 @@ int8_t			ft_gnl(int32_t const fd, char **line)
 		return (-1);
 	if (!nbytes && (!data[fd] || !data[fd][0]))
 		return (0);
-	return (catline_recursive(fd, data, line, nbytes));
+	return (catline_recursive(fd, nbytes, data, line));
 }

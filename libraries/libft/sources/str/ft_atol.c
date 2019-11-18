@@ -6,19 +6,19 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/26 11:11:40 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/08/04 10:28:43 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/05 11:49:05 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int64_t	ft_atol(char const *str)
+int64_t	ft_atol(const char *str)
 {
 	int64_t	num;
 	int64_t	sign;
 
-	str += ft_skip_blanks(str);
 	num = 0L;
+	str += ft_skip_blanks(str);
 	sign = ('-' == *str) ? -1L : 1L;
 	if ('-' == *str || '+' == *str)
 		++str;

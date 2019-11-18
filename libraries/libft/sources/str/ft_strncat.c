@@ -6,15 +6,17 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 17:43:02 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/08/04 11:33:37 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/05 11:33:50 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncat(char *dest, char const *const src, size_t const n)
+char	*ft_strncat(char *restrict dest,
+			const char *restrict src,
+			size_t n)
 {
-	size_t const	dest_len = ft_strlen(dest);
+	const size_t	dest_len = ft_strlen(dest);
 	size_t			i;
 
 	i = ~0UL;

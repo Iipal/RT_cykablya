@@ -6,16 +6,19 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 16:37:20 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/08/04 11:36:19 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/18 01:12:50 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(char *str, char const c)
+char	*ft_strchr(char *str, int32_t c)
 {
-	while (*str != c)
-		if (!*str++)
+	char	*ptr;
+
+	ptr = (char*)str;
+	while (ptr && *ptr != c)
+		if (!*ptr++)
 			return (NULL);
-	return (str);
+	return (ptr);
 }

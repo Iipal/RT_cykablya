@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/27 10:33:26 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/08/04 12:26:22 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/18 00:47:31 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*ft_ltoa(int64_t n)
 {
 	char	*out;
-	int64_t	len;
+	size_t	len;
 	bool	sign;
 
 	sign = 0L > n ? true : false;

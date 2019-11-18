@@ -6,23 +6,23 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/27 19:20:57 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/08/24 15:57:09 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/05 11:27:23 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *const dest,
-			char const *const str,
-			size_t const dstsize)
+inline size_t	ft_strlcpy(char *restrict dest,
+					const char *restrict str,
+					size_t dstsize)
 {
 	size_t const	strsize = ft_strlen(str);
 
 	if (strsize < dstsize)
-		ft_memcpy(dest, (void const *const)str, strsize + 1);
+		ft_strncpy(dest, str, strsize + 1);
 	else if (dstsize)
 	{
-		ft_memcpy(dest, (void const *const)str, dstsize - 1);
+		ft_strncpy(dest, str, dstsize - 1);
 		dest[dstsize - 1] = '\0';
 	}
 	return (strsize);
