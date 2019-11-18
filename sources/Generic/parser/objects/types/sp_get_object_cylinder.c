@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 13:19:35 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/07 17:00:38 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/15 13:17:10 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,12 @@ extern inline t_cylinder_sf __attribute__((ALIGN,ARCH))
 	NO_F(spu_get_v3sf_arr(&pos, json_object_get_array(obj_json, P_O_POSITION),
 		P_O_POSITION, obj_serial));
 	radius = json_object_get_number(obj_json, P_O_RADIUS);
+	h_t = (t_v3sf) { 0.0f, 0.0f, 0.0f };
 	MEM(t_cylinder_sf, c, 1UL, E_ALLOC);
 	if (is_height)
 	{
-		h_t[0] = json_object_get_number(obj_json, P_O_HEIGHT);
+		h_t[0] = spu_value_inrange(json_object_get_number(obj_json, P_O_HEIGHT),
+					P_O_HEIGHT_MIN, P_O_HEIGHT_MAX);
 		*c = cylinder(pos, radius, h_t[0]);
 	}
 	else
@@ -61,7 +63,7 @@ extern inline t_cylinder_sf __attribute__((ALIGN,ARCH))
 }
 
 bool __attribute__((ALIGN,ARCH))
-	sp_get_object_cyiinder(const JSON_Object *restrict obj_json,
+	sp_get_object_cylinder(const JSON_Object *restrict obj_json,
 						union u_hitables *restrict obj,
 						const size_t obj_serial)
 {
@@ -70,7 +72,7 @@ bool __attribute__((ALIGN,ARCH))
 
 	NO_F(s_validate_cylinder_data(obj_json, obj_serial));
 	NO_F(c = s_get_cylinder_data(obj_json, obj_serial));
-	NO_F(mat = sp_get_object_material(obj_json, obj, obj_serial));
-	*obj = (union u_hitables){ CYLINDER, 0, c, mat };
+	NO_F(mat = sp_get_object_material(obj_json, obj_serial));
+	*obj = (union u_hitables){{ CYLINDER, 0, c, mat }};
 	return (true);
 }

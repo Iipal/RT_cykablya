@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   camera_types_internal.h                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sdatskov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/14 21:56:18 by sdatskov          #+#    #+#             */
+/*   Updated: 2019/11/14 21:56:20 by sdatskov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CAMERA_TYPES_INTERNAL_H
 # define CAMERA_TYPES_INTERNAL_H
 # include "vector_types.h"
@@ -34,12 +46,26 @@ struct		s_advanced_camera_sf
 
 # ifndef S_CAMERA_DF
 #  define S_CAMERA_DF
+
 struct		s_camera_df
 {
 	t_v3df	*restrict	lower_left_corner;
 	t_v3df	*restrict	horizontal;
 	t_v3df	*restrict	vertical;
 	t_v3df	*restrict	origin;
+};
+
+# endif
+
+# ifndef E_CAMERA_PARAMS
+#  define E_CAMERA_PARAMS
+
+enum	e_camera_params
+{
+	FOV,
+	ASPECT_RATIO,
+	APERTURE,
+	FOCUS_DISTANCE
 };
 
 # endif

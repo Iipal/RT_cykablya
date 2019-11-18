@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 13:15:51 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/07 17:16:07 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/15 13:17:04 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ bool __attribute__((ALIGN,ARCH))
 	NO_F(s_validate_plane_data(obj_json, obj_serial));
 	NO_F(p = s_get_plane_data(json_object_get_array(obj_json, P_O_POSITION),
 		obj_serial));
-	NO_F(mat = sp_get_object_material(obj_json, obj, obj_serial));
-	*obj = (union u_hitables){ PLANE, 0, p, mat };
+	NO_F(mat = sp_get_object_material(obj_json, obj_serial));
+	*obj = (union u_hitables){{ PLANE, 0, p, mat }};
 	return (true);
 }

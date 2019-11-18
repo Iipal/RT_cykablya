@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vector_constructor.h                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dshepele <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/14 22:03:15 by dshepele          #+#    #+#             */
+/*   Updated: 2019/11/14 22:03:16 by dshepele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef VECTOR_CONSTRUCTOR_H
 # define VECTOR_CONSTRUCTOR_H
 
@@ -40,8 +52,5 @@ vec(register const double e_0,
 	register const double e_2,
 	register const double e_3);
 
-#  ifndef IMPLEMETNATION
-#   include "free_attributes.h"
-#  endif
 # endif
 #endif

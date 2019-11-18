@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   scene_generator.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dshepele <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/14 21:44:56 by dshepele          #+#    #+#             */
+/*   Updated: 2019/11/14 21:44:56 by dshepele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #if !defined(IMPLEMETNATION) && !defined(DECLARATION)
 # define IMPLEMETNATION
 # define DECLARATION
@@ -10,7 +22,7 @@ static union u_hitables __attribute__((ALIGN,ARCH))
 	union u_hitables	*restrict	hitables;
 	t_material_sf		*restrict	materials;
 	t_sphere_sf			*restrict	spheres;
-	ptrdiff_t						i;
+	size_t							i;
 
 	if (!(hitables = (__typeof__(hitables))
 		(valloc((sizeof(*hitables) * count)))))
@@ -22,11 +34,11 @@ static union u_hitables __attribute__((ALIGN,ARCH))
 		(valloc((sizeof(*spheres) * count)))))
 		return (NULL);
 	*hitables = __extension__(
-		(typeof(*hitables)){{ GENERIC, count, spheres, materials }});
+		(union u_hitables){{ GENERIC, count, spheres, materials }});
 	i = 0L;
 	while (++i < count)
 		hitables[i] = __extension__(
-		(typeof(*hitables)){{ SPHERE, 0, spheres + i, materials + i }});
+		(union u_hitables){{ SPHERE, 0, spheres + i, materials + i }});
 	return ((union u_hitables*)hitables);
 }
 
@@ -65,7 +77,6 @@ static void __attribute__((ALIGN,ARCH,__nonnull__(1)))
 						register const size_t count)
 {
 	size_t		i;
-	float		choose_mat;
 	float		a;
 	float		b;
 	const float	limit = sqroot((float)count) / 2.0f;
@@ -80,10 +91,12 @@ static void __attribute__((ALIGN,ARCH,__nonnull__(1)))
 		b = -limit - 1.0f;
 		while (((b += 1.0f) < limit) && (i < (count - 4UL)))
 			if (random_float() < 0.33f)
-	materials[i++] = material(LAMBERTIAN, vec(random_float() * random_float(),
-	random_float() * random_float(), random_float() * random_float()));
+				materials[i++] = material(LAMBERTIAN, vec(random_float() *
+				random_float(), random_float() * random_float(),
+				random_float() * random_float()));
 			else if (random_float() < 0.66f)
-	materials[i++] = material(METAL, vec(0.5f * (1.0f + random_float()),
+				materials[i++] = material(METAL, vec(0.5f * (1.0f +
+				random_float()),
 	0.5f * (1.0f + random_float()), 0.5f * (1.0f + random_float())), 0.75f);
 			else
 				materials[i++] = material(DIELECTRIC, 1.5f);
@@ -94,7 +107,6 @@ union u_hitables __attribute__((ALIGN,ARCH))
 	*scene_generator(register const size_t count)
 {
 	union u_hitables	*restrict	hitables;
-	size_t							i;
 
 	if (!(hitables = (__typeof__(hitables))(scene_generator_alloc(count))))
 		return (NULL);
@@ -110,7 +122,6 @@ union u_hitables __attribute__((ALIGN,ARCH))
 												vec(0.7f, 0.6f, 0.5f), 0.0f);
 	return ((union u_hitables*)hitables);
 }
-
 
 #if defined(IMPLEMETNATION) && defined(DECLARATION)
 # undef IMPLEMETNATION

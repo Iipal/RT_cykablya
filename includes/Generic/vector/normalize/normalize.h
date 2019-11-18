@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   normalize.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dshepele <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/14 22:08:06 by dshepele          #+#    #+#             */
+/*   Updated: 2019/11/14 22:08:07 by dshepele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef NORMALIZE_H
 # define NORMALIZE_H
 
@@ -26,8 +38,5 @@ normalize(register const t_v4sf x);
 t_v4df __attribute__((CONST,CLONE,SMALL_STACK,ARCH))
 normalize(register const t_v4df x);
 
-#  ifndef IMPLEMETNATION
-#   include "free_attributes.h"
-#  endif
 # endif
 #endif

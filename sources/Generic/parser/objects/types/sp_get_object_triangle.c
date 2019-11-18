@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 13:19:35 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/07 17:00:30 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/15 13:17:00 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ bool __attribute__((ALIGN,ARCH))
 	NO_F(s_validate_triangle_data(obj_json, obj_serial));
 	NO_F(t = s_get_triangle_data(json_object_get_array(obj_json, P_O_POSITION),
 		obj_serial));
-	NO_F(mat = sp_get_object_material(obj_json, obj, obj_serial));
-	*obj = (union u_hitables){ TETRAHEDRON, 0, t, mat };
+	NO_F(mat = sp_get_object_material(obj_json, obj_serial));
+	*obj = (union u_hitables){{ TETRAHEDRON, 0, t, mat }};
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 01:01:15 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/07 17:17:00 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/14 19:26:44 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 t_material_sf __attribute__((ALIGN,ARCH))
 	*sp_object_mat_normal(const JSON_Object *restrict mat,
-		union u_hitables *restrict obj,
 		const size_t obj_serial)
 {
 	t_material_sf	*m;

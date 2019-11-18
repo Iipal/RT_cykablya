@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   reflect.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dshepele <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/14 22:09:56 by dshepele          #+#    #+#             */
+/*   Updated: 2019/11/14 22:09:57 by dshepele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef REFLECT_H
 # define REFLECT_H
 
@@ -23,8 +35,5 @@ reflect(register const t_v4sf x, register const t_v4sf n);
 t_v4df __attribute__((CONST,CLONE,SMALL_STACK,ARCH))
 reflect(register const t_v4df x, register const t_v4df n);
 
-#  ifndef IMPLEMETNATION
-#   include "free_attributes.h"
-#  endif
 # endif
 #endif

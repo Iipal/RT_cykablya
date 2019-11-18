@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   camera_ray.h                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sdatskov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/14 21:57:25 by sdatskov          #+#    #+#             */
+/*   Updated: 2019/11/14 21:57:27 by sdatskov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CAMERA_RAY_H
 # define CAMERA_RAY_H
 
@@ -32,7 +44,6 @@ ray(struct s_advanced_camera_sf *const restrict camera,
 	register const float t);
 
 #  ifndef IMPLEMETNATION
-#   include "free_attributes.h"
 #  endif
 # endif
 #endif

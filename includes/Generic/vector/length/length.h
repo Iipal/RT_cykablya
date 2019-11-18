@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   length.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dshepele <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/14 22:07:41 by dshepele          #+#    #+#             */
+/*   Updated: 2019/11/14 22:07:42 by dshepele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LENGTH_H
 # define LENGTH_H
 
@@ -25,8 +37,5 @@ length(register const t_v4sf vec);
 double __attribute__((CONST,CLONE,SMALL_STACK,ARCH))
 length(register const t_v4df vec);
 
-#  ifndef IMPLEMETNATION
-#   include "free_attributes.h"
-#  endif
 # endif
 #endif

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   camera_ray.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sdatskov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/14 20:38:48 by sdatskov          #+#    #+#             */
+/*   Updated: 2019/11/14 20:38:50 by sdatskov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #if !defined(IMPLEMETNATION) && !defined(DECLARATION)
 # define IMPLEMETNATION
 # define DECLARATION
@@ -19,7 +31,6 @@ t_ray_sf __attribute__((CLONE,CONST,ARCH))
 	return (t);
 }
 
-
 static t_v3sf  __attribute__((ARCH,SMALL_STACK))
 	random_in_unit_disk(void)
 {
@@ -27,11 +38,12 @@ static t_v3sf  __attribute__((ARCH,SMALL_STACK))
 
 	while (-42)
 	{
-	    p = 2.0f * vec(random_float(), random_float(), 0.0f) - vec(1.0f, 1.0f, 0.0f);
-	    if (!(dot(p, p) >= 1.0))
-	    	break ;
+		p = 2.0f * vec(random_float(), random_float(), 0.0f) -
+		vec(1.0f, 1.0f, 0.0f);
+		if (!(dot(p, p) >= 1.0))
+			break ;
 	}
-	return p;
+	return (p);
 }
 
 t_ray_sf __attribute__((CLONE,CONST,ARCH))

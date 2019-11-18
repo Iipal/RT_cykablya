@@ -1,0 +1,75 @@
+{
+    "render": {
+        "type": "full",
+        "samples": 32,
+        "width": 1000,
+        "height": 500
+    },
+    "camera": {
+        "look_from": [1.0, 0.0, 0.0],
+        "look_at": [1.0, 0.0, -1.0],
+        "pos": [1.0, 0.01, 0.0],
+        "fov": 90.0,
+        "aperture": 0.0001,
+        "dist_to_focus": 1
+    },
+    "GI": false,
+    "objects": [
+        {
+            "type": "sphere",
+            "material": {
+                "type": "metal",
+                "albedo": [ 1.0, 0.7, 1.0 ],
+                "fuzz": 0.0
+            },
+            "pos": [1.0, 0.0, -1.0],
+            "radius": 0.75
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "metal",
+                "albedo": [ 1.0, 0.5, 0.65 ],
+                "fuzz": 0.0
+            },
+            "pos": [1.0, 0.0, 1.0],
+            "radius": 0.75
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "emitter",
+                "albedo": [ 25, 25, 25 ]
+            },
+            "pos": [5.0, 5.0, -1.0],
+            "radius": 2
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "emitter",
+                "albedo": [ 25, 25, 25 ]
+            },
+            "pos": [-5.0, 5.0, -1.0],
+            "radius": 2
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "emitter",
+                "albedo": [ 25, 25, 25 ]
+            },
+            "pos": [-5.0, -5.0, -1.0],
+            "radius": 2
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "emitter",
+                "albedo": [ 25, 25, 25 ]
+            },
+            "pos": [5.0, -5.0, -1.0],
+            "radius": 2
+        }
+    ]
+}
