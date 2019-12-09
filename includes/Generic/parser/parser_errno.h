@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 17:44:42 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/07 09:41:27 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/12/09 20:39:23 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@
 
 # define E_I_CYLINDER P_OT_CYLINDER " must to have 'height' or 'top' parameter"
 
-# define ERRIN_N(at, n, e, m) ft_printf(E_PREFIX": %s [%d]: '%s' %s\n",at,n,e,m)
-# define ERRIN_D(at, n, m, e) ft_printf(E_PREFIX": %s [%d]: %s (%s)\n",at,n,m,e)
+# define ERRIN_N(at, n, e, m) ft_printf(E_PREFIX": %s[%zu]: '%s' %s\n",at,n,e,m)
+# define ERRIN_D(at, n, m, e) ft_printf(E_PREFIX": %s[%zu]: %s (%s)\n",at,n,m,e)
 # define ERRIN_I(e, m) ft_printf(E_PREFIX": %s: '%s' "E_INVALID".\n", e, m)
 # define ERRIN(e, m) ft_printf(E_PREFIX": %s: %s.\n", e, m)
 

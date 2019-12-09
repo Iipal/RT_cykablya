@@ -10,7 +10,7 @@
 # COMPILE_OBJ_RULE
 #
 # ASAN
-# P_FUNCTION 
+# P_FUNCTION
 #
 
 #
@@ -38,6 +38,7 @@ ifeq ($(OS_DETECT),$(OS_LINUX))
 							-mno-sse3 \
 							-mno-sse4 -mno-sse4.1 -mno-sse4.2 -mno-sse4a \
 							-mno-ssse3
+	AR					:= llvm-ar
 
 
 
@@ -58,8 +59,11 @@ else ifeq ($(OS_DETECT),$(OS_OSX))
 							-framework SDL2_ttf \
 							-framework OpenGL \
 							-framework AppKit
+	AR					:= ar
 
 else ifeq ($(OS_DETECT),$(OS_WINDOWS))
 	CLEAR = clean"
 	COMPILE_APP_RULE	+=	-lgdi32
 endif
+
+AR_FLAGS := -Trcs

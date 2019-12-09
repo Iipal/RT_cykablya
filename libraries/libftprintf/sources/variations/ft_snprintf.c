@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_one_of_str.c                                 :+:      :+:    :+:   */
+/*   ft_snprintf.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/09 23:08:35 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/05 09:46:28 by tmaluh           ###   ########.fr       */
+/*   Created: 2019/11/23 21:51:57 by tmaluh            #+#    #+#             */
+/*   Updated: 2019/12/07 17:04:01 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libftprintf.h"
+#include "libftprintf_internal.h"
 
-size_t	ft_is_one_of_str(const char *restrict cmp, size_t n, ...)
+inline int	ft_snprintf(char *dst, size_t len, const char *restrict format, ...)
 {
-	char	*temp;
 	va_list	ap;
-	size_t	i;
+	int		out;
 
-	i = ~0UL;
-	va_start(ap, n);
-	while (n > ++i)
-	{
-		temp = (char*)va_arg(ap, char*);
-		if (!ft_strcmp(cmp, temp))
-		{
-			va_end(ap);
-			return (i + 1UL);
-		}
-	}
+	va_start(ap, format);
+	out = ft_vsnprintf(dst, len, format, &ap);
 	va_end(ap);
-	return (0UL);
+	return (out);
 }

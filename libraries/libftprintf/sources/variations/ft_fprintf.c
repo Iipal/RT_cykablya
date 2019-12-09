@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_put_str_buf.c                                   :+:      :+:    :+:   */
+/*   ft_fprintf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/17 21:55:40 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/17 21:57:01 by tmaluh           ###   ########.fr       */
+/*   Created: 2019/03/09 13:04:40 by tmaluh            #+#    #+#             */
+/*   Updated: 2019/12/07 18:53:27 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_local.h"
+#include "libftprintf.h"
+#include "libftprintf_internal.h"
 
-void	pf_put_str_buf(const char *restrict str, size_t len)
+int	ft_fprintf(FILE *stream, const char *restrict format, ...)
 {
-	size_t	i;
+	va_list	ap;
+	int		out;
 
-	i = ~0UL;
-	while (len > ++i)
-		pf_put_ch_buf(str[i]);
+	va_start(ap, format);
+	out = ft_vfprintf(stream, format, &ap);
+	va_end(ap);
+	return (out);
 }

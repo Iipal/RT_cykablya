@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 14:49:59 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/15 13:22:23 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/12/09 20:38:28 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include "parser_errno.h"
 # include "parser_params.h"
 
-# include "ft_printf.h"
+# include "libftprintf.h"
 # include "libft.h"
 
 # define DECLARATION

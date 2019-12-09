@@ -1,22 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_vsnprintf.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/09 13:05:21 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/08/06 09:05:12 by tmaluh           ###   ########.fr       */
+/*   Created: 2019/12/01 18:07:58 by tmaluh            #+#    #+#             */
+/*   Updated: 2019/12/08 14:21:39 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libftprintf.h"
+#include "libftprintf_internal.h"
 
-/*
-** Simple analog of libC 'printf()' but only with this flags:
-** 'd', 'p', 's', 'c' and only width specification.
-*/
-int	ft_printf(char const *const format, ...);
+inline int	ft_vsnprintf(char *dst,
+				size_t len,
+				const char *restrict format,
+				va_list *restrict ap)
+{
+	int	out;
 
-#endif
+	if ((out = internal_vprintf(format, ap)))
+	{
+		if (len <= (size_t)out)
+			out = len;
+		ft_strncpy(dst, g_buf, out);
+		dst[out] = '\0';
+	}
+	ft_strdel(&g_buf);
+	return (out);
+}

@@ -6,14 +6,15 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/03 12:31:02 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/18 00:38:12 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/12/02 20:29:31 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 static int32_t	catline_recursive(int32_t fd, ssize_t nbytes,
-						char **restrict data, char **restrict line)
+						char *restrict *restrict data,
+						char *restrict *restrict line)
 {
 	char	*temp_nl;
 	size_t	to_nl;
@@ -38,7 +39,7 @@ static int32_t	catline_recursive(int32_t fd, ssize_t nbytes,
 	return (1);
 }
 
-int32_t			ft_gnl(int32_t fd, char **restrict line)
+int32_t			ft_gnl(int32_t fd, char *restrict *restrict line)
 {
 	static char	*data[255];
 	char		*temp;
@@ -53,7 +54,7 @@ int32_t			ft_gnl(int32_t fd, char **restrict line)
 		if (!data[fd])
 			data[fd] = ft_strnew(0);
 		temp = ft_strjoin(data[fd], buff);
-		free(data[fd]);
+		ft_strdel(&data[fd]);
 		data[fd] = temp;
 		if (ft_strchr(buff, '\n'))
 			break ;

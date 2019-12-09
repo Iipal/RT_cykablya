@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ishex_strn.c                                    :+:      :+:    :+:   */
+/*   ft_vsprintf.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/19 12:40:50 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/05 09:54:12 by tmaluh           ###   ########.fr       */
+/*   Created: 2019/12/01 18:04:17 by tmaluh            #+#    #+#             */
+/*   Updated: 2019/12/07 17:28:12 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libftprintf.h"
+#include "libftprintf_internal.h"
 
-bool	ft_ishex_strn(const char *restrict s, size_t n)
+inline int	ft_vsprintf(char *dst,
+				const char *restrict format,
+				va_list *restrict ap)
 {
-	size_t		i;
-	const char	*str = (const char*)s;
-	const char	valid_hex[] = "0123456789abcdef";
+	int	out;
 
-	while (n--)
+	if ((out = internal_vprintf(format, ap)))
 	{
-		i = ~0ULL;
-		while (valid_hex[++i])
-			if (F_TOLOWER(*str) == valid_hex[i])
-				break ;
-		if (F_TOLOWER(*str++) != valid_hex[i])
-			return (false);
+		ft_strncpy(dst, g_buf, g_buf_i);
+		dst[g_buf_i] = '\0';
+		out = g_buf_i;
 	}
-	return (true);
+	ft_strdel(&g_buf);
+	return (out);
 }

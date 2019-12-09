@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 17:06:13 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/18 01:12:49 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/12/02 20:30:55 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 # define LIBFT_STR_H
 
 # include <string.h>
+
 # include "libft_macroses.h"
 
 /*
 **	Free memory for string and set \param as to NULL.
 **	\param as pointer to string.
 */
-extern void		ft_strdel(char **restrict as);
+extern void		ft_strdel(char *restrict *restrict as);
 
 /*
 **	Reverse string \param str.
@@ -48,6 +49,10 @@ int32_t			ft_strncmp(const char *s1, const char *s2, size_t n);
 **	\return length of string \param str.
 */
 size_t			ft_strlen(const char *restrict str);
+/*
+**	\return length of string \param str.
+*/
+size_t			ft_strnlen(const char *restrict str, size_t max_len);
 
 /*
 **	Appends the NUL-terminated string \param src to the end of \param dest.
@@ -120,7 +125,7 @@ char			*ft_strncat(char *restrict dest,
 ** \return a pointer to the first occurrence of the character \param c
 **	 in the string \param s.
 */
-char			*ft_strchr(char *str, int32_t c);
+char			*ft_strchr(const char *str, int32_t c);
 
 /*
 **	\return a pointer to the last occurrence of the character \param c
@@ -228,5 +233,11 @@ char			*ft_itoa(int32_t n);
 **	\return convert number \param n to string.
 */
 char			*ft_ltoa(int64_t n);
+
+/*
+**	\return convert number \param num to \param dst string
+**	 in \param radix notation.
+*/
+char			*ft_ultoa(unsigned long num, char *restrict dst, int base);
 
 #endif

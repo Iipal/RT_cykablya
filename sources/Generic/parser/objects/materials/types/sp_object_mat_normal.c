@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 01:01:15 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/14 19:26:44 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/12/09 20:40:41 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_material_sf __attribute__((ALIGN,ARCH))
 {
 	t_material_sf	*m;
 
-	IFDO_R(1 != json_object_get_count(mat),
+	IFDOR(1 != json_object_get_count(mat),
 		ERRIN_D(P_OBJECTS " " P_O_MATERIAL, obj_serial + 1,
 			E_INVALID_COUNT, E_DEF_PARAM(1)), NULL);
 	MEM(t_material_sf, m, 1UL, E_ALLOC);

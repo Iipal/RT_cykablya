@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_address.c                                       :+:      :+:    :+:   */
+/*   pf_decimal.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/11 16:42:34 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/18 01:26:37 by tmaluh           ###   ########.fr       */
+/*   Created: 2019/03/12 19:08:14 by tmaluh            #+#    #+#             */
+/*   Updated: 2019/11/30 22:44:35 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include "ft_printf_local.h"
+#include "libftprintf_internal.h"
 
-bool	pf_address(va_list *ap)
+inline bool
+	pf_decimal(va_list *ap)
 {
-	intptr_t	addr;
+	const int	wch = IS_BIT(g_flag_spec_mask, PF_BIT_SPEC_DOT) ? '0' : ' ';
 
-	addr = (intptr_t)va_arg(*ap, void*);
-	if (!(g_data_ptr = ft_ltoa_base(addr, 16)))
+	g_data_ptr = pf_get_signed_data(ap);
+	if (!g_data_ptr)
 		return (false);
 	g_data_len = ft_strlen(g_data_ptr);
-	ft_strcpy(g_buf + g_buf_i, "0x");
-	g_buf_i += sizeof("0x");
-	ft_strncpy(g_buf + g_buf_i, g_data_ptr, g_data_len);
-	g_buf_i += g_data_len;
+	if (IS_BIT(g_flag_spec_mask, PF_BIT_SPEC_MINUS) && wch != '0')
+		pf_put_str_buf();
+	if (g_flag_width > g_data_len)
+		pf_put_ch_buf(wch, g_flag_width - g_data_len);
+	if (!IS_BIT(g_flag_spec_mask, PF_BIT_SPEC_MINUS) || wch == '0')
+		pf_put_str_buf();
 	ft_strdel(&g_data_ptr);
 	return (true);
 }

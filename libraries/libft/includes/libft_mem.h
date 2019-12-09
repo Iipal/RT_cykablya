@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 17:08:05 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/18 00:37:39 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/18 15:27:32 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void		*ft_memmove(void *restrict dest,
 **	\return matching byte of \param s after scans the initial \param n bytes
 **	 of \param s for the first instance of c.
 */
-void		*ft_memchr(void *restrict ptr, int c, size_t n);
+void		*ft_memchr(const void *restrict ptr, int c, size_t n);
 
 /*
 **	Compares the first \param n bytes of \param s1 and \param s2.
@@ -85,7 +85,9 @@ extern void	*ft_memalloc(size_t size);
 **	\return pointer to re-allocated of \param new_size pointer size
 **  and copy \param old_size bytes from \param ptr to \return pointer.
 */
-void	*ft_memrealloc(void *restrict ptr, size_t old_size, size_t new_size);
+void		*ft_memrealloc(void *restrict ptr,
+				size_t old_size,
+				size_t new_size);
 
 /*
 **	Creating duplicate of \param src on heap.

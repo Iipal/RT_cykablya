@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_put_gstr_buf.c                                  :+:      :+:    :+:   */
+/*   lftprintf_errno.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/17 21:52:22 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/17 21:57:11 by tmaluh           ###   ########.fr       */
+/*   Created: 2019/11/19 23:14:05 by tmaluh            #+#    #+#             */
+/*   Updated: 2019/12/05 20:49:29 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_local.h"
+#ifndef LFTPRINTF_ERRNO_H
+# define LFTPRINTF_ERRNO_H
 
-/*
-** This funcion put string from global variables(g_data_ptr) to buffer.
-*/
-void	pf_put_gstr_buf(void)
-{
-	size_t	i;
+# define E_PF_PREFIX  "ft_printf: "
+# define E_PF_INVALID E_PF_PREFIX "Something invalid."
 
-	i = ~0UL;
-	while (g_data_len > ++i)
-		pf_put_ch_buf(g_data_ptr[i]);
-}
+#endif

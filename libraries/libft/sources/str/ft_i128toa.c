@@ -6,12 +6,11 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 00:22:59 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/18 01:09:41 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/11/22 13:35:11 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_str.h"
-#include "libft_utils.h"
+#include "libft.h"
 
 char	*ft_i128toa(__int128 n)
 {

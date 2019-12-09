@@ -61,8 +61,7 @@ ifneq (,$(OBC_OBJECTS))
 endif
 	@$(MAKE) -q STATUS --no-print-directory
 ifeq ($(LIB_DETECT).a,$(NAME))
-	@ar rc $@ $(OBJECTS) $(ASM_OBJECTS)
-	@ranlib $@
+	@$(AR) $(AR_FLAGS) $@ $(OBJECTS) $(ASM_OBJECTS)
 else
 	@$(PROJ_CC) $(OBJECTS) $(ASM_OBJECTS) $(OBC_OBJECTS) $(COMPILE_APP_RULE) -o $@
 endif

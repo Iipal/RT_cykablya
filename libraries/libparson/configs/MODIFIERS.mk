@@ -10,7 +10,7 @@
 # COMPILE_OBJ_RULE
 #
 # ASAN
-# P_FUNCTION 
+# P_FUNCTION
 #
 
 #
@@ -19,8 +19,12 @@
 #
 ifeq ($(OS_DETECT),$(OS_LINUX))
 	CLEAR = clear && printf "\e[3J"
+	AR := llvm-ar
 else ifeq ($(OS_DETECT),$(OS_OSX))
 	CLEAR = clear && printf "\e[3J"
+	AR := ar
 else ifeq ($(OS_DETECT),$(OS_WINDOWS))
 	CLEAR = clean"
 endif
+
+AR_FLAGS := -Trcs

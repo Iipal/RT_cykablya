@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_one_of_strn.c                                :+:      :+:    :+:   */
+/*   internal_vprintf.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/09 23:08:35 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/05 09:47:30 by tmaluh           ###   ########.fr       */
+/*   Created: 2019/12/07 17:24:44 by tmaluh            #+#    #+#             */
+/*   Updated: 2019/12/08 14:51:18 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libftprintf_internal.h"
 
-size_t	ft_is_one_of_strn(const char *restrict cmp, size_t n, ...)
+int	internal_vprintf(const char *restrict format, va_list *restrict ap)
 {
-	char	*temp;
-	va_list	ap;
-	size_t	i;
+	bool	is_valid;
 
-	i = ~0UL;
-	va_start(ap, n);
-	while (n > ++i)
-	{
-		temp = va_arg(ap, char*);
-		if (!ft_strncmp(cmp, temp, ft_strlen(temp)))
-		{
-			va_end(ap);
-			return (i + 1UL);
-		}
-	}
-	return (0UL);
+	refresh_all_global_data();
+	is_valid = true;
+	while (is_valid && format[++g_fmt_i])
+		if (format[g_fmt_i] != '%')
+			pf_put_ch_buf(format[g_fmt_i]);
+		else if ((is_valid = pf_flag_parser(format)))
+			is_valid = pf_get_processing_func(ap);
+	return (is_valid ? (int)g_buf_i : 0UL);
 }

@@ -6,7 +6,7 @@
 /*   By: tmaluh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 13:14:44 by tmaluh            #+#    #+#             */
-/*   Updated: 2019/11/14 16:56:49 by tmaluh           ###   ########.fr       */
+/*   Updated: 2019/12/02 21:09:57 by tmaluh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,6 @@ typedef struct s_list	t_list;
 t_list	*ft_lstnew(void const *restrict data, const size_t data_size);
 
 void	ft_lstadd(t_list *restrict *alist, t_list *restrict new);
-# ifdef F_LSTADD
-#  undef F_LSTADD
-# endif
-# define F_LSTADD(head,new) {t_list**h=&(head);t_list*n=(new);n->next=*h;*h=n;}
 
 void	ft_lstiter(t_list *list, void (*f)(t_list*));
 t_list	*ft_lstmap(t_list *list, t_list *(*f)(t_list*));
