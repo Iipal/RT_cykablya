@@ -73,7 +73,7 @@ struct s_camera_sf __attribute__((ARCH,CLONE,ALIGN))
 	return (ptr);
 }
 
-struct s_advanced_camera_sf __attribute__((CLONE))
+struct s_advanced_camera_sf __attribute__((ARCH,CLONE,ALIGN))
 	*camera(register const t_v3sf look_from,
 			register const t_v3sf look_at,
 			register const t_v3sf position,

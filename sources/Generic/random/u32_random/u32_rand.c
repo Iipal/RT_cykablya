@@ -17,7 +17,8 @@
 # define TLS_U32 _Thread_local uint32_t
 #endif
 
-uint32_t	u32_rand(void)
+uint32_t __attribute__((ARCH,CLONE,ALIGN))
+	u32_rand(void)
 {
 	static TLS_U32	x = 123456789U;
 	static TLS_U32	y = 362436069U;

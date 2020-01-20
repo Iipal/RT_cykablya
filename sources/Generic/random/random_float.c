@@ -16,7 +16,8 @@
 # include "random_float.h"
 #endif
 
-float	random_float(void)
+float __attribute__((ARCH,CLONE,ALIGN))
+	random_float(void)
 {
 	const unsigned	rnd = u32_rand();
 

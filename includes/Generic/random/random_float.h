@@ -15,11 +15,13 @@
 
 # ifdef IMPLEMETNATION
 #  include "u32_rand.h"
+#  include "attributes.h"
 # endif
 
 # ifdef DECLARATION
 
-float	random_float(void);
+float __attribute__((ARCH,CLONE,ALIGN))
+	random_float(void);
 
 # endif
 #endif

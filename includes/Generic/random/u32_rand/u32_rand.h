@@ -15,11 +15,13 @@
 
 # ifdef IMPLEMETNATION
 #  include <stdint.h>
+#  include "attributes.h"
 # endif
 
 # ifdef DECLARATION
 
-uint32_t	u32_rand(void);
+uint32_t __attribute__((ARCH,CLONE,ALIGN))
+	u32_rand(void);
 
 # endif
 #endif
